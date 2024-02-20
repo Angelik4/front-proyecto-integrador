@@ -1,0 +1,41 @@
+:root {
+    --white: #ffffff;
+    --black: #000000;
+    --red: #EE1919;
+    --darkBlue: #092c4c;
+    --green: #54CE40;
+    --black2: #1D1D1D;
+    --lightGray: #A2A2A2;
+    --black3: #282828;
+    --gray: #333333;
+    --bg-lightGray: #A2A2A2;
+    --yellow: #FFC42D;
+    --orange: #F2994A;
+  }
+  @font-face {
+    font-family: 'lato-bold';
+    src: url('../fonts/Lato/Lato-Bold.ttf') format('ttf'),
+         url('../fonts/Lato/Lato-BoldItalic.ttf') format('ttf');
+    font-weight: bold;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'lato-light';
+    src: url('../fonts/Lato/Lato-Light.ttf') format('ttf'),
+         url('../fonts/Lato/Lato-LightItalic.ttf') format('ttf');
+    font-weight: lighter;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'lato-regular';
+    src: url('../fonts/Lato/Lato-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'lato-thin';
+    src: url('../fonts/Lato/Lato-Thin.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+  }
+
