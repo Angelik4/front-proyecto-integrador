@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from './Routes/Home';
-import Catalogue from './Routes/Catalogue';
+import Galeria from './Routes/Galeria';
 import Login from './Routes/Login';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -18,7 +18,7 @@ root.render(
               <Route path="/" element={<App />}>
                   <Route path="/" element={<Home />} />
                   <Route path="home" element={<Home />} />
-                  <Route path="catalogo" element={<Catalogue />} />
+                  <Route path="galeria" element={<Galeria />} />
                   <Route path="question" element={<Question />} />
                   <Route path="login" element={<Login />} />
                   <Route path="register" element={<Register />} />
