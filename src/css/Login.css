@@ -1,0 +1,96 @@
+@import url(./App.css);
+
+.contenedor_login {
+    width: 430px;
+    height: 520px;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.imagen-logo {
+    text-align: center;
+    margin: 10px;
+}
+.imagen-logo img { 
+    height: 80px;
+}
+
+.contenedor_login-title h2 {
+    text-align: center;
+    color: var(--darkBlue);
+    font-size: 24px;
+    margin: 10px;
+}
+
+.contenedor_login-title p {
+    text-align: center;
+    color: var(--lightGray);
+    font-size: 16px;
+    margin: 5px;
+}
+
+.campo-formulario {
+    position: relative;
+    margin-bottom: 10px;
+    padding: 10px;
+    margin: 0px;
+}
+
+.campo-formulario label {
+    color: var(--gray);
+}
+
+.campo-formulario input {
+    color: var(--lightGray);
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.icon-eye {
+    color: var(--lightGray);
+    display: flex;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 55%;
+}
+
+.olvidoContrasena {
+    color: var(--lightGray);
+    display: block;
+    text-align: center;
+}
+
+.contenedor_login-recordar-contrasena input{
+    margin-left: 10px;
+}
+
+.contenedor_login-recordar-contrasena label{
+    color: var(--lightGray);
+    margin-left: 5px;
+}
+
+button {
+    background-color: var(--orange);
+    color: var(--white);
+    padding: 10px 20px;
+    border: 20px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+p {
+    text-align: center;
+}
+
+
+

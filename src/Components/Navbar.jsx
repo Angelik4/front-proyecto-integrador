@@ -7,7 +7,7 @@ import logoCoworking from '../images/logo-coworking.webp';
 const Navbar = () => {
   return (
     <div className='ct_header'>
-       <img src={logoCoworking} alt="logo Coworking Now" />
+      <img src={logoCoworking} alt="logo Coworking Now" />
         <nav>
             <Link to="/">INICIO</Link>
             <Link to="/catalogo">CATALOGO</Link>
