@@ -1,6 +1,7 @@
 import React from 'react'
 import '../css/Home.css';
 import Search from '../Components/Search';
+import CardsIntroHome from '../Components/CardsIntroHome';
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
         </div>
         <Search/>
       </div>
+      <CardsIntroHome/>
     </div>
   )
 }

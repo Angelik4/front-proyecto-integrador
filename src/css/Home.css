@@ -12,11 +12,22 @@
 .ct_header nav {
   display: flex;
   gap: 10px;
+  flex-direction: column;
 }
-.ct_header nav a {
+.ct_header nav a,
+.ct_header nav li {
   color: var(--white);
   text-decoration: none;
+  list-style: none;
 }
+.ct_header nav li span{
+  margin-left: 10px;
+}
+.ct_header nav div .ct_dropdown{
+  display: flex;
+  flex-direction: column;
+}
+.ct_header nav a:hover,
 .ct_header nav a:hover{
   color: var(--orange);
 }
@@ -116,6 +127,42 @@
   height: 30px;
   border-radius: 6px;
 }
+/* ---------CSS CARDS -------------- */
+.cards_content{
+  width: 90%;
+  max-width: 1100px;
+  margin: 30px auto;
+}
+.cards_titles{
+  text-align: center;
+  margin: 20px 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cards_titles p{
+  color: var(--orange);
+  margin: 0;
+  font-size: 1.3rem;  
+  text-transform: uppercase;
+}
+.cards_titles h2{
+  font-size: 2.1rem;
+  margin: 0;
+  text-transform: capitalize;
+}
+.cards_display{
+  display: grid;
+  grid-template-columns: 100%;
+}
+.cards_container{
+  width: 90%;
+  max-width: 464px;
+}
+.cards_container img{
+  width: 100%;
+  border-radius: 8px
+}
 
 @media only screen and (min-width: 868px) {
   .ct_banner-page .ct_banner-title {
@@ -125,11 +172,25 @@
     right: 0;
     margin: 0;
   }
+  .ct_containerDrop{
+    position: relative;
+  }
+  .ct_header nav div .ct_dropdown{
+    position: absolute;
+    z-index: 2;
+    background-color: var(--darkBlue);
+    width: 190px;
+    top: 44px;
+    left: -18px;
+    gap: 8px;
+    padding: 12px;
+  }
   .ct_banner-page .ct_banner-title h1{
     font-size: 2.6rem;
     line-height: 2.8rem;
   }
   .ct_header nav {
+    flex-direction: row;
     gap: 26px;
     align-items: center;
   }
@@ -139,5 +200,10 @@
   }
   .fm-form-select {
     grid-template-columns: 34% 18% 18% 26%;
+  }
+  /* ------------CSS CARDS ----------- */
+
+  .cards_display{
+    grid-template-columns: repeat(2,1fr);
   }
 }
