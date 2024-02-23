@@ -13,6 +13,7 @@ const Login = () => {
       <div className="imagen-logo">
         <img src= {logoLogin} alt="Logo" />
       </div>
+      
       <div className="contenedor_login-title">
       <h2>Inicio de sesión</h2>
       <p>Por favor ingrese su usuario y contraseña</p>
