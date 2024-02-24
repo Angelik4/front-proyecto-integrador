@@ -12,7 +12,7 @@
 .ft-content-logos{
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    /* gap: 30px; */
 }
 .ft-content-icons{
     display: flex;
@@ -29,6 +29,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.ft-content-icons p{
+    color: var(--white);
 }
 .ft-content-list{
     display: flex;

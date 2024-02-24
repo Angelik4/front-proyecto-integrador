@@ -1,21 +1,17 @@
 import { Link } from 'react-router-dom';
-import data from '../data.json';
+import { useMediaQuery } from '@react-hook/media-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faArrowRight, faAngleRight} from '@fortawesome/free-solid-svg-icons';
-import  { useState, useEffect } from 'react';
-import { useMediaQuery } from '@react-hook/media-query';
+import  { useState, useContext } from 'react';
+import { StateContext } from './utils/StateProvider';
 
 const CardsIntroHome = () => {
-  const isMobile = useMediaQuery('(max-width: 600px)'); // Detecta si la pantalla es móvil
+  const [state] = useContext(StateContext);
+  const { products } = state;
+  const isMobile = useMediaQuery('(max-width: 600px)');
 
-  const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = isMobile ? 2 : 4; // Muestra 2 productos por página en pantallas móviles
-
-  useEffect(() => {
-    // Simula la llamada a la API cargando los datos del archivo JSON local
-    setProducts(data);
-  }, []);
+  const productsPerPage = isMobile ? 2 : 4;
 
   // Calcular el índice del primer y último producto de la página actual
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -38,31 +34,34 @@ const CardsIntroHome = () => {
   return (
     <section className='cards_content'>
       <div className='cards_titles'>
-        <p >Descubre nuestros</p>
+        <p>Descubre nuestros</p>
         <h2>Espacios de trabajo</h2>
       </div>
       <section className='cards_display'>
-      {currentProducts.map((producto, index) => (
-        <div key={index} className="cards_container">
-          <img src={producto.imagen} alt={producto.nombre} />
-          <h2>{producto.nombre}</h2>
-          <p>{producto.descripcion}</p>
-          <div className='cards_btnContent'>
-            <Link className='cards_btnReservar' to="">Reservar<FontAwesomeIcon icon={faArrowRight} /></Link>
-            <Link className='cards_btnMore' to="">Ver más</Link>
+        {currentProducts.map((producto, index) => (
+          <div key={index} className="cards_container">
+            <img src={producto.imagen} alt={producto.nombre} />
+            <h2>{producto.nombre}</h2>
+            <p>{producto.descripcion}</p>
+            <div className='cards_btnContent'>
+              <Link className='cards_btnReservar' to="">Reservar<FontAwesomeIcon icon={faArrowRight} /></Link>
+              <Link className='cards_btnMore' to="">Ver más</Link>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
       </section>
       <div className='cards_paginador-content'>
-        <button onClick={goToPrevPage} disabled={currentPage === 1}><FontAwesomeIcon className='arrowLeft' icon={faAngleRight} /></button>
-          <div>
-            Página {currentPage} de {totalPages}
-          </div>
-        <button onClick={goToNextPage} disabled={indexOfLastProduct >= products.length}><FontAwesomeIcon icon={faAngleRight} /></button>
+        <button className='cards_paginador-arrow' onClick={goToPrevPage} disabled={currentPage === 1}><FontAwesomeIcon className='arrowLeft' icon={faAngleRight} /></button>
+        <div className='cards_paginador-items'>
+          {/* Renderizar botones para cada número de página */}
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button className='items' key={i + 1} onClick={() => setCurrentPage(i + 1)} disabled={currentPage === i + 1}>{i + 1}</button>
+          ))}
+        </div>
+        <button className='cards_paginador-arrow' onClick={goToNextPage} disabled={indexOfLastProduct >= products.length}><FontAwesomeIcon icon={faAngleRight} /></button>
       </div>
     </section>
   )
 }
 
-export default CardsIntroHome
+export default CardsIntroHome;

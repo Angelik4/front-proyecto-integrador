@@ -5,7 +5,12 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 600px;
+  padding-top: 80px;
+}
+.ct_banner-content{
   position: relative;
+  width: 100%;
+    height: 100%;
 }
 .ct_banner-page .ct_banner-title {
   margin: 0 auto;
@@ -118,7 +123,7 @@
 .cards_container img {
   width: 100%;
   border-radius: 8px;
-  height: 380px;
+  height: 300px;
 }
 .cards_container p{
   display: -webkit-box;
@@ -154,7 +159,7 @@
   margin: 40px auto 20px;
   justify-content: center;
 }
-.cards_paginador-content button{
+.cards_paginador-content .cards_paginador-arrow{
   border: 1px solid var(--orange);
   border-radius: 50%;
   color: var(--orange);
@@ -166,14 +171,30 @@
   background-color: var(--orange);
   color: var(--white);
 }
-.cards_paginador-content button .arrowLeft{
+.cards_paginador-content .cards_paginador-arrow .arrowLeft{
   transform: rotate(178deg);
 }
-.cards_paginador-content button:disabled{
+.cards_paginador-content .cards_paginador-arrow:disabled{
  background-color: var(--white);
  opacity: .8;
  color: var(--orange);
 } 
+.cards_paginador-items{
+   display: flex;
+   gap:6px;
+}
+.cards_paginador-items .items {
+  font-weight: bold;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  font-size: 19px;
+}
+.cards_paginador-items .items:disabled{
+  text-decoration: underline;
+  color: var(--orange);
+ 
+}
 
 /* -------- CSS RECOMMENDATIONS HOME ----------------- */
 

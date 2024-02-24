@@ -11,10 +11,11 @@ const Footer = () => {
       <div className='ft-content-logos'>
         <img src={logoCoworkingWhite} alt="Logo Coworking Now" />
         <div className='ft-content-icons'>
-            <Link to="/"><FontAwesomeIcon className='icon-redes' icon={faInstagram} /></Link>
+          <p>© 2024 coworking Now</p>
+          {/*   <Link to="/"><FontAwesomeIcon className='icon-redes' icon={faInstagram} /></Link>
             <Link to="/"><FontAwesomeIcon className='icon-redes' icon={faSquareFacebook} /></Link>
             <Link to="/"><FontAwesomeIcon className='icon-redes' icon={faYoutube} /></Link>
-            <Link to="/"><FontAwesomeIcon className='icon-redes' icon={faXTwitter} /> </Link>
+            <Link to="/"><FontAwesomeIcon className='icon-redes' icon={faXTwitter} /> </Link> */}
         </div>
       </div>
       <div className='ft-content-list'>
