@@ -1,0 +1,92 @@
+.ct_header {
+    background-color: var(--darkBlue);
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    align-items: center;
+    position: relative;
+  }
+  .ct_header img {
+    height: 40px;
+  }
+  .ct_header nav{
+    display: none;
+  }
+  .ct_header nav.active {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    z-index: 3;
+    background: var(--darkBlue);
+    padding: 20px;
+    top: 69px;
+    width: 200px;
+  }
+  .ct_header nav a,
+  .ct_header nav li {
+    color: var(--white);
+    text-decoration: none;
+    list-style: none;
+  }
+  .ct_header nav li span {
+    margin-left: 10px;
+  }
+  .ct_header nav div .ct_dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px 0px;
+  }
+  .ct_header nav a:hover,
+  .ct_header nav a:hover {
+    color: var(--orange);
+  }
+  .ct_header nav .createAccount {
+    border: 1px solid var(--white);
+    padding: 7px;
+    border-radius: 6px;
+  }
+  .ct_header nav .createAccount:hover {
+    border: 1px solid var(--orange);
+    color: var(--white);
+  }
+  .ct_header nav .btnLogin {
+    background-color: var(--orange);
+    padding: 7px;
+    border-radius: 6px;
+  }
+  .ct_header nav .btnLogin:hover {
+    color: var(--white);
+  }
+  .ct_header nav .btnLogin .fa-user {
+    margin-right: 4px;
+  }
+  .ct_header .iconBurgerMob{
+    background-color: transparent;
+    border: transparent;
+    color: var(--white);
+    font-size: 30px;
+  }
+  @media only screen and (min-width: 868px) {
+    .ct_header nav div .ct_dropdown {
+        position: absolute;
+        z-index: 2;
+        background-color: var(--darkBlue);
+        width: 190px;
+        top: 44px;
+        left: -18px;
+        gap: 8px;
+        padding: 12px;
+      }
+      .ct_header nav {
+        display: flex;
+        flex-direction: row;
+        gap: 26px;
+        align-items: center;
+      }
+      .ct_header .iconBurgerMob{
+        display: none;
+      }
+  }

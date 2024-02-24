@@ -1,56 +1,4 @@
 @import url(./App.css);
-.ct_header {
-  background-color: var(--darkBlue);
-  display: flex;
-  justify-content: space-between;
-  padding: 16px;
-  align-items: center;
-}
-.ct_header img {
-  height: 40px;
-}
-.ct_header nav {
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-}
-.ct_header nav a,
-.ct_header nav li {
-  color: var(--white);
-  text-decoration: none;
-  list-style: none;
-}
-.ct_header nav li span{
-  margin-left: 10px;
-}
-.ct_header nav div .ct_dropdown{
-  display: flex;
-  flex-direction: column;
-}
-.ct_header nav a:hover,
-.ct_header nav a:hover{
-  color: var(--orange);
-}
-.ct_header nav .createAccount {
-  border: 1px solid var(--white);
-  padding: 7px;
-  border-radius: 6px;
-}
-.ct_header nav .createAccount:hover{
-  border: 1px solid var(--orange);
-  color: var(--white);
-}
-.ct_header nav .btnLogin {
-  background-color: var(--orange);
-  padding: 7px;
-  border-radius: 6px;
-}
-.ct_header nav .btnLogin:hover{
-  color: var(--white);
-}
-.ct_header nav .btnLogin .fa-user {
-  margin-right: 4px;
-}
 .ct_banner-page {
   background-image: url(../images/img-page-home.webp);
   background-position: center;
@@ -71,7 +19,7 @@
   max-width: 490px;
   padding: 0 20px;
 }
-.ct_banner-page .ct_banner-title h1{
+.ct_banner-page .ct_banner-title h1 {
   font-size: 2rem;
   line-height: 2.2rem;
   margin: 0 0 10px;
@@ -92,6 +40,7 @@
   left: 0;
   right: 0;
 }
+/* ------- CSS SEARCH HOME -------------- */
 .fm-form-title {
   position: relative;
   border-bottom: 1px solid var(--white);
@@ -118,6 +67,7 @@
 .fm-form-select input[type="submit"] {
   height: 34px;
   border-radius: 6px;
+  padding: 0 20px;
 }
 .fm-form-select input[type="submit"] {
   background-color: var(--orange);
@@ -126,43 +76,107 @@
 .fm-form-select input[type="date"] {
   height: 30px;
   border-radius: 6px;
+  padding: 0 14px;
+}
+.fm-form-select input[type="date"]:focus{
+  outline: 0;
 }
 /* ---------CSS CARDS -------------- */
-.cards_content{
+.cards_content {
   width: 90%;
   max-width: 1100px;
   margin: 30px auto;
 }
-.cards_titles{
+.cards_titles {
   text-align: center;
   margin: 20px 0 40px;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-.cards_titles p{
+.cards_titles p {
   color: var(--orange);
   margin: 0;
-  font-size: 1.3rem;  
+  font-size: 1.3rem;
   text-transform: uppercase;
 }
-.cards_titles h2{
+.cards_titles h2 {
   font-size: 2.1rem;
   margin: 0;
   text-transform: capitalize;
 }
-.cards_display{
+.cards_display {
   display: grid;
   grid-template-columns: 100%;
+  gap: 30px 0;
 }
-.cards_container{
+.cards_container {
   width: 90%;
   max-width: 464px;
+  margin: auto;
 }
-.cards_container img{
+.cards_container img {
   width: 100%;
-  border-radius: 8px
+  border-radius: 8px;
+  height: 380px;
 }
+.cards_container p{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cards_btnContent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+.cards_btnContent .cards_btnReservar {
+  background-color: var(--orange);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px;
+  text-decoration: none;
+  border-radius: 4px;
+  width: 118px;
+}
+.cards_btnContent .cards_btnMore{
+  font-weight: bold;
+  color: var(--black2);
+}
+.cards_paginador-content{
+  display: flex;
+  gap: 10px;
+  margin: 40px auto 20px;
+  justify-content: center;
+}
+.cards_paginador-content button{
+  border: 1px solid var(--orange);
+  border-radius: 50%;
+  color: var(--orange);
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  font-size: 17px;
+  display: flex;
+  background-color: var(--orange);
+  color: var(--white);
+}
+.cards_paginador-content button .arrowLeft{
+  transform: rotate(178deg);
+}
+.cards_paginador-content button:disabled{
+ background-color: var(--white);
+ opacity: .8;
+ color: var(--orange);
+} 
+
+/* -------- CSS RECOMMENDATIONS HOME ----------------- */
+
 
 @media only screen and (min-width: 868px) {
   .ct_banner-page .ct_banner-title {
@@ -172,27 +186,12 @@
     right: 0;
     margin: 0;
   }
-  .ct_containerDrop{
+  .ct_containerDrop {
     position: relative;
   }
-  .ct_header nav div .ct_dropdown{
-    position: absolute;
-    z-index: 2;
-    background-color: var(--darkBlue);
-    width: 190px;
-    top: 44px;
-    left: -18px;
-    gap: 8px;
-    padding: 12px;
-  }
-  .ct_banner-page .ct_banner-title h1{
+  .ct_banner-page .ct_banner-title h1 {
     font-size: 2.6rem;
     line-height: 2.8rem;
-  }
-  .ct_header nav {
-    flex-direction: row;
-    gap: 26px;
-    align-items: center;
   }
   .fm-form-checkbox {
     flex-direction: row;
@@ -203,7 +202,7 @@
   }
   /* ------------CSS CARDS ----------- */
 
-  .cards_display{
-    grid-template-columns: repeat(2,1fr);
+  .cards_display {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

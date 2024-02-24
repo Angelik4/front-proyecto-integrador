@@ -1,20 +1,28 @@
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import logoCoworking from '../images/logo-coworking.webp';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown} from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import '../css/Navbar.css';
 
 
 const Navbar = () => {
   const [mostrarLista, setMostrarLista] = useState(false);
+  const [iconoMenu, setIconoMenu] = useState(true);
+  
   const toggleLista = () => {
     setMostrarLista(!mostrarLista);
   }; 
+  const cambiarIcono = () => {
+    setIconoMenu(!iconoMenu);
+  };
   return (
     <div className='ct_header'>
        <img src={logoCoworking} alt="logo Coworking Now" />
-        <nav>
+       <button className='iconBurgerMob' onClick={cambiarIcono}> {iconoMenu ? <FontAwesomeIcon icon={faBars} /> : <FontAwesomeIcon icon={faXmark} /> }</button>
+        <nav className={iconoMenu ? '' : 'active'}>
             <Link to="/">INICIO</Link>
             <Link to="/question">¿QUIENES SOMOS?</Link>
             <div className='ct_containerDrop'>
@@ -33,6 +41,5 @@ const Navbar = () => {
     </div>
   )
 }
-
 
 export default Navbar
