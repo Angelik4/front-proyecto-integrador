@@ -2,6 +2,7 @@ import React from 'react'
 import '../css/Home.css';
 import Search from '../Components/Search';
 import CardsIntroHome from '../Components/CardsIntroHome';
+import Recommendations from '../Components/Recommendations';
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
         </div>
       </div>
       <CardsIntroHome/>
+      <Recommendations/>
     </div>
   )
 }

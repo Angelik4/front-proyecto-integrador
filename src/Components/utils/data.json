@@ -1,86 +1,98 @@
 [
-  {
-    "nombre": "Espacios Pet Friendly Creativos",
-    "imagen": "https://wearecloudworks.com/wp-content/uploads/2022/01/beneficios-coworking.jpeg",
-    "descripcion": "Explora nuestros espacios diseñados para inspirar la creatividad y la colaboración, donde las mascotas son bienvenidas para ser parte de la innovación.",
-    "categoria": "Espacios Pet Friendly",
-    "calificacion": 4.5
-  },
-  {
-    "nombre": "Oficinas Virtuales Flexibles",
-    "imagen": "https://e6oe5g5k44d.exactdn.com/wp-content/uploads/2021/10/aticcooo.jpg",
-    "descripcion": "Descubre la versatilidad de nuestras oficinas virtuales diseñadas para adaptarse a tu estilo de trabajo en cualquier momento y lugar.",
-    "categoria": "Oficinas Virtuales",
-    "calificacion": 4.8
-  },
-  {
-    "nombre": "Salas VIP Ejecutivas",
-    "imagen": "https://aticco.com/wp-content/uploads/2023/03/que-es-coworking-1.jpg",
-    "descripcion": "Sumérgete en un ambiente profesional de primera clase con nuestras salas VIP diseñadas para satisfacer las necesidades de los líderes empresariales.",
-    "categoria": "Salas VIP",
-    "calificacion": 4.2
-  },
-  {
+    {
+      "nombre": "Espacios Pet Friendly Creativos",
+      "imagen": "https://wearecloudworks.com/wp-content/uploads/2022/01/beneficios-coworking.jpeg",
+      "descripcion": "Explora nuestros espacios diseñados para inspirar la creatividad y la colaboración, donde las mascotas son bienvenidas para ser parte de la innovación.",
+      "categoria": "Espacios Pet Friendly",
+      "calificacion": 7.8,
+      "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
+    },
+    {
+      "nombre": "Oficinas Virtuales Flexibles",
+      "imagen": "https://e6oe5g5k44d.exactdn.com/wp-content/uploads/2021/10/aticcooo.jpg",
+      "descripcion": "Descubre la versatilidad de nuestras oficinas virtuales diseñadas para adaptarse a tu estilo de trabajo en cualquier momento y lugar.",
+      "categoria": "Oficinas Virtuales",
+      "calificacion": 9.2,
+      "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
+    },
+    {
+      "nombre": "Salas VIP Ejecutivas",
+      "imagen": "https://aticco.com/wp-content/uploads/2023/03/que-es-coworking-1.jpg",
+      "descripcion": "Sumérgete en un ambiente profesional de primera clase con nuestras salas VIP diseñadas para satisfacer las necesidades de los líderes empresariales.",
+      "categoria": "Salas VIP",
+      "calificacion": 8.5,
+      "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
+    },
+    {
       "nombre": "Espacios de Coworking Innovadores",
       "imagen": "https://media.istockphoto.com/id/1318360204/es/foto/reuni%C3%B3n-de-equipo-y-lluvia-de-ideas-en-la-oficina-moderna.jpg?s=612x612&w=0&k=20&c=vJZdfnjVAFb2oSLoSjpZPYrVzB3RVG2JmQ4I9czFtTE=",
       "descripcion": "Inspira la innovación y el trabajo en equipo en nuestros espacios de coworking diseñados para impulsar el éxito de tus proyectos más creativos.",
       "categoria": "Espacios Pet Friendly",
-      "calificacion": 4.5
-  },
-  {
+      "calificacion": 7.9,
+      "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
+    },
+    {
       "nombre": "Oficinas Modernas para Profesionales",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRwLfgxcAAN9IXuTKEVn5cqo4BOb7fZNSRxQ&usqp=CAU",
       "descripcion": "Experimenta la comodidad y la eficiencia en nuestras oficinas modernas diseñadas para satisfacer las demandas de los profesionales más exigentes.",
       "categoria": "Oficinas Virtuales",
-      "calificacion": 4.8
-  },
-  {
+      "calificacion": 9.5,
+      "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
+    },
+    {
       "nombre": "Salas VIP de Lujo",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtxmaryCHOmmpZqEG9Vmw1YeOJf4N7j4_OlQ&usqp=CAU",
       "descripcion": "Disfruta del lujo y la exclusividad en nuestras salas VIP diseñadas para ofrecerte una experiencia empresarial única e inigualable.",
       "categoria": "Salas VIP",
-      "calificacion": 4.2
-  },
-  {
+      "calificacion": 8.7,
+      "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
+    },
+    {
       "nombre": "Espacios Innovadores para Emprendedores",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm-M3rmyv7y52OEtOfDTusDx0gMiPZElh1vA&usqp=CAU",
       "descripcion": "Conecta con otros emprendedores en nuestros espacios innovadores diseñados para potenciar tus ideas y convertirlas en proyectos exitosos.",
       "categoria": "Espacios Pet Friendly",
-      "calificacion": 4.5
-  },
-  {
+      "calificacion": 7.8,
+      "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
+    },
+    {
       "nombre": "Oficinas Flexibles para Nómadas Digitales",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKlD-sRyKL-AFdnyfqSqwJeLwqIQv-w_EflA&usqp=CAU",
       "descripcion": "Libérate de las restricciones tradicionales y trabaja desde cualquier lugar con nuestras oficinas flexibles diseñadas para nómadas digitales en movimiento.",
       "categoria": "Oficinas Virtuales",
-      "calificacion": 4.8
-  },
-  {
+      "calificacion": 9.1,
+      "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
+    },
+    {
       "nombre": "Salas VIP de Alta Tecnología",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqd1TVnQKdroG_up3_5HKu-GhFLY5MUoC4OA&usqp=CAU",
       "descripcion": "Experimenta la última tecnología y el confort en nuestras salas VIP de alta tecnología diseñadas para impresionar a tus clientes y socios más importantes.",
       "categoria": "Salas VIP",
-      "calificacion": 4.2
-  },
-  {
+      "calificacion": 8.9,
+      "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
+    },
+    {
       "nombre": "Espacios para Reuniones Inspiradoras",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-8eFgVHky9rfu5OXnU1GP7R9Be5o-di0T8tqz_dncPje37Al7bzrTyAIBZAMHwkqy-iU&usqp=CAU",
       "descripcion": "Inspira ideas y colaboración en nuestros espacios para reuniones diseñados para potenciar la creatividad y la productividad de tus equipos.",
       "categoria": "Espacios Pet Friendly",
-      "calificacion": 4.5
-  },
-  {
+      "calificacion": 7.7,
+      "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
+    },
+    {
       "nombre": "Oficinas con Diseño Vanguardista",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNR6KXFFXX5Ne83KCsl3lk7r9qiTnecOdLrQ&usqp=CAU",
       "descripcion": "Trabaja con estilo y modernidad en nuestras oficinas con diseño vanguardista diseñadas para reflejar la innovación y el progreso en cada detalle.",
       "categoria": "Oficinas Virtuales",
-      "calificacion": 4.8
-  },
-  {
+      "calificacion": 9.3,
+      "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
+    },
+    {
       "nombre": "Salas VIP Exclusivas para Empresarios",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdfV_eF7bpPmwyY-G3GMLX83avCCnfzcptVw&usqp=CAU",
       "descripcion": "Accede a nuestras salas VIP exclusivas y experimenta un servicio personalizado diseñado para satisfacer las demandas de los empresarios más exigentes.",
       "categoria": "Salas VIP",
-      "calificacion": 4.2
-  }
-]
+      "calificacion": 8.4,
+      "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
+    }
+  ]  

@@ -7,10 +7,10 @@
   height: 600px;
   padding-top: 80px;
 }
-.ct_banner-content{
+.ct_banner-content {
   position: relative;
   width: 100%;
-    height: 100%;
+  height: 100%;
 }
 .ct_banner-page .ct_banner-title {
   margin: 0 auto;
@@ -83,7 +83,7 @@
   border-radius: 6px;
   padding: 0 14px;
 }
-.fm-form-select input[type="date"]:focus{
+.fm-form-select input[type="date"]:focus {
   outline: 0;
 }
 /* ---------CSS CARDS -------------- */
@@ -125,7 +125,7 @@
   border-radius: 8px;
   height: 300px;
 }
-.cards_container p{
+.cards_container p {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -149,17 +149,18 @@
   border-radius: 4px;
   width: 118px;
 }
-.cards_btnContent .cards_btnMore{
+.cards_btnContent .cards_btn,
+.recom_cards .recom_btnMore {
   font-weight: bold;
   color: var(--black2);
 }
-.cards_paginador-content{
+.cards_paginador-content {
   display: flex;
   gap: 10px;
   margin: 40px auto 20px;
   justify-content: center;
 }
-.cards_paginador-content .cards_paginador-arrow{
+.cards_paginador-content .cards_paginador-arrow {
   border: 1px solid var(--orange);
   border-radius: 50%;
   color: var(--orange);
@@ -171,17 +172,17 @@
   background-color: var(--orange);
   color: var(--white);
 }
-.cards_paginador-content .cards_paginador-arrow .arrowLeft{
+.cards_paginador-content .cards_paginador-arrow .arrowLeft {
   transform: rotate(178deg);
 }
-.cards_paginador-content .cards_paginador-arrow:disabled{
- background-color: var(--white);
- opacity: .8;
- color: var(--orange);
-} 
-.cards_paginador-items{
-   display: flex;
-   gap:6px;
+.cards_paginador-content .cards_paginador-arrow:disabled {
+  background-color: var(--white);
+  opacity: 0.8;
+  color: var(--orange);
+}
+.cards_paginador-items {
+  display: flex;
+  gap: 6px;
 }
 .cards_paginador-items .items {
   font-weight: bold;
@@ -190,15 +191,74 @@
   border: 0;
   font-size: 19px;
 }
-.cards_paginador-items .items:disabled{
+.cards_paginador-items .items:disabled {
   text-decoration: underline;
   color: var(--orange);
- 
 }
 
 /* -------- CSS RECOMMENDATIONS HOME ----------------- */
-
-
+.recom_container {
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  padding: 2rem 0;
+}
+.recom_container h3{
+  font-size: 1.8rem;
+}
+.recom_content-cards{
+  display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.recom_cards {
+  width: 90%;
+  max-width: 964px;
+  margin: auto;
+  height: auto;
+  display: grid;
+  grid-template-columns: 100%;
+  box-shadow: 0px 0px 10px 0px rgba(11, 39, 57, 0.12);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.recom_cards img {
+  width: 100%;
+  height: 100%;
+}
+.recom_cards-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 10px;
+}
+.recom_cards-points{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.recom_cards-points .number{
+ background-color: var(--darkBlue);
+ color: var(--orange);
+ font-weight: bold;
+ margin: 0;
+ font-size: 1.1rem;
+ padding: 6px;
+ border-radius: 4px;
+}
+.recom_cards-points .text{
+  margin: 0;
+  font-weight: bold;
+  color: var(--darkBlue);
+}
 @media only screen and (min-width: 868px) {
   .ct_banner-page .ct_banner-title {
     text-align: left;
@@ -222,8 +282,21 @@
     grid-template-columns: 34% 18% 18% 26%;
   }
   /* ------------CSS CARDS ----------- */
-
   .cards_display {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .recom_cards {
+    grid-template-columns: repeat(2, 1fr);
+    height: 280px;
+  }
+  .recom_cards:nth-child(2){
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .recom_cards:nth-child(2) .recom_cards-text{
+    width: 90%;
+  }
+  .recom_cards-text{
+    padding-left: 30px;
   }
 }
