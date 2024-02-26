@@ -45,7 +45,7 @@ const CardsIntroHome = () => {
             <p>{producto.descripcion}</p>
             <div className='cards_btnContent'>
               <Link className='cards_btnReservar' to="">Reservar<FontAwesomeIcon icon={faArrowRight} /></Link>
-              <Link className='cards_btnMore' to="">Ver más</Link>
+              <Link className='cards_btnMore' to="detalle/1">Ver más</Link>
             </div>
           </div>
         ))}
