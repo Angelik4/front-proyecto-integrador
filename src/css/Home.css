@@ -1,10 +1,10 @@
 @import url(./App.css);
 .ct_banner-page {
-  background-image: url(../images/img-page-home.webp);
+  background-image: url(../images/img-page-home-mob.webp);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 600px;
+  height: 430px;
   padding-top: 80px;
 }
 .ct_banner-content {
@@ -31,8 +31,8 @@
 }
 .fm-content-form {
   background-color: var(--darkBlue);
-  width: 84%;
-  max-width: 754px;
+  width: 64%;
+  max-width: 386px;
   margin: auto;
   padding: 20px 30px;
   color: var(--white);
@@ -41,7 +41,7 @@
   flex-direction: column;
   gap: 14px;
   position: absolute;
-  bottom: 40px;
+  bottom: -74px;
   left: 0;
   right: 0;
 }
@@ -58,7 +58,20 @@
   background-color: var(--darkBlue);
   padding: 0 10px 0 0;
 }
-.fm-form-checkbox {
+.fm-form-select {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 14px;
+}
+.fm-form-select input{
+  height: 34px;
+  border-radius: 6px;
+}
+.fm-form-select input[type="submit"]{
+  background-color: var(--orange);
+  color: var(--white);
+}
+/* .fm-form-checkbox {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -85,12 +98,12 @@
 }
 .fm-form-select input[type="date"]:focus {
   outline: 0;
-}
+} */
 /* ---------CSS CARDS -------------- */
 .cards_content {
   width: 90%;
   max-width: 1100px;
-  margin: 30px auto;
+  margin: 110px auto 30px;
 }
 .cards_titles {
   text-align: center;
@@ -260,6 +273,17 @@
   color: var(--darkBlue);
 }
 @media only screen and (min-width: 868px) {
+  .ct_banner-page{
+    background-image: url(../images/img-page-home.webp);
+    height: 600px;
+  }
+  .fm-content-form {
+    top: 60%;
+    left: 7%;
+    right: 0;
+    margin: 0;
+    bottom: inherit;
+  }
   .ct_banner-page .ct_banner-title {
     text-align: left;
     top: 20%;
@@ -274,13 +298,20 @@
     font-size: 2.6rem;
     line-height: 2.8rem;
   }
-  .fm-form-checkbox {
+  .fm-form-select {
+    grid-template-columns: 60% 36%;
+    height: 34px;
+  }
+  .fm-form-select input{
+    height: auto;
+  }
+ /*  .fm-form-checkbox {
     flex-direction: row;
     gap: 10px;
   }
   .fm-form-select {
     grid-template-columns: 34% 18% 18% 26%;
-  }
+  } */
   /* ------------CSS CARDS ----------- */
   .cards_display {
     grid-template-columns: repeat(2, 1fr);

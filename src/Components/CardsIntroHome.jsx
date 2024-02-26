@@ -8,7 +8,7 @@ import { StateContext } from './utils/StateProvider';
 const CardsIntroHome = () => {
   const [state] = useContext(StateContext);
   const { products } = state;
-  const isMobile = useMediaQuery('(max-width: 600px)');
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = isMobile ? 2 : 4;
