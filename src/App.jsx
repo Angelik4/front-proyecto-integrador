@@ -9,7 +9,9 @@ function App() {
     <StateProvider>
     <div className="App">
       <Navbar/>
-      <Outlet/>
+      <main className="container-main">
+        <Outlet/>
+      </main>
       <Footer/>
     </div>
     </StateProvider>

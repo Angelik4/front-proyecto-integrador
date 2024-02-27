@@ -5,7 +5,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 430px;
-  padding-top: 80px;
 }
 .ct_banner-content {
   position: relative;
@@ -32,7 +31,7 @@
 .fm-content-form {
   background-color: var(--darkBlue);
   width: 64%;
-  max-width: 386px;
+  max-width: 340px;
   margin: auto;
   padding: 20px 30px;
   color: var(--white);
@@ -299,7 +298,6 @@
     line-height: 2.8rem;
   }
   .fm-form-select {
-    grid-template-columns: 60% 36%;
     height: 34px;
   }
   .fm-form-select input{

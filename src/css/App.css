@@ -12,6 +12,9 @@
     --yellow: #FFC42D;
     --orange: #F2994A;
   }
+  main.container-main{
+    margin-top: 70px;
+  }
   @font-face {
     font-family: 'lato-bold';
     src: url('../fonts/Lato/Lato-Bold.ttf') format('ttf'),
