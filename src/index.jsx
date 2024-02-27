@@ -9,7 +9,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Register from './Routes/Register';
 import Question from './Routes/Question';
-import Detalle from './Routes/Detalle';
+import Detail from './Routes/Detail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,7 +19,7 @@ root.render(
               <Route path="/" element={<App />}>
                   <Route path="/" element={<Home />} />
                   <Route path="home" element={<Home />} />
-                    <Route path="detalle/:id" element={<Detalle />} />
+                  <Route path="detalle/:id" element={<Detail />} />
                   <Route path="galeria" element={<Galeria />} />
                   <Route path="question" element={<Question />} />
                   <Route path="login" element={<Login />} />
