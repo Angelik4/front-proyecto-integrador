@@ -1,102 +1,32 @@
 @import url(./App.css);
-.ct_banner-page-space-pet {
-  background-image: url(../images/img-page-space-pet.webp);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size:cover;
-  height: 500px;
-  padding-top: 80px;
-}
-.ct_banner-content-pet {
-    position:relative;
-    width: 100%;
-    height: 100%;
-}
-.ct_banner-page-space-pet .ct_banner-title-pet {
-    margin: 0 auto;
-    text-align:left;
-    position: absolute;
-    top: 100px;
-    left: 0;
-    right: 900px;
-    width: fit-content;
-    color: var(--white);
-    max-width: 490px;
-    padding: 0 20px;
-}
-.ct_banner-page-space-pet .ct_banner-title-pet h1 {
-    font-size: 2rem;
-    line-height: 2.2rem;
-    margin: 0 0 10px;
-}
-.fm-content-form-pet {
-    background-color: var(--darkBlue);
-    width: 84%;
-    max-width: 350px;
-    margin: auto;
-    padding: 20px 30px;
-    color: var(--white);
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    position: absolute;
-    bottom: 130px;
-    left: 0;
-    right: 900px;
-}
 
-/* ------- CSS SEARCH PET -------------- */
-.fm-form-title-pet {
-    position: relative;
-    border-bottom: 1px solid var(--white);
-    margin: 5px 0;
-}
-.fm-form-title-pet p {
-    margin: 0;
-    position: absolute;
-    top: -15px;
-    background-color: var(--darkBlue);
-    padding: 0 10px 0 0;
-}
-.fm-form-select-pet {
-    display:flex;
-    justify-content: space-between;
-    gap: 15px;
-}
-.fm-form-select-pet input {
-    height: 34px;
-    border-radius: 6px;
-    padding: 0 20px;
-}
-.fm-form-select-pet input[type="submit"] {
-    background-color: var(--orange);
-    color: var(--white);
-    width: 150px;
-    height: 38px;
-}
-
-/* ---------CSS CARDS -------------- */
-.cards_content-pet {
-    width: 90%;
-    max-width: 1100px;
-    margin: 30px auto;
-  }
-  .cards_titles-pet {
+.container-title h2{
+    margin-top: 7%;
     text-align: center;
-    margin: 20px 0 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .cards_titles-pet p {
-    color: var(--orange);
-    margin: 0;
-    font-size: 1.3rem;
-    text-transform: uppercase;
-  }
-  .cards_titles-pet h2 {
-    font-size: 2.1rem;
-    margin: 0;
-    text-transform: capitalize;
-  }
+    font-size: 20px;
+    color: var(--orange)
+}
+
+.container-title h3 {
+    font-size: 30px;
+    color: var(--darkBlue);
+    text-align: center;
+    margin-top: 1%;
+}
+
+.text-container{
+    width: 400px;
+    height: 350px;
+    margin-left: 100px;
+}
+
+.text-container h4 {
+    font-size: 24px;
+    color: var(--darkBlue);
+}
+
+.text-container p {
+    font-size: 16px;
+    color: var(--black);
+}
+
