@@ -51,8 +51,12 @@
   }
   .ct_header nav .createAccount {
     border: 1px solid var(--white);
-    padding: 7px;
+    height: 36px;
+    padding: 0 8px;
     border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .ct_header nav .createAccount:hover {
     border: 1px solid var(--orange);

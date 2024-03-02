@@ -36,8 +36,8 @@ const Login = () => {
           <label for="recordar-contrasena">Recordar contraseña</label>
         </div>
         <button type="submit">Registrar</button>
-        <a className= 'olvidoContrasena' href= '#'>¿Olvidó su contraseña?</a>
-        <p> ¿No tienes una cuenta? <a href="#"> Crear cuenta</a> </p> 
+        <a className= 'olvidoContrasena' href= ''>¿Olvidó su contraseña?</a>
+        <p> ¿No tienes una cuenta? <a href=""> Crear cuenta</a> </p> 
       </form>
     </div>
   );

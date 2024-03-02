@@ -1,5 +1,7 @@
 // En Search.jsx
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const Search = ({ handleSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -23,7 +25,15 @@ const Search = ({ handleSearch }) => {
             value={searchTerm}
             onChange={handleChange}
           />
+          <FontAwesomeIcon className='iconLupa' icon={faMagnifyingGlass} />
         </div>
+        <div className='fm-form-checkbox'>
+              <label htmlFor="spaces"><input type="checkbox" id='spaces' />Espacios de coworking</label>
+              <label htmlFor="private"><input type="checkbox" id='private' />Oficinas privadas</label> 
+              <label htmlFor="vips"><input type="checkbox" id='vips' />Salas VIP</label>
+              <label htmlFor="virtual"><input type="checkbox" id='virtual' />Oficinas virtuales</label>
+            </div>
+            <input type="submit" value="Buscar"/>
       </form>
     </div>
   );

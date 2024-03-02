@@ -52,4 +52,9 @@
         flex-direction: row;
         justify-content: space-around;
     }
+    .ft-content-logos{
+        width: 90%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }

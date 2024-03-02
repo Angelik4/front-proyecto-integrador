@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+/* import { Link } from 'react-router-dom' */
 import logoCoworkingWhite from '../images/logo-blanco-coworking.webp';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram, faSquareFacebook, faYoutube, faXTwitter } from '@fortawesome/free-brands-svg-icons';
+/* import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInstagram, faSquareFacebook, faYoutube, faXTwitter } from '@fortawesome/free-brands-svg-icons'; */
 import '../css/Footer.css'
 
 const Footer = () => {
@@ -18,7 +18,7 @@ const Footer = () => {
             <Link to="/"><FontAwesomeIcon className='icon-redes' icon={faXTwitter} /> </Link> */}
         </div>
       </div>
-      <div className='ft-content-list'>
+     {/*  <div className='ft-content-list'>
         <ul>
           <li>Oficinas</li>
           <li>Soporte</li>
@@ -37,7 +37,7 @@ const Footer = () => {
           <li>Contacto</li>
           <li>Renta de bicicletas</li>
         </ul>
-      </div>
+      </div> */}
 
     </section>
   )
