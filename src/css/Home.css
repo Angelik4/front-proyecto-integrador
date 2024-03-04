@@ -31,7 +31,7 @@
 .fm-content-form {
   background-color: var(--darkBlue);
   width: 64%;
-  max-width: 340px;
+  max-width: 440px;
   margin: auto;
   padding: 20px 30px;
   color: var(--white);
@@ -40,7 +40,7 @@
   flex-direction: column;
   gap: 14px;
   position: absolute;
-  bottom: -74px;
+  bottom: -180px;
   left: 0;
   right: 0;
 }
@@ -61,6 +61,7 @@
   display: grid;
   grid-template-columns: 100%;
   gap: 14px;
+  position: relative;
 }
 .fm-form-select input{
   height: 34px;
@@ -70,34 +71,36 @@
   background-color: var(--orange);
   color: var(--white);
 }
-/* .fm-form-checkbox {
-  display: flex;
-  flex-direction: column;
+
+.fm-form-select input{
+  height: 34px;
+  padding: 0 20px;
+}
+.fm-form-select .iconLupa{
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  color: var(--black2);
+}
+.fm-form-checkbox {
+  display: grid;
+  grid-template-columns: 100%;
   gap: 6px;
   font-size: 14px;
 }
-.fm-form-select {
-  display: grid;
-  gap: 8px;
+.fm-form-checkbox label{
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-.fm-form-select select,
-.fm-form-select input[type="submit"] {
+
+.fm-content-form input[type="submit"] {
   height: 34px;
   border-radius: 6px;
   padding: 0 20px;
-}
-.fm-form-select input[type="submit"] {
   background-color: var(--orange);
   color: var(--white);
 }
-.fm-form-select input[type="date"] {
-  height: 30px;
-  border-radius: 6px;
-  padding: 0 14px;
-}
-.fm-form-select input[type="date"]:focus {
-  outline: 0;
-} */
 /* ---------CSS CARDS -------------- */
 .cards_content {
   width: 90%;
@@ -131,6 +134,9 @@
   width: 90%;
   max-width: 464px;
   margin: auto;
+  display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 .cards_container img {
   width: 100%;
@@ -149,19 +155,7 @@
   gap: 10px;
   align-items: flex-end;
 }
-.cards_btnContent .cards_btnReservar {
-  background-color: var(--orange);
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 6px;
-  text-decoration: none;
-  border-radius: 4px;
-  width: 118px;
-}
-.cards_btnContent .cards_btn,
+.cards_btnContent .cards_btnMore,
 .recom_cards .recom_btnMore {
   font-weight: bold;
   color: var(--black2);
@@ -178,9 +172,10 @@
   color: var(--orange);
   width: 26px;
   height: 26px;
-  place-items: center;
-  font-size: 17px;
   display: flex;
+  place-items: center;
+  place-content: center;
+  font-size: 17px;
   background-color: var(--orange);
   color: var(--white);
 }
@@ -194,7 +189,7 @@
 }
 .cards_paginador-items {
   display: flex;
-  gap: 6px;
+  gap: 14px;
 }
 .cards_paginador-items .items {
   font-weight: bold;
@@ -243,9 +238,10 @@
 .recom_cards-text {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   position: relative;
   padding: 10px;
+  min-height: 220px;
 }
 .recom_cards-points{
   position: absolute;
@@ -277,7 +273,7 @@
     height: 600px;
   }
   .fm-content-form {
-    top: 60%;
+    top: 52%;
     left: 7%;
     right: 0;
     margin: 0;
@@ -297,19 +293,11 @@
     font-size: 2.6rem;
     line-height: 2.8rem;
   }
-  .fm-form-select {
-    height: 34px;
-  }
-  .fm-form-select input{
-    height: auto;
-  }
- /*  .fm-form-checkbox {
-    flex-direction: row;
+ 
+ .fm-form-checkbox {
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
-  .fm-form-select {
-    grid-template-columns: 34% 18% 18% 26%;
-  } */
   /* ------------CSS CARDS ----------- */
   .cards_display {
     grid-template-columns: repeat(2, 1fr);
@@ -326,6 +314,7 @@
     width: 90%;
   }
   .recom_cards-text{
+    justify-content: center;
     padding-left: 30px;
   }
 }

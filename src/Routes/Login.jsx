@@ -55,9 +55,15 @@ import logoLogin from '../images/Group16.png';
           <input type="checkbox" id="recordar-contrasena" name="recordar-contrasena" />
           <label for="recordar-contrasena">Recordar contraseña</label>
         </div>
+<<<<<<< HEAD
         <button type="submit">Iniciar sesión</button>
         <a className= 'olvidoContrasena' href= '#'>¿Olvidó su contraseña?</a>
         <p> ¿No tienes una cuenta? <a href="#"> Crear cuenta</a> </p> 
+=======
+        <button type="submit">Registrar</button>
+        <a className= 'olvidoContrasena' href= ''>¿Olvidó su contraseña?</a>
+        <p> ¿No tienes una cuenta? <a href=""> Crear cuenta</a> </p> 
+>>>>>>> ea9143c35ae770a82d112a6dbc59465feb093e1e
       </form>
     </div>
   );

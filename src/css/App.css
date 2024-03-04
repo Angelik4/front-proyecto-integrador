@@ -12,9 +12,22 @@
     --yellow: #FFC42D;
     --orange: #F2994A;
   }
-  main.container-main{
-    margin-top: 70px;
+
+  html {
+    height: 100%;
   }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+  main.container-main{
+    margin-top: 74px;
+    min-height: 100vh;
+    flex: 1;
+  }
+
   @font-face {
     font-family: 'lato-bold';
     src: url('../fonts/Lato/Lato-Bold.ttf') format('ttf'),
@@ -41,4 +54,22 @@
     font-weight: normal;
     font-style: normal;
   }
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .cards_btnReservar {
+    background-color: var(--orange);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px;
+    text-decoration: none;
+    border-radius: 4px;
+    width: 118px;
+  }
+
 

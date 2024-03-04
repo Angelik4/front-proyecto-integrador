@@ -2,9 +2,10 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from '@react-hook/media-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { StateContext } from './utils/StateProvider';
 import Search from './Search';
+import ButtonReservar from './ButtonReservar';
 
 const CardsIntroHome = () => {
   const [state] = useContext(StateContext);
@@ -20,7 +21,7 @@ const CardsIntroHome = () => {
   // Función para manejar el cambio en el término de búsqueda
   const handleSearchChange = (value) => {
     setSearchTerm(value);
-    setCurrentPage(1); // Reiniciar la página actual al cambiar el término de búsqueda
+    setCurrentPage(1); 
   };
 
   // Filtrar productos según el término de búsqueda
@@ -42,11 +43,11 @@ const CardsIntroHome = () => {
 
   return (
     <section className='cards_content'>
+      <Search handleSearch={handleSearchChange} />
       <div className='cards_titles'>
         <p>Descubre nuestros</p>
         <h2>Espacios de trabajo</h2>
       </div>
-      <Search handleSearch={handleSearchChange} />
       <section className='cards_display'>
         {currentProducts.map((producto, index) => (
           <div key={index} className="cards_container">
@@ -54,8 +55,8 @@ const CardsIntroHome = () => {
             <h2>{producto.nombre}</h2>
             <p>{producto.descripcion}</p>
             <div className='cards_btnContent'>
-              <Link className='cards_btnReservar' to="">Reservar<FontAwesomeIcon icon={faArrowRight} /></Link>
-              <Link className='cards_btnMore' to="detalle/1">Ver más</Link>
+              <ButtonReservar/>
+              <Link className='cards_btnMore' to={`detalle/${producto.id}`}>Ver más</Link>
             </div>
           </div>
         ))}
