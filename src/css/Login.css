@@ -1,8 +1,8 @@
 @import url(./App.css);
 
 .contenedor_login {
-    width: 430px;
-    height: 520px;
+    width: 80%; 
+    max-width: 430px; 
     margin: 0 auto;
     margin-top: 100px;
     margin-bottom: 40px;
@@ -16,7 +16,8 @@
     text-align: center;
     margin: 10px;
 }
-.imagen-logo img { 
+
+.imagen-logo img {
     height: 80px;
 }
 
@@ -37,7 +38,7 @@
 .campo-formulario {
     position: relative;
     margin-bottom: 10px;
-    padding: 10px;
+    padding: 5px;
     margin: 0px;
 }
 
@@ -47,7 +48,7 @@
 
 .campo-formulario input {
     color: var(--lightGray);
-    width: 100%;
+    width: 95%; 
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -63,7 +64,7 @@
     display: flex;
     cursor: pointer;
     position: absolute;
-    right: 0;
+    right: 5%;
     top: 55%;
 }
 
@@ -73,11 +74,11 @@
     text-align: center;
 }
 
-.contenedor_login-recordar-contrasena input{
+.contenedor_login-recordar-contrasena input {
     margin-left: 10px;
 }
 
-.contenedor_login-recordar-contrasena label{
+.contenedor_login-recordar-contrasena label {
     color: var(--lightGray);
     margin-left: 5px;
 }
@@ -86,15 +87,19 @@
     background-color: var(--orange);
     color: var(--white);
     padding: 10px 20px;
-    border: 20px solid;
+    border: none; 
     border-radius: 5px;
     cursor: pointer;
-    width: 100%;
+    display: block;
+    margin: 7px auto;
+    width: 98%;
 }
 
 .contenedor_login p {
     text-align: center;
-} 
+    color: var(--lightGray);
+}
+
 
 
 
