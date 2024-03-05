@@ -82,6 +82,18 @@
   top: 10px;
   color: var(--black2);
 }
+.fm-form-Filter {
+  position: relative;
+  border-bottom: 1px solid var(--white);
+  margin: 10px 0;
+}
+.fm-form-Filter p {
+  margin: 0;
+  position: absolute;
+  top: -15px;
+  background-color: var(--darkBlue);
+  padding: 0 10px 0 0;
+}
 .fm-form-checkbox {
   display: grid;
   grid-template-columns: 100%;

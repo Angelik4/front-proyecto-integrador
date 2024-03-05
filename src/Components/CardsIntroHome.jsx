@@ -10,23 +10,38 @@ import ButtonReservar from './ButtonReservar';
 const CardsIntroHome = () => {
   const [state] = useContext(StateContext);
 
-  const { products: originalProducts } = state; // Guardamos la lista original de productos
+  const { products: originalProducts } = state;
   const isMobile = useMediaQuery('(max-width: 768px)');
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = isMobile ? 2 : 4;
-
-  // Estado local para el término de búsqueda
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState({
+    spaces: false,
+    privates: false,
+    vips: false,
+    virtual: false,
+  });
 
-  // Función para manejar el cambio en el término de búsqueda
   const handleSearchChange = (value) => {
     setSearchTerm(value);
     setCurrentPage(1); 
   };
 
-  // Filtrar productos según el término de búsqueda
-  const filteredProducts = originalProducts.filter(producto =>
-    producto.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setSelectedCategories(prevState => ({
+      ...prevState,
+      [name]: checked,
+    }));
+  };
+
+  // Filtrar productos por término de búsqueda y categorías seleccionadas
+  const filteredProducts = originalProducts.filter(product =>
+    (product.nombre.toLowerCase().includes(searchTerm.toLowerCase())) &&
+    (selectedCategories.spaces ? product.categoria === 'spaces' : true) &&
+    (selectedCategories.privates ? product.categoria === 'privates' : true) &&
+    (selectedCategories.vips ? product.categoria === 'vips' : true) &&
+    (selectedCategories.virtual ? product.categoria === 'virtual' : true)
   );
 
   // Calcular el índice del primer y último producto de la página actual
@@ -91,3 +106,4 @@ const CardsIntroHome = () => {
 }
 
 export default CardsIntroHome;
+
