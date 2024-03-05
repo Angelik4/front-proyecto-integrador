@@ -10,10 +10,13 @@ import ButtonReservar from './ButtonReservar';
 const CardsIntroHome = () => {
   const [state] = useContext(StateContext);
 
-  const { products: originalProducts } = state;
+  const { products: originalProducts } = state; // Guardamos la lista original de productos
   const isMobile = useMediaQuery('(max-width: 768px)');
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = isMobile ? 2 : 4;
+  const [clearCategories, setClearCategories] = useState(false);
+
+  // Estado local para el término de búsqueda y categorías seleccionadas
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState({
     spaces: false,
@@ -22,27 +25,35 @@ const CardsIntroHome = () => {
     virtual: false,
   });
 
-  const handleSearchChange = (value) => {
+  // Función para manejar el cambio en el término de búsqueda y categorías seleccionadas
+  const handleSearchChange = (value, categories) => {
     setSearchTerm(value);
+    setSelectedCategories(categories);
     setCurrentPage(1); 
   };
 
-  const handleCheckboxChange = (event) => {
-    const { name, checked } = event.target;
-    setSelectedCategories(prevState => ({
-      ...prevState,
-      [name]: checked,
-    }));
-  };
+  // Filtrar productos según el término de búsqueda y categorías seleccionadas
+  const filteredProducts = originalProducts.filter(producto => {
+    const includesSearchTerm = producto.nombre.toLowerCase().includes(searchTerm.toLowerCase());
 
-  // Filtrar productos por término de búsqueda y categorías seleccionadas
-  const filteredProducts = originalProducts.filter(product =>
-    (product.nombre.toLowerCase().includes(searchTerm.toLowerCase())) &&
-    (selectedCategories.spaces ? product.categoria === 'spaces' : true) &&
-    (selectedCategories.privates ? product.categoria === 'privates' : true) &&
-    (selectedCategories.vips ? product.categoria === 'vips' : true) &&
-    (selectedCategories.virtual ? product.categoria === 'virtual' : true)
-  );
+    // Si no hay categorías seleccionadas, mostrar todos los productos
+    if (
+        !selectedCategories.spaces &&
+        !selectedCategories.privates &&
+        !selectedCategories.vips &&
+        !selectedCategories.virtual
+    ) {
+        return includesSearchTerm;
+    }
+
+    return (
+        includesSearchTerm &&
+        ((selectedCategories.spaces && producto.categoria === 'spaces') ||
+        (selectedCategories.privates && producto.categoria === 'privates') ||
+        (selectedCategories.vips && producto.categoria === 'vips') ||
+        (selectedCategories.virtual && producto.categoria === 'virtual'))
+    );
+  });
 
   // Calcular el índice del primer y último producto de la página actual
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -52,16 +63,22 @@ const CardsIntroHome = () => {
   // Calcular el número total de páginas
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
+  // Cantidad total de productos en la lista
+  const totalProductsCount = filteredProducts.length;
+
   // Funciones para cambiar de página
   const goToPrevPage = () => setCurrentPage(prevPage => prevPage - 1);
   const goToNextPage = () => setCurrentPage(prevPage => prevPage + 1);
 
   return (
     <section className='cards_content'>
-      <Search handleSearch={handleSearchChange} />
+      <Search handleSearch={handleSearchChange} clearCategories={clearCategories} setClearCategories={setClearCategories} />
       <div className='cards_titles'>
         <p>Descubre nuestros</p>
         <h2>Espacios de trabajo</h2>
+      </div>
+      <div className='ResultadosBusqueda'>
+        <p>{currentProducts.length} de {totalProductsCount} productos mostrados</p>
       </div>
       <section className='cards_display'>
         {currentProducts.map((producto, index) => (
@@ -106,4 +123,3 @@ const CardsIntroHome = () => {
 }
 
 export default CardsIntroHome;
-

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { StateContext } from './utils/StateProvider';
 
-const Search = ({ handleSearch }) => {
+const Search = ({ handleSearch, clearCategories, setClearCategories }) => {
   const [state] = useContext(StateContext);
   const { products } = state;
   const [searchTerm, setSearchTerm] = useState('');
@@ -14,26 +14,29 @@ const Search = ({ handleSearch }) => {
     virtual: false,
   });
 
-  const [filteredProducts, setFilteredProducts] = useState([]);
-
   useEffect(() => {
-    const filtered = products.filter(product => {
-      if (selectedCategories.spaces && product.categoria === 'spaces') {
-        return true;
-      }
-      if (selectedCategories.privates && product.categoria === 'privates') {
-        return true;
-      }
-      if (selectedCategories.vips && product.categoria === 'vips') {
-        return true;
-      }
-      if (selectedCategories.virtual && product.categoria === 'virtual') {
-        return true;
-      }
-      return false;
-    });
-    setFilteredProducts(filtered);
-  }, [selectedCategories, products]);
+    if (clearCategories) {
+      // Si se ha seleccionado "Limpiar categorías", deseleccionar todas las categorías
+      setSelectedCategories({
+        spaces: false,
+        privates: false,
+        vips: false,
+        virtual: false,
+      });
+      // Marcar que las categorías han sido limpiadas
+      setClearCategories(false);
+      // Realizar la búsqueda con categorías deseleccionadas
+      handleSearch(searchTerm, {
+        spaces: false,
+        privates: false,
+        vips: false,
+        virtual: false,
+      });
+    } else {
+      // Realizar la búsqueda con las categorías seleccionadas
+      handleSearch(searchTerm, selectedCategories);
+    }
+  }, [clearCategories, setClearCategories, searchTerm, selectedCategories, handleSearch]);
 
   const handleOnCheckbox = event => {
     const { name, checked } = event.target;
@@ -46,7 +49,6 @@ const Search = ({ handleSearch }) => {
   const handleChange = e => {
     const value = e.target.value;
     setSearchTerm(value);
-    handleSearch(value);
   };
 
   return (
@@ -113,14 +115,8 @@ const Search = ({ handleSearch }) => {
             Oficinas virtuales
           </label>
         </div>
-        <div className='fm-content-info-selected'>
-          {filteredProducts.map(product => (
-            <div key={product.id}>
-              <h3>{product.nombre}</h3>
-              <p>{product.descripcion}</p>
-              {/* Agrega aquí cualquier otra información que desees mostrar */}
-            </div>
-          ))}
+        <div className='fm-form-clear-categories'>
+          <button onClick={() => setClearCategories(true)}>Limpiar filtros</button>
         </div>
         <input type="submit" value="Buscar" />
       </form>

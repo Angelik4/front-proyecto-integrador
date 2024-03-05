@@ -137,6 +137,14 @@
   margin: 0;
   text-transform: capitalize;
 }
+
+.ResultadosBusqueda {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: var(--black);
+}
+
 .cards_display {
   display: grid;
   grid-template-columns: 100%;
@@ -266,13 +274,13 @@
   gap: 6px;
 }
 .recom_cards-points .number{
- background-color: var(--darkBlue);
- color: var(--orange);
- font-weight: bold;
- margin: 0;
- font-size: 1.1rem;
- padding: 6px;
- border-radius: 4px;
+  background-color: var(--darkBlue);
+  color: var(--orange);
+  font-weight: bold;
+  margin: 0;
+  font-size: 1.1rem;
+  padding: 6px;
+  border-radius: 4px;
 }
 .recom_cards-points .text{
   margin: 0;
@@ -305,8 +313,8 @@
     font-size: 2.6rem;
     line-height: 2.8rem;
   }
- 
- .fm-form-checkbox {
+
+.fm-form-checkbox {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
