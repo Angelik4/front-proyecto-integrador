@@ -78,7 +78,7 @@ const CardsIntroHome = () => {
         <h2>Espacios de trabajo</h2>
       </div>
       <div className='ResultadosBusqueda'>
-        <p>{currentProducts.length} de {totalProductsCount} productos mostrados</p>
+        <p>{currentProducts.length} de {totalProductsCount} Productos Mostrados</p>
       </div>
       <section className='cards_display'>
         {currentProducts.map((producto, index) => (
