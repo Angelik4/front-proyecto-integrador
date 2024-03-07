@@ -1,3 +1,4 @@
+// CardsIntroHome.jsx
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from '@react-hook/media-query';
@@ -15,8 +16,14 @@ const CardsIntroHome = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = isMobile ? 2 : 4;
 
-  // Estado local para el término de búsqueda
+  // Estado local para el término de búsqueda y filtros de categorías
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState({
+    spaces: false,
+    privates: false,
+    vips: false,
+    virtual: false,
+  });
 
   // Función para manejar el cambio en el término de búsqueda
   const handleSearchChange = (value) => {
@@ -24,10 +31,34 @@ const CardsIntroHome = () => {
     setCurrentPage(1); 
   };
 
-  // Filtrar productos según el término de búsqueda
-  const filteredProducts = originalProducts.filter(producto =>
-    producto.nombre.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Función para manejar el cambio en los filtros de categorías
+  const handleCategoryChange = (categories) => {
+    setSelectedCategories(categories);
+    setCurrentPage(1); 
+  };
+
+  // Filtrar productos según el término de búsqueda y filtros de categorías
+  const filteredProducts = originalProducts.filter(producto => {
+    const includesSearchTerm = producto.nombre.toLowerCase().includes(searchTerm.toLowerCase());
+
+    // Si no hay categorías seleccionadas, mostrar todos los productos
+    if (
+      !selectedCategories.spaces &&
+      !selectedCategories.privates &&
+      !selectedCategories.vips &&
+      !selectedCategories.virtual
+    ) {
+      return includesSearchTerm;
+    }
+
+    return (
+      includesSearchTerm &&
+      ((selectedCategories.spaces && producto.categoria === 'spaces') ||
+      (selectedCategories.privates && producto.categoria === 'privates') ||
+      (selectedCategories.vips && producto.categoria === 'vips') ||
+      (selectedCategories.virtual && producto.categoria === 'virtual'))
+    );
+  });
 
   // Calcular el índice del primer y último producto de la página actual
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -43,10 +74,11 @@ const CardsIntroHome = () => {
 
   return (
     <section className='cards_content'>
-      <Search handleSearch={handleSearchChange} />
+      <Search handleSearch={handleSearchChange} handleCategories={handleCategoryChange} />
       <div className='cards_titles'>
         <p>Descubre nuestros</p>
         <h2>Espacios de trabajo</h2>
+        <p className='numProducts'>{currentProducts.length} de {filteredProducts.length} Productos Mostrados</p>
       </div>
       <section className='cards_display'>
         {currentProducts.map((producto, index) => (
