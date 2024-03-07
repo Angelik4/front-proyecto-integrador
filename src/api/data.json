@@ -17,7 +17,7 @@
         "https://media1.amarilo.com.co/website/s3fs-public/blog/2023-03/20180322_Chelsea_6th_Floor-17.jpg"
       ],
       "descripcion": "Explora nuestros espacios diseñados para inspirar la creatividad y la colaboración, donde las mascotas son bienvenidas para ser parte de la innovación.",
-      "categoria": "Espacios Pet Friendly",
+      "categoria": "spaces",
       "calificacion": 7.8,
       "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
     },
@@ -38,7 +38,7 @@
         "https://media1.amarilo.com.co/website/s3fs-public/blog/2023-03/20180322_Chelsea_6th_Floor-17.jpg"
       ],
       "descripcion": "Descubre la versatilidad de nuestras oficinas virtuales diseñadas para adaptarse a tu estilo de trabajo en cualquier momento y lugar.",
-      "categoria": "Oficinas Virtuales",
+      "categoria": "virtual",
       "calificacion": 9.2,
       "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
     },
@@ -59,7 +59,7 @@
         "https://media1.amarilo.com.co/website/s3fs-public/blog/2023-03/20180322_Chelsea_6th_Floor-17.jpg"
       ],
       "descripcion": "Sumérgete en un ambiente profesional de primera clase con nuestras salas VIP diseñadas para satisfacer las necesidades de los líderes empresariales.",
-      "categoria": "Salas VIP",
+      "categoria": "vips",
       "calificacion": 8.5,
       "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
     },
@@ -80,7 +80,7 @@
         "https://media1.amarilo.com.co/website/s3fs-public/blog/2023-03/20180322_Chelsea_6th_Floor-17.jpg"
       ],
       "descripcion": "Inspira la innovación y el trabajo en equipo en nuestros espacios de coworking diseñados para impulsar el éxito de tus proyectos más creativos.",
-      "categoria": "Espacios Pet Friendly",
+      "categoria": "spaces",
       "calificacion": 7.9,
       "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
     },
@@ -101,7 +101,7 @@
         "https://media1.amarilo.com.co/website/s3fs-public/blog/2023-03/20180322_Chelsea_6th_Floor-17.jpg"
       ],
       "descripcion": "Experimenta la comodidad y la eficiencia en nuestras oficinas modernas diseñadas para satisfacer las demandas de los profesionales más exigentes.",
-      "categoria": "Oficinas Virtuales",
+      "categoria": "virtual",
       "calificacion": 9.5,
       "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
     },
@@ -122,7 +122,7 @@
         "https://media1.amarilo.com.co/website/s3fs-public/blog/2023-03/20180322_Chelsea_6th_Floor-17.jpg"
       ],
       "descripcion": "Disfruta del lujo y la exclusividad en nuestras salas VIP diseñadas para ofrecerte una experiencia empresarial única e inigualable.",
-      "categoria": "Salas VIP",
+      "categoria": "vips",
       "calificacion": 8.7,
       "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
     },
@@ -143,7 +143,7 @@
         "https://media1.amarilo.com.co/website/s3fs-public/blog/2023-03/20180322_Chelsea_6th_Floor-17.jpg"
       ],
       "descripcion": "Conecta con otros emprendedores en nuestros espacios innovadores diseñados para potenciar tus ideas y convertirlas en proyectos exitosos.",
-      "categoria": "Espacios Pet Friendly",
+      "categoria": "spaces",
       "calificacion": 7.8,
       "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
     },
@@ -164,7 +164,7 @@
         "https://media1.amarilo.com.co/website/s3fs-public/blog/2023-03/20180322_Chelsea_6th_Floor-17.jpg"
       ],
       "descripcion": "Libérate de las restricciones tradicionales y trabaja desde cualquier lugar con nuestras oficinas flexibles diseñadas para nómadas digitales en movimiento.",
-      "categoria": "Oficinas Virtuales",
+      "categoria": "privates",
       "calificacion": 9.1,
       "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
     },
@@ -185,7 +185,7 @@
         "https://media1.amarilo.com.co/website/s3fs-public/blog/2023-03/20180322_Chelsea_6th_Floor-17.jpg"
       ],
       "descripcion": "Experimenta la última tecnología y el confort en nuestras salas VIP de alta tecnología diseñadas para impresionar a tus clientes y socios más importantes.",
-      "categoria": "Salas VIP",
+      "categoria": "vips",
       "calificacion": 8.9,
       "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
     },
@@ -206,7 +206,7 @@
         "https://media1.amarilo.com.co/website/s3fs-public/blog/2023-03/20180322_Chelsea_6th_Floor-17.jpg"
       ],
       "descripcion": "Inspira ideas y colaboración en nuestros espacios para reuniones diseñados para potenciar la creatividad y la productividad de tus equipos.",
-      "categoria": "Espacios Pet Friendly",
+      "categoria": "privates",
       "calificacion": 7.7,
       "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
     },
@@ -227,7 +227,7 @@
         "https://media1.amarilo.com.co/website/s3fs-public/blog/2023-03/20180322_Chelsea_6th_Floor-17.jpg"
       ],
       "descripcion": "Trabaja con estilo y modernidad en nuestras oficinas con diseño vanguardista diseñadas para reflejar la innovación y el progreso en cada detalle.",
-      "categoria": "Oficinas Virtuales",
+      "categoria": "virtual",
       "calificacion": 9.3,
       "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
     },
@@ -248,7 +248,7 @@
         "https://media1.amarilo.com.co/website/s3fs-public/blog/2023-03/20180322_Chelsea_6th_Floor-17.jpg"
       ],
       "descripcion": "Accede a nuestras salas VIP exclusivas y experimenta un servicio personalizado diseñado para satisfacer las demandas de los empresarios más exigentes.",
-      "categoria": "Salas VIP",
+      "categoria": "privates",
       "calificacion": 8.4,
       "servicios": ["Wifi", "Aire acondicionado", "Café", "Agua", "Snack free"]
     }

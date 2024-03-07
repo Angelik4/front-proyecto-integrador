@@ -82,6 +82,18 @@
   top: 10px;
   color: var(--black2);
 }
+.fm-form-Filter {
+  position: relative;
+  border-bottom: 1px solid var(--white);
+  margin: 10px 0;
+}
+.fm-form-Filter p {
+  margin: 0;
+  position: absolute;
+  top: -15px;
+  background-color: var(--darkBlue);
+  padding: 0 10px 0 0;
+}
 .fm-form-checkbox {
   display: grid;
   grid-template-columns: 100%;
@@ -101,6 +113,16 @@
   background-color: var(--orange);
   color: var(--white);
 }
+
+.fm-form-clear-categories button {
+  opacity: 0.9; 
+  color: var(--orange);
+  border: none; 
+  border-bottom: 1px solid var(--orange); 
+  background-color: transparent; 
+  cursor: pointer; 
+}
+
 /* ---------CSS CARDS -------------- */
 .cards_content {
   width: 90%;
@@ -109,7 +131,7 @@
 }
 .cards_titles {
   text-align: center;
-  margin: 20px 0 40px;
+  margin: 15px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -121,13 +143,18 @@
   text-transform: uppercase;
 }
 .cards_titles h2 {
-  font-size: 2.1rem;
+  font-size: 36px;
   margin: 0;
   text-transform: capitalize;
 }
-.cards_titles .numProducts{
-  color: var(--black2);
+
+.ResultadosBusqueda {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: var(--lightGray);
 }
+
 .cards_display {
   display: grid;
   grid-template-columns: 100%;
@@ -257,13 +284,13 @@
   gap: 6px;
 }
 .recom_cards-points .number{
- background-color: var(--darkBlue);
- color: var(--orange);
- font-weight: bold;
- margin: 0;
- font-size: 1.1rem;
- padding: 6px;
- border-radius: 4px;
+  background-color: var(--darkBlue);
+  color: var(--orange);
+  font-weight: bold;
+  margin: 0;
+  font-size: 1.1rem;
+  padding: 6px;
+  border-radius: 4px;
 }
 .recom_cards-points .text{
   margin: 0;
@@ -296,8 +323,8 @@
     font-size: 2.6rem;
     line-height: 2.8rem;
   }
- 
- .fm-form-checkbox {
+
+.fm-form-checkbox {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
