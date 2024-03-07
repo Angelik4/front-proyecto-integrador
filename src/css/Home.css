@@ -147,7 +147,9 @@
   margin: 0;
   text-transform: capitalize;
 }
-
+.cards_titles .numberPages{
+  color: var(--black2);
+}
 .ResultadosBusqueda {
   text-align: center;
   margin-bottom: 20px;

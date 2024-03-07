@@ -54,6 +54,9 @@ const Search = ({ handleSearch, handleCategories }) => {
           />
           <FontAwesomeIcon className='iconLupa' icon={faMagnifyingGlass} />
         </div>
+        <div className='fm-form-title'>
+          <p>Filtrar por categorías:</p>
+        </div>
         <div className='fm-form-checkbox'>
           <label htmlFor="spaces">
             <input
@@ -92,10 +95,8 @@ const Search = ({ handleSearch, handleCategories }) => {
             Oficinas virtuales
           </label>
         </div>
-        <div className='fm-form-clear-categories'>
-          <button onClick={handleClearFilters}>Limpiar filtro</button>
-        </div>
-        <input type="submit" value="Buscar" />
+          <button type="button" onClick={handleClearFilters}>Limpiar filtro</button>
+        {/* <input type="submit" value="Buscar" /> */}
       </form>
     </div>
   );
