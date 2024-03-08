@@ -1,0 +1,101 @@
+@import url(./App.css);
+
+.contenedor_register {
+    width: 450px;
+    height: 650px;
+    margin: 0 auto;
+    margin-top: 100px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.imagen-logo-register {
+    text-align: center;
+    margin: 10px;
+}
+.imagen-logo-register img { 
+    height: 80px;
+}
+
+.imagen-logo-register h2 {
+    text-align: center;
+    color: var(--darkBlue);
+    font-size: 24px;
+    margin: 10px;
+}
+
+.imagen-logo-register p {
+    text-align: center;
+    color: var(--lightGray);
+    font-size: 16px;
+    
+}
+
+.campo-formulario-register {
+    position: relative;
+    margin-bottom: 10px;
+    padding: 30px;
+    margin: 0px;
+}
+
+.campo-formulario-register label {
+    color: var(--gray);
+}
+
+.icon-eye {
+    color: var(--lightGray);
+    display: flex;
+    cursor: pointer;
+    position: absolute;
+    right: 40px;
+    top: 54.3%;
+}
+
+.icon-eye2 {
+    color: var(--lightGray);
+    display: flex;
+    cursor: pointer;
+    position: absolute;
+    right: 40px;
+    top: 68.5%;
+}
+
+.campo-formulario-register input {
+    color: var(--lightGray);
+    background-color: #F1F4F9;
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.campo-formulario-register input:focus {
+    outline: 0px;
+}
+
+/*.error-message {
+    color: red;
+    margin-top: 5px;
+  }*/
+
+.campo-formulario-register button {
+    background-color: var(--orange);
+    color: var(--white);
+    padding: 10px;
+    border-top: 0px;
+    border: 1px solid;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.contenedor_register p {
+    text-align: center;
+} 
+
+
+
