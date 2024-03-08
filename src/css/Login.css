@@ -1,8 +1,8 @@
 @import url(./App.css);
 
 .contenedor_login {
-    width: 80%; 
-    max-width: 430px; 
+    width: 80%;
+    max-width: 430px;
     margin: 0 auto;
     margin-top: 100px;
     margin-bottom: 40px;
@@ -48,7 +48,7 @@
 
 .campo-formulario input {
     color: var(--lightGray);
-    width: 100%; 
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -87,7 +87,7 @@
     background-color: var(--orange);
     color: var(--white);
     padding: 10px 20px;
-    border: none; 
+    border: none;
     border-radius: 5px;
     cursor: pointer;
     display: block;
@@ -100,6 +100,26 @@
     color: var(--lightGray);
 }
 
+.swal2-container-custom {
+    font-size: 14px;
+}
 
+.swal2-popup-custom {
+    max-width: 300px;
+}
 
+.swal2-title-custom {
+    font-size: 18px;
+}
 
+.swal2-icon-custom {
+    font-size: 14px;
+}
+
+.swal2-confirm-custom {
+    font-size: 14px;
+}
+
+.swal2-icon-custom::before {
+    color: #F2994A;
+}
