@@ -1,0 +1,86 @@
+@import url(./App.css);
+
+.Ct-Tabla {
+    position: absolute;
+    top: 21.5%;
+    width: 955px;
+    height: 530px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0% 23%;
+    background-color: #F2F2F2;
+    border: none;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+}
+
+.Ct-Tabla th {
+    color: var(--white);
+}
+
+.Ct-Tabla td {
+    color: var(--black);
+}
+
+.Ct-Tabla td ul{
+    list-style: none;
+}
+
+.Ct-Tabla table {
+    width: 96%;
+    border-collapse: collapse;
+    margin: 2%;
+}
+
+.Ct-Tabla th,
+.Ct-Tabla td {
+    border: 1px solid #ddd; 
+    padding: 8px;
+    text-align: left;
+    font-size: 12px;
+}
+
+.Ct-Tabla td button {
+    margin: 5px;
+    width: 57px;
+    padding: 2px;
+}
+
+.Ct-Tabla th {
+    background-color: var(--darkBlue); 
+}
+
+.Ct-Tabla img {
+    max-width: 100px; /* Puedes ajustar el tamaño máximo según lo necesites */
+    height: auto; /* Esto mantiene la proporción de la imagen */
+}
+
+.buscador-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 2%;
+}
+
+.buscador input {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 15%;
+}
+
+.agregar-usuario {
+    background-color: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px; 
+    width: 20%;
+}
+
+.agregar-usuario:hover {
+    background-color: #0056b3;
+}

@@ -1,39 +1,23 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faBuilding, faUser, faTableCellsLarge, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import MaterialTable from 'material-table';
+import Salas from '../Components/Salas';
+import Usuario from '../Components/Usuario';
+import Categoria from '../Components/Categoria';
 import '../css/Administrador.css';
 
 const Administrador = () => {
   const [activo, setActivo] = useState(null);
 
+  const navigate = useNavigate();
+
   const handleClick = (opcion) => {
     setActivo(opcion);
+    if (opcion === "Salir") {
+      navigate("/"); // Redireccionamos al hacer clic en "Salir"
+    }
   };
-
-  const columnas = [
-    {
-        title: 'Id'
-        , field: 'id',
-        type: 'numeric'
-  },
-    {
-        title: 'Nombre'
-        , field: 'nombre',
-  },
-    {
-        title: 'Apellido'
-        , field: 'apellido',
-}, 
-];
-
-const data=[
-    {id: 1, nombre: 'Gaby', apellido: 'Hernández'},
-    {id: 2, nombre: 'Gabriela', apellido: 'Hdez'},
-    {id: 3, nombre: 'Esmeralda', apellido: 'Benitez'},
-    {id: 4, nombre: 'Esmeraldita', apellido: 'De Hernández'},
-]
-
 
   return (
     <div className="panel">
@@ -51,7 +35,7 @@ const data=[
           <FontAwesomeIcon icon={faBuilding} style={{ color: '#f2994a' }} />
           <button
             className={activo === "Salas" ? "activo" : ""}
-            onClick={() => handleClick("salas")}
+            onClick={() => handleClick("Salas")}
           >
             Salas
           </button>
@@ -88,20 +72,11 @@ const data=[
         {activo && (
           <>
             {activo === "Inicio" && <p>Contenido de Inicio</p>}
-            {activo === "Salas" && <p>Contenido de Salas</p>}
-            {activo === "Usuario" && <p>Contenido de Usuario</p>}
-            {activo === "Categoria" && <p>Contenido de Categoria</p>}
-            {activo === "Salir" && <p>Contenido de Salir</p>}
+            {activo === "Salas" && <p><Salas /></p>}
+            {activo === "Usuario" && <p><Usuario /></p>}
+            {activo === "Categoria" && <p><Categoria /></p>}
           </>
         )}
-      </div>
-      <div className="seleccion">
-        {
-        <MaterialTable
-        columns={columnas}
-        data={data}
-        />
-        }
       </div>
     </div>
   );
