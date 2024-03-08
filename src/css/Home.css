@@ -106,7 +106,7 @@
   gap: 6px;
 }
 
-.fm-content-form input[type="submit"] {
+.fm-content-form button {
   height: 34px;
   border-radius: 6px;
   padding: 0 20px;
@@ -147,7 +147,9 @@
   margin: 0;
   text-transform: capitalize;
 }
-
+.cards_titles .numberPages{
+  color: var(--black2);
+}
 .ResultadosBusqueda {
   text-align: center;
   margin-bottom: 20px;

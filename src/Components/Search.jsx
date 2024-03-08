@@ -1,11 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+// Search.jsx
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { StateContext } from './utils/StateProvider';
 
-const Search = ({ handleSearch, clearCategories, setClearCategories }) => {
-  const [state] = useContext(StateContext);
-  const { products } = state;
+const Search = ({ handleSearch, handleCategories }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState({
     spaces: false,
@@ -14,41 +12,31 @@ const Search = ({ handleSearch, clearCategories, setClearCategories }) => {
     virtual: false,
   });
 
-  useEffect(() => {
-    if (clearCategories) {
-      // Si se ha seleccionado "Limpiar categorías", deseleccionar todas las categorías
-      setSelectedCategories({
-        spaces: false,
-        privates: false,
-        vips: false,
-        virtual: false,
-      });
-      // Marcar que las categorías han sido limpiadas
-      setClearCategories(false);
-      // Realizar la búsqueda con categorías deseleccionadas
-      handleSearch(searchTerm, {
-        spaces: false,
-        privates: false,
-        vips: false,
-        virtual: false,
-      });
-    } else {
-      // Realizar la búsqueda con las categorías seleccionadas
-      handleSearch(searchTerm, selectedCategories);
-    }
-  }, [clearCategories, setClearCategories, searchTerm, selectedCategories, handleSearch]);
-
-  const handleOnCheckbox = event => {
-    const { name, checked } = event.target;
-    setSelectedCategories(prevState => ({
-      ...prevState,
-      [name]: checked,
-    }));
-  };
-
-  const handleChange = e => {
+  const handleChange = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
+    handleSearch(value);
+  };
+
+  const handleCategoryChange = (e) => {
+    const { id, checked } = e.target;
+    setSelectedCategories(prevState => ({ ...prevState, [id]: checked }));
+    handleCategories({ ...selectedCategories, [id]: checked });
+  };
+
+  const handleClearFilters = () => {
+    setSelectedCategories({
+      spaces: false,
+      privates: false,
+      vips: false,
+      virtual: false,
+    });
+    handleCategories({
+      spaces: false,
+      privates: false,
+      vips: false,
+      virtual: false,
+    });
   };
 
   return (
@@ -66,28 +54,24 @@ const Search = ({ handleSearch, clearCategories, setClearCategories }) => {
           />
           <FontAwesomeIcon className='iconLupa' icon={faMagnifyingGlass} />
         </div>
-        <div className='fm-form-Filter'>
-          <p>Filtrar por Categoría:</p>
+        <div className='fm-form-title'>
+          <p>Filtrar por categorías:</p>
         </div>
         <div className='fm-form-checkbox'>
           <label htmlFor="spaces">
             <input
               type="checkbox"
               id="spaces"
-              name="spaces"
-              value="spaces"
-              onChange={handleOnCheckbox}
+              onChange={handleCategoryChange}
               checked={selectedCategories.spaces}
             />
-            Espacios Pet Friendly
+            Espacios de coworking
           </label>
           <label htmlFor="private">
             <input
               type="checkbox"
               id="privates"
-              name='privates'
-              value="privates"
-              onChange={handleOnCheckbox}
+              onChange={handleCategoryChange}
               checked={selectedCategories.privates}
             />
             Oficinas privadas
@@ -96,9 +80,7 @@ const Search = ({ handleSearch, clearCategories, setClearCategories }) => {
             <input
               type="checkbox"
               id="vips"
-              name='vips'
-              value="vips"
-              onChange={handleOnCheckbox}
+              onChange={handleCategoryChange}
               checked={selectedCategories.vips}
             />
             Salas VIP
@@ -107,18 +89,14 @@ const Search = ({ handleSearch, clearCategories, setClearCategories }) => {
             <input
               type="checkbox"
               id="virtual"
-              name='virtual'
-              value="virtual"
-              onChange={handleOnCheckbox}
+              onChange={handleCategoryChange}
               checked={selectedCategories.virtual}
             />
             Oficinas virtuales
           </label>
         </div>
-        <div className='fm-form-clear-categories'>
-          <button onClick={() => setClearCategories(true)}>Limpiar filtros</button>
-        </div>
-        <input type="submit" value="Buscar" />
+          <button type="button" onClick={handleClearFilters}>Limpiar filtro</button>
+        {/* <input type="submit" value="Buscar" /> */}
       </form>
     </div>
   );

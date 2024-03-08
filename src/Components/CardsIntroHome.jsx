@@ -1,3 +1,4 @@
+// CardsIntroHome.jsx
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from '@react-hook/media-query';
@@ -14,9 +15,8 @@ const CardsIntroHome = () => {
   const isMobile = useMediaQuery('(max-width: 768px)');
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = isMobile ? 2 : 4;
-  const [clearCategories, setClearCategories] = useState(false);
 
-  // Estado local para el término de búsqueda y categorías seleccionadas
+  // Estado local para el término de búsqueda y filtros de categorías
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState({
     spaces: false,
@@ -25,33 +25,38 @@ const CardsIntroHome = () => {
     virtual: false,
   });
 
-  // Función para manejar el cambio en el término de búsqueda y categorías seleccionadas
-  const handleSearchChange = (value, categories) => {
+  // Función para manejar el cambio en el término de búsqueda
+  const handleSearchChange = (value) => {
     setSearchTerm(value);
+    setCurrentPage(1); 
+  };
+
+  // Función para manejar el cambio en los filtros de categorías
+  const handleCategoryChange = (categories) => {
     setSelectedCategories(categories);
     setCurrentPage(1); 
   };
 
-  // Filtrar productos según el término de búsqueda y categorías seleccionadas
+  // Filtrar productos según el término de búsqueda y filtros de categorías
   const filteredProducts = originalProducts.filter(producto => {
     const includesSearchTerm = producto.nombre.toLowerCase().includes(searchTerm.toLowerCase());
 
     // Si no hay categorías seleccionadas, mostrar todos los productos
     if (
-        !selectedCategories.spaces &&
-        !selectedCategories.privates &&
-        !selectedCategories.vips &&
-        !selectedCategories.virtual
+      !selectedCategories.spaces &&
+      !selectedCategories.privates &&
+      !selectedCategories.vips &&
+      !selectedCategories.virtual
     ) {
-        return includesSearchTerm;
+      return includesSearchTerm;
     }
 
     return (
-        includesSearchTerm &&
-        ((selectedCategories.spaces && producto.categoria === 'spaces') ||
-        (selectedCategories.privates && producto.categoria === 'privates') ||
-        (selectedCategories.vips && producto.categoria === 'vips') ||
-        (selectedCategories.virtual && producto.categoria === 'virtual'))
+      includesSearchTerm &&
+      ((selectedCategories.spaces && producto.categoria === 'spaces') ||
+      (selectedCategories.privates && producto.categoria === 'privates') ||
+      (selectedCategories.vips && producto.categoria === 'vips') ||
+      (selectedCategories.virtual && producto.categoria === 'virtual'))
     );
   });
 
@@ -63,22 +68,17 @@ const CardsIntroHome = () => {
   // Calcular el número total de páginas
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
-  // Cantidad total de productos en la lista
-  const totalProductsCount = filteredProducts.length;
-
   // Funciones para cambiar de página
   const goToPrevPage = () => setCurrentPage(prevPage => prevPage - 1);
   const goToNextPage = () => setCurrentPage(prevPage => prevPage + 1);
 
   return (
     <section className='cards_content'>
-      <Search handleSearch={handleSearchChange} clearCategories={clearCategories} setClearCategories={setClearCategories} />
+      <Search handleSearch={handleSearchChange} handleCategories={handleCategoryChange} />
       <div className='cards_titles'>
         <p>Descubre nuestros</p>
         <h2>Espacios de trabajo</h2>
-      </div>
-      <div className='ResultadosBusqueda'>
-        <p>{currentProducts.length} de {totalProductsCount} Productos Mostrados</p>
+        <p className='numberPages'>{currentProducts.length} de {filteredProducts.length} Productos Mostrados</p>
       </div>
       <section className='cards_display'>
         {currentProducts.map((producto, index) => (
