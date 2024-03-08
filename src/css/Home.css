@@ -139,7 +139,7 @@
 .cards_titles p {
   color: var(--orange);
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 25px;
   text-transform: uppercase;
 }
 .cards_titles h2 {
@@ -151,7 +151,7 @@
 .ResultadosBusqueda {
   text-align: center;
   margin-bottom: 20px;
-  font-size: 22px;
+  font-size: 20px;
   color: var(--lightGray);
 }
 

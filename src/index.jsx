@@ -10,6 +10,7 @@ import reportWebVitals from './reportWebVitals';
 import Register from './Routes/Register';
 import Question from './Routes/Question';
 import Detail from './Routes/Detail';
+import Administrador from './Routes/Administrador'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,6 +24,7 @@ root.render(
                   <Route path="question" element={<Question />} />
                   <Route path="login" element={<Login />} />
                   <Route path="register" element={<Register />} />
+                  <Route path="Administrador" element={<Administrador />} />
               </Route>
           </Routes>
       </BrowserRouter>
