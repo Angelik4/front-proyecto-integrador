@@ -73,7 +73,8 @@
   .ct_header nav .btnLogin .fa-user {
     margin-right: 4px;
   }
-  .ct_header .iconBurgerMob{
+  .ct_header .iconBurgerMob, 
+  .ct_header .iconBurgerDesk{
     background-color: transparent;
     border: transparent;
     color: var(--white);

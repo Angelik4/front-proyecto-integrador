@@ -2,7 +2,7 @@
 
 .contenedor_register {
     width: 450px;
-    height: 650px;
+    height: auto;
     margin: 0 auto;
     margin-top: 100px;
     margin-bottom: 40px;
@@ -10,6 +10,10 @@
     background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 10px;
+}
+.mensaje-error{
+    color: var(--red);
+    font-size: 13px;
 }
 
 .imagen-logo-register {
@@ -37,7 +41,7 @@
 .campo-formulario-register {
     position: relative;
     margin-bottom: 10px;
-    padding: 30px;
+    padding: 20px;
     margin: 0px;
 }
 
@@ -50,17 +54,8 @@
     display: flex;
     cursor: pointer;
     position: absolute;
-    right: 40px;
-    top: 54.3%;
-}
-
-.icon-eye2 {
-    color: var(--lightGray);
-    display: flex;
-    cursor: pointer;
-    position: absolute;
-    right: 40px;
-    top: 68.5%;
+    right: 34px;
+    top: 10px;
 }
 
 .campo-formulario-register input {
@@ -91,11 +86,12 @@
     border-radius: 8px;
     cursor: pointer;
     width: 100%;
+    margin-top: 8px;
+}
+.input-password{
+    position: relative;
 }
 
-.contenedor_register p {
-    text-align: center;
-} 
 
 
 

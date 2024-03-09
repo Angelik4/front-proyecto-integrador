@@ -6,7 +6,8 @@ const StateContext = createContext();
 const initialState = {
   products: [],
   loading: true,
-  error: null
+  error: null,
+  userData: null // Nuevo campo para los datos del usuario
 };
 
 const reducer = (state, action) => {
@@ -23,6 +24,11 @@ const reducer = (state, action) => {
         ...state,
         loading: false,
         error: action.payload
+      };
+    case 'SET_USER_DATA': // Nueva acción para establecer los datos del usuario
+      return {
+        ...state,
+        userData: action.payload
       };
     default:
       return state;
