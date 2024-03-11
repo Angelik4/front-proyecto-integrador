@@ -69,6 +69,9 @@
     margin-left: 10px;
     margin-top: auto;
 }
+.icon-select button.activo{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
 
 .icon-select button .icon {
     margin-right: 5px;

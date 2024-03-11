@@ -1,0 +1,50 @@
+
+  .modal-container h2{
+    text-align: center;
+  }
+  .modal-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .modal-form input[type="text"],
+  .modal-form textarea,
+  .modal-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  /* Estilos para el botón de enviar */
+  .modal-form .btn-guardar {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .modal-form .btn-guardar:hover {
+    background-color: #0056b3;
+  }
+  .modal-service{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 12px;
+    margin-bottom: 20px;
+  }
+  .modal-service div{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .modal-service div label{
+    margin: 0;
+    font-weight: 400;
+  }
+  

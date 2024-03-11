@@ -15,7 +15,8 @@
   .ct_header img {
     height: 40px;
   }
-  .ct_header nav{
+  .ct_header nav,
+  .ct_header .contentDropAvatar{
     display: none;
   }
   .ct_header nav.active {
@@ -30,11 +31,31 @@
     top: 69px;
     width: 200px;
   }
+  .ct_header .contentDropAvatar.active{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    position: absolute;
+    right: 20px;
+    z-index: 3;
+    background: var(--white);
+    padding: 20px;
+    top: 69px;
+    width: 150px;
+    border-radius: 8px;
+  }
   .ct_header nav a,
   .ct_header nav li {
     color: var(--white);
     text-decoration: none;
     list-style: none;
+  }
+  .ct_header .contentDropAvatar a{
+    color: var(--black);
+  }
+  .ct_header .contentDropAvatar a:first-child{
+    border-bottom:1px solid black ;
+    padding-bottom: 8px;
   }
   .ct_header nav li span {
     margin-left: 10px;

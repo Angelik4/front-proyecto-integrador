@@ -10,20 +10,27 @@ import '../css/Navbar.css';
 const Navbar = () => {
   
   const [iconoMenu, setIconoMenu] = useState(true);
-  const [state2] = useContext(StateContext); // Consumir el contexto para acceder al estado con los datos del usuario
+  const [iconoMenuDesk, setIconoMenuDesk] = useState(true);
+  const [state] = useContext(StateContext); // Consumir el contexto para acceder al estado con los datos del usuario
 
   const cambiarIcono = () => {
     setIconoMenu(!iconoMenu);
   };
+  const cambiarIconoDesk = () => {
+    setIconoMenuDesk(!iconoMenuDesk)
+  }
 
   // Verificar si hay datos de usuario y mostrar el nombre de usuario en el avatar
   const renderAvatar = () => {
-    if (state2.userData) {
-      const { nombre, apellido } = state2.userData;
-      return <div className='avatar'>{nombre} {apellido}</div>;
+    if (state.userData) {
+      const { nombre, apellido } = state.userData;
+      const nombreInicial = nombre.charAt(0).toUpperCase();
+      const apellidoInicial = apellido.charAt(0).toUpperCase();
+      return <div className='avatar'>{nombreInicial}{apellidoInicial}</div>;
     }
     return null;
   };
+  
 
   return (
     <header className='ct_container-header'>
@@ -34,10 +41,14 @@ const Navbar = () => {
           <Link className='createAccount' to="/register">Crear cuenta</Link>
           <Link className='btnLogin' to="/Login"><FontAwesomeIcon icon={faUser} />Iniciar sesión</Link>
         </nav>
-        {/* <nav>
+        <nav>
           {renderAvatar()}
-          <button className='iconBurgerDesk' onClick={cambiarIcono}> {iconoMenu ? <FontAwesomeIcon icon={faBars} /> : <FontAwesomeIcon icon={faXmark} />}</button>
-        </nav> */}
+          <button className='iconBurgerDesk' onClick={cambiarIconoDesk}> {iconoMenuDesk ? <FontAwesomeIcon icon={faBars} /> : <FontAwesomeIcon icon={faXmark} />}</button>
+          <div className={`contentDropAvatar ${iconoMenuDesk ? '' : 'active'}`}>
+             <Link>Mi perfil</Link>
+             <Link>Cerrar sesión</Link>
+          </div>
+        </nav>
       </div>
     </header>
   );
