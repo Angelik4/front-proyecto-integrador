@@ -1,7 +1,7 @@
 import React from 'react'
 import '../css/Home.css';
-import CardsIntroHome from '../Components/CardsIntroHome';
-import Recommendations from '../Components/Recommendations';
+import CardsIntroHome from '../Components/Home/CardsIntroHome';
+import Recommendations from '../Components/Home/Recommendations';
 
 const Home = () => {
   return (

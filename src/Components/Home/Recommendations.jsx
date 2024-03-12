@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { StateContext } from "./utils/StateProvider";
+import { StateContext } from "../utils/StateProvider";
 import { Link } from "react-router-dom";
 
 const Recommendations = () => {

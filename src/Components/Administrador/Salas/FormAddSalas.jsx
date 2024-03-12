@@ -1,53 +1,58 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import "../css/FormAddSalas.css";
+import "../../../css/FormAddSalas.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const FormAddSalas = ({ isOpen, onRequestClose }) => {
+  const [nombre, setNombre] = useState("");
+  const [descripcion, setDescripcion] = useState("");
+  const [categoria, setCategoria] = useState("");
+  const [servicios, setServicios] = useState({
+    proyector: false,
+    wifi: false,
+    aireAcondicionado: false,
+    guarderiaMascotas: false,
+    guarderiaNinos: false,
+    cafeteria: false,
+  });
+  const [archivos, setArchivos] = useState([]);
+  const [inputArchivo, setInputArchivo] = useState(""); // Estado para el input de URL de imagen
 
-    const [nombre, setNombre] = useState("");
-    const [descripcion, setDescripcion] = useState("");
-    const [categoria, setCategoria] = useState("");
-    const [servicios, setServicios] = useState({
-      proyector: false,
-      wifi: false,
-      aireAcondicionado: false,
-      guarderiaMascotas: false,
-      guarderiaNinos: false,
-      cafeteria: false,
-    });
-    const [archivos, setArchivos] = useState([]);
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      // Crear el objeto con los valores del formulario
-      const sala = {
-        nombre,
-        descripcion,
-        categoria,
-        servicios,
-        archivos,
-      };
-      console.log("Sala guardada:", sala);
-      onRequestClose();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Crear el objeto con los valores del formulario
+    const sala = {
+      nombre,
+      descripcion,
+      categoria,
+      servicios,
+      archivos,
     };
-  
-    const handleServiciosChange = (e) => {
-      const { id, checked } = e.target;
-      setServicios((prevServicios) => ({
-        ...prevServicios,
-        [id]: checked,
-      }));
-    };
-  
-    const handleArchivoChange = (e) => {
-      const files = Array.from(e.target.files);
-      setArchivos([...archivos, ...files]);
-    };
-  
-    const handleRemoveArchivo = (index) => {
-      const newArchivos = archivos.filter((_, i) => i !== index);
-      setArchivos(newArchivos);
-    };
+    console.log("Sala guardada:", sala);
+    onRequestClose();
+  };
+
+  const handleServiciosChange = (e) => {
+    const { id, checked } = e.target;
+    setServicios((prevServicios) => ({
+      ...prevServicios,
+      [id]: checked,
+    }));
+  };
+
+  const handleArchivoChange = () => {
+    // Agregar la URL de imagen a la lista de archivos
+    if (inputArchivo.trim() !== "") {
+      setArchivos([...archivos, inputArchivo]);
+      setInputArchivo(""); // Limpiar el input de URL de imagen
+    }
+  };
+
+  const handleRemoveArchivo = (index) => {
+    const newArchivos = archivos.filter((_, i) => i !== index);
+    setArchivos(newArchivos);
+  };
 
   const customStyles = {
     content: {
@@ -61,13 +66,14 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
   };
   return (
     <Modal
-    isOpen={isOpen}
-    onRequestClose={onRequestClose}
-    contentLabel="Agregar Sala"
-    ariaHideApp={false}
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      contentLabel="Agregar Sala"
+      ariaHideApp={false}
       style={customStyles}
     >
       <div className="modal-container">
+      <button onClick={onRequestClose} className="btn-cerrar"> <FontAwesomeIcon icon={faXmark} /></button>
         <h2>Agregar Sala</h2>
         <form className="modal-form" onSubmit={handleSubmit}>
           <label htmlFor="nombre">Nombre</label>
@@ -124,20 +130,20 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
               <div>
                 <input
                   type="checkbox"
-                  id="aire"
+                  id="aireAcondicionado"
                   checked={servicios.aireAcondicionado}
                   onChange={handleServiciosChange}
                 />
-                <label htmlFor="aire">Aire acondicionado</label>
+                <label htmlFor="aireAcondicionado">Aire acondicionado</label>
               </div>
               <div>
                 <input
                   type="checkbox"
-                  id="guarderiaPet"
+                  id="guarderiaMascotas"
                   checked={servicios.guarderiaMascotas}
                   onChange={handleServiciosChange}
                 />
-                <label htmlFor="guarderiaPet">Guardería mascotas</label>
+                <label htmlFor="guarderiaMascotas">Guardería mascotas</label>
               </div>
               <div>
                 <input
@@ -160,24 +166,37 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
             </div>
           </div>
 
-          <label htmlFor="archivo">Adjuntar archivo</label>
-          <input
-            type="file"
-            id="archivo"
-            multiple
-            onChange={handleArchivoChange}
-          />
+          {/* Input para URL de imagen */}
+          <div className="content-url-img">
+            <label htmlFor="url-imagen">URL de imagen</label>
+            <div className="url-img-add">
+              <input
+                type="text"
+                id="url-imagen"
+                placeholder="URL de la imagen"
+                value={inputArchivo}
+                onChange={(e) => setInputArchivo(e.target.value)}
+              />
+              <button
+                type="button"
+                onClick={handleArchivoChange}
+                className="btn-agregar"
+              >
+                Agregar
+              </button>
+            </div>
+          </div>
 
           {/* Lista de archivos seleccionados */}
-          <ul>
+          <ul className="list-url-img">
             {archivos.map((archivo, index) => (
               <li key={index}>
-                {archivo.name}
+                <span>{archivo}</span>
                 <button
                   type="button"
                   onClick={() => handleRemoveArchivo(index)}
                 >
-                  Eliminar
+                  <FontAwesomeIcon icon={faXmark} />
                 </button>
               </li>
             ))}

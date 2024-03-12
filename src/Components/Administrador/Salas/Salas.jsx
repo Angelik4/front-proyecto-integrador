@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
-import "../css/Panel.css";
-import data from "../api/data.json";
-import FormAddSalas from "./FormAddSalas";
+import "../../../css/Panel.css";
+import data from "../../../api/data.json";
+import FormAddSalas from "../Salas/FormAddSalas";
 
 const Salas = () => {
   const [modalIsOpen, setIsOpen] = useState(false);

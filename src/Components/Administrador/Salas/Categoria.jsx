@@ -1,8 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
-import '../css/Panel.css';
-import data from '../api/data.json';
+import "../../../css/Panel.css";
+import data from '../../../api/data.json';
 
 const Categoria = () => {
   return (

@@ -1,4 +1,23 @@
 
+  .ReactModal__Overlay {
+    background-color: rgba(0, 0, 0, 0.75) !important;
+  }
+  .ReactModal__Content{
+    max-width: 500px;
+    max-height: 610px;
+    z-index: 9999;
+  }
+  .modal-container{
+    position: relative;
+  }
+  .modal-container .btn-cerrar{
+    background: transparent;
+    border: 0;
+    font-size: 24px;
+    position: absolute;
+    right: 10px;
+    top: -4px;
+  }
   .modal-container h2{
     text-align: center;
   }
@@ -22,21 +41,19 @@
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: var(--darkBlue);
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 14px;
   }
   
-  .modal-form .btn-guardar:hover {
-    background-color: #0056b3;
-  }
   .modal-service{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0 12px;
-    margin-bottom: 20px;
+    margin: 20px 0;
   }
   .modal-service div{
     display: flex;
@@ -46,5 +63,40 @@
   .modal-service div label{
     margin: 0;
     font-weight: 400;
+    font-size: 13px;
+  }
+  .url-img-add{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .url-img-add button{
+    height: 36px;
+    padding: 0 8px;
+    background-color: var(--orange);
+    color: var(--white);
+    border: 0;
+    border-radius: 6px;
+  }
+  .list-url-img li{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #A2A2A2;
+  }
+  .list-url-img li span{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+  }
+  .list-url-img li button{
+    background: transparent;
+    border: 0;
+    font-size: 19px;
+    color: red;
   }
   

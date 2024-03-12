@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { useMediaQuery } from '@react-hook/media-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { StateContext } from './utils/StateProvider';
+import { StateContext } from '../utils/StateProvider';
 import Search from './Search';
-import ButtonReservar from './ButtonReservar';
+import ButtonReservar from '../ButtonReservar';
 
 const CardsIntroHome = () => {
   const [state] = useContext(StateContext);

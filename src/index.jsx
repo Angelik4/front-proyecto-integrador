@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from './Routes/Home';
-import Galeria from './Routes/Galeria';
-import Login from './Routes/Login';
+import Home from './Pages/Home';
+import Galeria from './Pages/Galeria';
+import Login from './Pages/Login';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Register from './Routes/Register';
-import Question from './Routes/Question';
-import Detail from './Routes/Detail';
-import Administrador from './Routes/Administrador'
+import Register from './Pages/Register';
+import Question from './Pages/Question';
+import Detail from './Pages/Detail';
+import Administrador from './Pages/Administrador'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
