@@ -42,7 +42,7 @@ const Salas = () => {
           />
           <input type="text" placeholder="Buscar por Nombre/ID" />
         </div>
-        <button className="agregar-usuario" onClick={openModal}>
+        <button className="agregar-usuario" onClick={() => openModal('add')}>
           <FontAwesomeIcon
             icon={faUserPlus}
             style={{ color: "#fff", marginRight: "5px" }}
@@ -80,15 +80,15 @@ const Salas = () => {
                 </ul>
               </td>
               <td>
-              <button className="editar-usuario" onClick={() => openModal('edit')}>Editar</button>
-              <button className="eliminar-usuario" onClick={() => openModal('delete')}>Eliminar</button>
+                <button className="editar-usuario" onClick={() => openModal('edit')}>Editar</button>
+                <button className="eliminar-usuario" onClick={() => openModal('delete')}>Eliminar</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
       {isEditing && <FormEdit isOpen={modalIsOpen} onRequestClose={closeModal} />}
-      {isDeleting && <FormDelete isOpen={modalIsOpen} onRequestClose={closeModal} />}
+      {isDeleting && <FormDelete isOpen={modalIsOpen} onRequestClose={closeModal} itemType="sala" />}
       {!isEditing && !isDeleting && <FormAddSalas isOpen={modalIsOpen} onRequestClose={closeModal} />}
     </div>
   );

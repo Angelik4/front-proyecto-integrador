@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "../../../css/FormAddSalas.css";
 
-const FormEdit = ({ isOpen, onRequestClose }) => {
+const FormEdit = ({ isOpen, onRequestClose, categoria }) => {
 
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
+    const [imagenUrl, setImagenUrl] = useState("");
     const [archivos, setArchivos] = useState([]);
+
+    useEffect(() => {
+      if (categoria) {
+        setNombre(categoria.nombre);
+        setDescripcion(categoria.descripcion);
+        setImagenUrl(categoria.imagen);
+        // Puedes manejar la carga de imágenes aquí si es necesario
+      }
+    }, [categoria]);
   
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -17,11 +27,6 @@ const FormEdit = ({ isOpen, onRequestClose }) => {
       };
       console.log("Sala guardada:", sala);
       onRequestClose();
-    };
-  
-    const handleArchivoChange = (e) => {
-      const files = Array.from(e.target.files);
-      setArchivos([...archivos, ...files]);
     };
   
     const handleRemoveArchivo = (index) => {
@@ -68,12 +73,13 @@ const FormEdit = ({ isOpen, onRequestClose }) => {
             onChange={(e) => setDescripcion(e.target.value)}
           ></textarea>
 
-          <label htmlFor="archivo">Imagen</label>
+          <label htmlFor="imagen">URL de la Imagen</label>
           <input
-            type="file"
-            id="archivo"
-            multiple
-            onChange={handleArchivoChange}
+            type="text"
+            id="imagen"
+            placeholder="URL de la imagen"
+            value={imagenUrl}
+            onChange={(e) => setImagenUrl(e.target.value)}
           />
 
           {/* Lista de archivos seleccionados */}

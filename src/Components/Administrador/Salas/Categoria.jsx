@@ -11,9 +11,11 @@ const Categoria = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
 
-  const openModal = (actionType) => {
+  const openModal = (actionType, categoria) => {
     setIsOpen(true);
+    setCategoriaSeleccionada(categoria);
     if (actionType === 'edit') {
       setIsEditing(true);
       setIsDeleting(false);
@@ -30,6 +32,7 @@ const Categoria = () => {
     setIsOpen(false);
     setIsEditing(false);
     setIsDeleting(false);
+    setCategoriaSeleccionada(null);
   };
 
   return (
@@ -59,18 +62,18 @@ const Categoria = () => {
             <tr key={index}>
               <td>{categoria.id}</td>
               <td>{categoria.nombre}</td>
-              <td><img src={categoria.galery[0]} alt="" /></td>
+              <td><img src={categoria.imagen} alt="" /></td>
               <td>{categoria.descripcion}</td>
               <td>
-                <button className="editar-usuario" onClick={() => openModal('edit')}>Editar</button>
-                <button className="eliminar-usuario" onClick={() => openModal('delete')}>Eliminar</button>
+                <button className="editar-usuario" onClick={() => openModal('edit', categoria)}>Editar</button>
+                <button className="eliminar-usuario" onClick={() => openModal('delete', categoria)}>Eliminar</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {isEditing && <FormEdit isOpen={modalIsOpen} onRequestClose={closeModal} />}
-      {isDeleting && <FormDelete isOpen={modalIsOpen} onRequestClose={closeModal} />}
+      {isEditing && categoriaSeleccionada && <FormEdit isOpen={modalIsOpen} onRequestClose={closeModal} categoria={categoriaSeleccionada} />}
+      {isDeleting && <FormDelete isOpen={modalIsOpen} onRequestClose={closeModal} itemType="categoria" />}
       {!isEditing && !isDeleting && <FormAddCategoria isOpen={modalIsOpen} onRequestClose={closeModal} />}
     </div>
   );

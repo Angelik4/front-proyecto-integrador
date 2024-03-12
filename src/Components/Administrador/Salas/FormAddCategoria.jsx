@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import "../../../css/Panel.css";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const FormAddCategoria = ({ isOpen, onRequestClose }) => {
 
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [archivos, setArchivos] = useState([]);
+    const [inputArchivo, setInputArchivo] = useState("");
   
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -20,9 +22,12 @@ const FormAddCategoria = ({ isOpen, onRequestClose }) => {
       onRequestClose();
     };
   
-    const handleArchivoChange = (e) => {
-      const files = Array.from(e.target.files);
-      setArchivos([...archivos, ...files]);
+    const handleArchivoChange = () => {
+      // Agregar la URL de imagen a la lista de archivos
+      if (inputArchivo.trim() !== "") {
+        setArchivos([...archivos, inputArchivo]);
+        setInputArchivo(""); // Limpiar el input de URL de imagen
+      }
     };
   
     const handleRemoveArchivo = (index) => {
@@ -69,24 +74,36 @@ const FormAddCategoria = ({ isOpen, onRequestClose }) => {
             onChange={(e) => setDescripcion(e.target.value)}
           ></textarea>
 
-          <label htmlFor="archivo">Imagen</label>
-          <input
-            type="file"
-            id="archivo"
-            multiple
-            onChange={handleArchivoChange}
-          />
-
+          {/* Input para URL de imagen */}
+          <div className="content-url-img">
+            <label htmlFor="url-imagen">URL de imagen</label>
+            <div className="url-img-add">
+              <input
+                type="text"
+                id="url-imagen"
+                placeholder="URL de la imagen"
+                value={inputArchivo}
+                onChange={(e) => setInputArchivo(e.target.value)}
+              />
+              <button
+                type="button"
+                onClick={handleArchivoChange}
+                className="btn-agregar"
+              >
+                Agregar
+              </button>
+            </div>
+          </div>
           {/* Lista de archivos seleccionados */}
-          <ul>
+          <ul className="list-url-img">
             {archivos.map((archivo, index) => (
               <li key={index}>
-                {archivo.name}
+                <span>{archivo}</span>
                 <button
                   type="button"
                   onClick={() => handleRemoveArchivo(index)}
                 >
-                  Eliminar
+                  <FontAwesomeIcon icon={faXmark} />
                 </button>
               </li>
             ))}
