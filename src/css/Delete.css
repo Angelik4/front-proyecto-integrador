@@ -1,0 +1,36 @@
+@import url(./App.css);
+.modal-container{
+    text-align: center;
+}
+.modal-container h2 {
+    color: var(--darkBlue);
+}
+
+.modal-container p {
+    color: var(--black);
+    padding: 5px;
+}
+  
+  .modal-buttons {
+    margin-top: 20px;
+  }
+  
+  .Close {
+    background-color: var(--red);
+    color: white;
+    padding: 8px 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px; /* Agrega margen derecho para separar los botones */
+  }
+  
+  .Continue {
+    background-color: var(--green);
+    color: white;
+    padding: 8px 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  

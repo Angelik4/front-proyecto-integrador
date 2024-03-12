@@ -4,16 +4,32 @@ import { faUserPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
 import "../../../css/Panel.css";
 import data from "../../../api/data.json";
 import FormAddSalas from "../Salas/FormAddSalas";
+import FormEdit from "./FormEdit";
+import FormDelete from "./FormDelete";
 
 const Salas = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  const openModal = () => {
+  const openModal = (actionType) => {
     setIsOpen(true);
+    if (actionType === 'edit') {
+      setIsEditing(true);
+      setIsDeleting(false);
+    } else if (actionType === 'delete') {
+      setIsEditing(false);
+      setIsDeleting(true);
+    } else {
+      setIsEditing(false);
+      setIsDeleting(false);
+    }
   };
 
   const closeModal = () => {
     setIsOpen(false);
+    setIsEditing(false);
+    setIsDeleting(false);
   };
 
   return (
@@ -64,14 +80,16 @@ const Salas = () => {
                 </ul>
               </td>
               <td>
-                <button>Editar</button>
-                <button>Eliminar</button>
+              <button className="editar-usuario" onClick={() => openModal('edit')}>Editar</button>
+              <button className="eliminar-usuario" onClick={() => openModal('delete')}>Eliminar</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <FormAddSalas isOpen={modalIsOpen} onRequestClose={closeModal} />
+      {isEditing && <FormEdit isOpen={modalIsOpen} onRequestClose={closeModal} />}
+      {isDeleting && <FormDelete isOpen={modalIsOpen} onRequestClose={closeModal} />}
+      {!isEditing && !isDeleting && <FormAddSalas isOpen={modalIsOpen} onRequestClose={closeModal} />}
     </div>
   );
 };

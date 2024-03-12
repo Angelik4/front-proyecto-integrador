@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import "../../../css/Panel.css";
 import data from '../../../api/data.json';
+import FormAddCategoria from './FormAddCategoria'
+import FormEdit from "./FormEdit";
+import FormDelete from "./FormDelete";
 
 const Categoria = () => {
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const openModal = (actionType) => {
+    setIsOpen(true);
+    if (actionType === 'edit') {
+      setIsEditing(true);
+      setIsDeleting(false);
+    } else if (actionType === 'delete') {
+      setIsEditing(false);
+      setIsDeleting(true);
+    } else {
+      setIsEditing(false);
+      setIsDeleting(false);
+    }
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+    setIsEditing(false);
+    setIsDeleting(false);
+  };
+
   return (
     <div className="Ct-Tabla">
       <div className="buscador-container">
@@ -12,7 +39,7 @@ const Categoria = () => {
           <FontAwesomeIcon icon={faSearch} style={{ color: '#333', marginRight: '5px' }} />
           <input type="text" placeholder="Buscar por Nombre/ID" />
         </div>
-        <button className="agregar-usuario">
+        <button className="agregar-usuario" onClick={() => openModal('add')}>
           <FontAwesomeIcon icon={faUserPlus} style={{ color: '#fff', marginRight: '5px' }} />
           Agregar Categoria
         </button>
@@ -35,13 +62,16 @@ const Categoria = () => {
               <td><img src={categoria.galery[0]} alt="" /></td>
               <td>{categoria.descripcion}</td>
               <td>
-                <button>Editar</button>
-                <button>Eliminar</button>
+                <button className="editar-usuario" onClick={() => openModal('edit')}>Editar</button>
+                <button className="eliminar-usuario" onClick={() => openModal('delete')}>Eliminar</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {isEditing && <FormEdit isOpen={modalIsOpen} onRequestClose={closeModal} />}
+      {isDeleting && <FormDelete isOpen={modalIsOpen} onRequestClose={closeModal} />}
+      {!isEditing && !isDeleting && <FormAddCategoria isOpen={modalIsOpen} onRequestClose={closeModal} />}
     </div>
   );
 };
