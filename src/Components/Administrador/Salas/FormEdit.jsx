@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "../../../css/FormAddSalas.css";
 
 const FormEdit = ({ isOpen, onRequestClose, categoria }) => {
@@ -35,15 +37,21 @@ const FormEdit = ({ isOpen, onRequestClose, categoria }) => {
     };
 
   const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-    },
-  };
+      content: {
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)",
+        backgroundColor: "#fff",
+        borderRadius: "8px",
+        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+        padding: "20px",
+        maxWidth: "400px",
+        width: "90%",
+      },
+    };
   return (
     <Modal
     isOpen={isOpen}
@@ -53,6 +61,7 @@ const FormEdit = ({ isOpen, onRequestClose, categoria }) => {
       style={customStyles}
     >
       <div className="modal-container">
+      <button onClick={onRequestClose} className="btn-cerrar"> <FontAwesomeIcon icon={faXmark} /></button>
         <h2>Editar</h2>
         <form className="modal-form" onSubmit={handleSubmit}>
           <label htmlFor="nombre">Nombre</label>

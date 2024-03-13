@@ -84,3 +84,16 @@
 .agregar-usuario:hover {
     background-color: #0056b3;
 }
+
+.editar-usuario {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+.eliminar-usuario {
+    background-color: var(--red);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
