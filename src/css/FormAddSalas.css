@@ -3,6 +3,7 @@
     background-color: rgba(0, 0, 0, 0.75) !important;
   }
   .ReactModal__Content{
+    width: 94%;
     max-width: 500px;
     max-height: 610px;
     z-index: 9999;

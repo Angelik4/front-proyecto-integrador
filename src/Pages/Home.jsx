@@ -1,7 +1,7 @@
 import React from 'react'
 import '../css/Home.css';
-import CardsIntroHome from '../Components/Home/CardsIntroHome';
-import Recommendations from '../Components/Home/Recommendations';
+/* import CardsIntroHome from '../Components/Home/CardsIntroHome';
+import Recommendations from '../Components/Home/Recommendations'; */
 
 const Home = () => {
   return (
@@ -14,8 +14,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <CardsIntroHome/>
-      <Recommendations/>
+    {/*   <CardsIntroHome/>
+      <Recommendations/> */}
     </div>
   )
 }
