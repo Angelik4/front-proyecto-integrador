@@ -10,9 +10,7 @@ const sendRequest = async (method, endpoint, data = null) => {
       case "POST":
         response = await axios.post(endpoint, data, {
           headers: {
-            'Access-Control-Allow-Origin': '*',
-            'origin':'x-requested-with',
-            'Access-Control-Allow-Headers': 'POST, GET, PUT, DELETE, OPTIONS, HEAD, Authorization, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin',
+            'Access-Control-Allow-Headers': 'POST, Authorization, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin',
             'Content-Type': 'application/json',
         }
         });
