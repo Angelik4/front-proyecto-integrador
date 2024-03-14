@@ -3,8 +3,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import "../../../css/Panel.css";
 import data from '../../../api/data.json';
+import FormAddCategoria from './FormAddCategoria';
+import { useState } from 'react';
 
 const Categoria = () => {
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="Ct-Tabla">
       <div className="buscador-container">
@@ -12,9 +24,12 @@ const Categoria = () => {
           <FontAwesomeIcon icon={faSearch} style={{ color: '#333', marginRight: '5px' }} />
           <input type="text" placeholder="Buscar por Nombre/ID" />
         </div>
-        <button className="agregar-usuario">
-          <FontAwesomeIcon icon={faUserPlus} style={{ color: '#fff', marginRight: '5px' }} />
-          Agregar Categoria
+        <button className="agregar-usuario" onClick={openModal}>
+          <FontAwesomeIcon
+            icon={faUserPlus}
+            style={{ color: "#fff", marginRight: "5px" }}
+          />
+         Agregar Categoria
         </button>
       </div>
       <table>
@@ -42,6 +57,7 @@ const Categoria = () => {
           ))}
         </tbody>
       </table>
+      <FormAddCategoria isOpen={modalIsOpen} onRequestClose={closeModal} />
     </div>
   );
 };

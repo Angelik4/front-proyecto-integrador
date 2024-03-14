@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBuilding, faUser, faTableCellsLarge, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import Salas from '../Components/Administrador/Salas/Salas';
 import Usuario from '../Components/Administrador/Usuarios/Usuario';
-import Categoria from '../Components/Administrador/Salas/Categoria';
+import Categoria from '../Components/Administrador/Categorias/Categoria';
 import '../css/Administrador.css';
 
 const Administrador = () => {

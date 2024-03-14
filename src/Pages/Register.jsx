@@ -1,5 +1,4 @@
-import React, { useRef, useState, useContext } from 'react';
-import { StateContext } from '../Components/utils/StateProvider'; // Importa el contexto
+import React, { useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import "../css/Register.css";
@@ -20,7 +19,6 @@ const Register = () => {
   const [showPwd, setShowPwd] = useState(false);
   const [showPwd2, setShowPwd2] = useState(false);
   const formRef = useRef(null);
-  const [, dispatch] = useContext(StateContext); // Consumir el contexto
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -35,7 +33,6 @@ const Register = () => {
     if (formValido()) {
       // Enviar los datos del formulario
       console.log('Datos enviados:', datos);
-      dispatch({ type: 'SET_USER_DATA', payload: datos }); // Establecer los datos del usuario en el contexto
       Swal.fire({
         icon: 'success',
         title: '¡Registro exitoso!',
