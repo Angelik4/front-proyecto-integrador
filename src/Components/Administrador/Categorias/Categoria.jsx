@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import "../../../css/Panel.css";
 import data from '../../../api/data.json';
-import FormAddCategoria from './FormAddCategoria';
-import { useState } from 'react';
+import FormAddCategoria from '../Categorias/FormAddCategoria';
 
 const Categoria = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
