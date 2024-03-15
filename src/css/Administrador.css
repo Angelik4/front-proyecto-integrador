@@ -1,26 +1,15 @@
 @import url(./App.css);
 
-.panel {
-    width: 282px;
-    height: 530px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 10% 3%;
-    background-color: var(--darkBlue);
-    color: var(--white);
-    display: flex;
-    flex-direction: column;
-}
 
 .menu button:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
-
-
 .menu {
     list-style: none;
     padding: 40px 20px;
     margin: 0;
+    background-color: var(--darkBlue);
+    height: 100%;
 }
 
 .menu button {
@@ -46,17 +35,11 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
-
 .menu li:hover {
     background-color: #f0f0f0;
 }
-
 .menu select.activo {
     background-color: #ddd;
-}
-
-.contenido {
-    padding: 10px;
 }
 
 .icon-select {
@@ -64,7 +47,6 @@
     align-items: center;
     margin-bottom: 10px;
 }
-
 .icon-select button {
     margin-left: 10px;
     margin-top: auto;
@@ -72,7 +54,6 @@
 .icon-select button.activo{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
-
 .icon-select button .icon {
     margin-right: 5px;
 }

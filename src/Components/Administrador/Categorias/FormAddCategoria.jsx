@@ -7,14 +7,18 @@ import sendRequest from "../../utils/SendRequest";
 
 const FormAddCategoria = ({ isOpen, onRequestClose }) => {
   const [nombreCategoria, setNombreCategoria] = useState("");
+  const [descripcionCategoria, setDescripcionCategoria] = useState("");
+  const [imagenCategoria, setImagenCategoria] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     try {
       const response = await sendRequest(
         "POST",
         "http://localhost:8081/tiposala/registrar",
-        { nombre: nombreCategoria }
+        { nombre: nombreCategoria, 
+          descripcion: descripcionCategoria,
+          imagen: ""}
       );
       console.log("Respuesta del servidor:", response);
       onRequestClose();
@@ -55,6 +59,22 @@ const FormAddCategoria = ({ isOpen, onRequestClose }) => {
             placeholder="Nueva Categoría"
             value={nombreCategoria}
             onChange={(e) => setNombreCategoria(e.target.value)}
+          />
+          <label htmlFor="descripcion">Descripción</label>
+          <textarea
+            id="descripcion"
+            rows={4}
+            placeholder="Descripción de la sala"
+            value={descripcionCategoria}
+            onChange={(e) => setDescripcionCategoria(e.target.value)}
+          ></textarea>
+          <label htmlFor="imagenCategoria">Imagen</label>
+          <input
+            type="text"
+            id="imagenCategoria"
+            placeholder="Nueva Categoría"
+            value={imagenCategoria}
+            onChange={(e) => setImagenCategoria(e.target.value)}
           />
           <button type="submit" className="btn-guardar">
             Guardar

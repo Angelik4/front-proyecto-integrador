@@ -1,18 +1,18 @@
 @import url(./App.css);
-
+.panel{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    align-items: flex-start;
+    max-width: 86%;
+    margin: 10% auto 0;
+    gap: 40px;
+}
 .Ct-Tabla {
-    position: absolute;
-    top: 21.5%;
-    width: 955px;
     height: 530px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 0% 23%;
     background-color: #F2F2F2;
-    border: none;
-    color: var(--white);
-    display: flex;
-    flex-direction: column;
+    padding: 10px 20px;
 }
 
 .Ct-Tabla th {
@@ -28,9 +28,9 @@
 }
 
 .Ct-Tabla table {
-    width: 96%;
+    width: 100%;
     border-collapse: collapse;
-    margin: 2%;
+    margin: 20px auto;
 }
 
 .Ct-Tabla th,
@@ -59,7 +59,13 @@
 .buscador-container {
     display: flex;
     align-items: center;
-    margin: 10px 2%;
+    margin: 10px 0;
+    justify-content: space-between;
+}
+.content-buscador{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .buscador input {
@@ -77,8 +83,6 @@
     padding: 6px 12px;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 10px; 
-    width: 20%;
 }
 
 .agregar-usuario:hover {
@@ -96,4 +100,12 @@
     color: white;
     border: none;
     border-radius: 5px;
+}
+.btn-listar{
+    background: var(--darkBlue);
+    border: 2px solid var(--white);
+    color: var(--white);
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
 }

@@ -26,10 +26,12 @@
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
+    text-align: left;
   }
   .modal-form input[type="text"],
   .modal-form textarea,
-  .modal-form select {
+  .modal-form select,
+  .modal-form input[type="number"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
