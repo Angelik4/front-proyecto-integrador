@@ -109,3 +109,31 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;    
+}
+
+.form-group {
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,select {
+    width: 100%;
+}
+
+#contrasena {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
