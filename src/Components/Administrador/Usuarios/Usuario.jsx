@@ -4,13 +4,13 @@ import { faUserPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import '../../../css/Panel.css';
 import FormAddUsuarios from '../Usuarios/FormAddUsuarios';
 import sendRequest from '../../utils/SendRequest';
-import FormDelete from '../Salas/FormDelete';
 
 const Usuario = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
   const [usuarios, setUsuarios] = useState([]);
+  const [tableData, setTableData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(8); 
 
   const openModal = () => {
     setIsOpen(true);
@@ -28,7 +28,7 @@ const Usuario = () => {
         const usuariosFormateados = response.map((usuario) => {
           const nombreCompleto = usuario.nombre.split(' ');
           const nombre = nombreCompleto[0] || '';
-          const apellido = nombreCompleto.slice(1).join(' ') || ''; 
+          const apellido = nombreCompleto.slice(1).join(' ') || '';
           return {
             id: usuario.id || '',
             nombre: nombre || '',
@@ -40,18 +40,39 @@ const Usuario = () => {
           };
         });
         setUsuarios(usuariosFormateados);
+        return usuariosFormateados; 
       } else {
         console.error('La respuesta no contiene datos válidos:', response);
+        return []; 
       }
     } catch (error) {
       console.error('Error al obtener los usuarios:', error);
+      return []; 
     }
   };
-  
+
+  const handleUpdateTableData = async () => {
+    try {
+      const updatedUsers = await listarUsuarios();
+      setTableData(updatedUsers);
+    } catch (error) {
+      console.error('Error al actualizar los usuarios:', error);
+    }
+  };
 
   useEffect(() => {
     listarUsuarios();
   }, []);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = usuarios.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(usuarios.length / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
 
   return (
     <div className="Ct-Tabla">
@@ -65,9 +86,7 @@ const Usuario = () => {
           Agregar Usuario
         </button>
       </div>
-      {/* <button className="btn-listar" onClick={listarUsuarios}>
-        Listar Usuarios
-      </button> */}
+
       <table>
         <thead>
           <tr>
@@ -82,11 +101,11 @@ const Usuario = () => {
           </tr>
         </thead>
         <tbody>
-          {usuarios.map((usuario) => (
+          {currentItems.map((usuario) => (
             <tr key={usuario.id}>
               <td>{usuario.id}</td>
               <td>{usuario.nombre}</td>
-              <td>{usuario.apellido}</td> 
+              <td>{usuario.apellido}</td>
               <td>{usuario.correo}</td>
               <td>{usuario.contrasena}</td>
               <td>{usuario.rol}</td>
@@ -103,7 +122,16 @@ const Usuario = () => {
           ))}
         </tbody>
       </table>
-      <FormAddUsuarios isOpen={modalIsOpen} onRequestClose={closeModal} />
+      <ul className="pagination">
+        {pageNumbers.map((number) => (
+          <li key={number} className="page-item">
+            <button onClick={() => paginate(number)} className="page-link">
+              {number}
+            </button>
+          </li>
+        ))}
+      </ul>
+      <FormAddUsuarios isOpen={modalIsOpen} onRequestClose={closeModal} updateTableData={handleUpdateTableData} />
     </div>
   );
 };

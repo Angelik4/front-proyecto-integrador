@@ -1,5 +1,6 @@
 @import url(./App.css);
-.panel{
+
+.panel {
     display: grid;
     grid-template-columns: 20% 80%;
     align-items: flex-start;
@@ -7,6 +8,7 @@
     margin: 10% auto 0;
     gap: 40px;
 }
+
 .Ct-Tabla {
     height: 530px;
     border: 1px solid #ccc;
@@ -23,7 +25,7 @@
     color: var(--black);
 }
 
-.Ct-Tabla td ul{
+.Ct-Tabla td ul {
     list-style: none;
 }
 
@@ -35,7 +37,7 @@
 
 .Ct-Tabla th,
 .Ct-Tabla td {
-    border: 1px solid #ddd; 
+    border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
     font-size: 12px;
@@ -48,12 +50,14 @@
 }
 
 .Ct-Tabla th {
-    background-color: var(--darkBlue); 
+    background-color: var(--darkBlue);
 }
 
 .Ct-Tabla img {
-    max-width: 100px; /* Puedes ajustar el tamaño máximo según lo necesites */
-    height: auto; /* Esto mantiene la proporción de la imagen */
+    max-width: 100px;
+    /* Puedes ajustar el tamaño máximo según lo necesites */
+    height: auto;
+    /* Esto mantiene la proporción de la imagen */
 }
 
 .buscador-container {
@@ -62,7 +66,8 @@
     margin: 10px 0;
     justify-content: space-between;
 }
-.content-buscador{
+
+.content-buscador {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -95,13 +100,15 @@
     border: none;
     border-radius: 5px;
 }
+
 .eliminar-usuario {
     background-color: var(--red);
     color: white;
     border: none;
     border-radius: 5px;
 }
-.btn-listar{
+
+.btn-listar {
     background: var(--darkBlue);
     border: 2px solid var(--white);
     color: var(--white);
@@ -113,7 +120,7 @@
 .form-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1rem;    
+    margin-bottom: 1rem;
 }
 
 .form-group {
@@ -126,7 +133,8 @@
     margin-bottom: 0.5rem;
 }
 
-.form-group input,select {
+.form-group input,
+select {
     width: 100%;
 }
 
@@ -136,4 +144,29 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 15px;
-  }
+}
+
+/* Estilos para la paginación */
+.pagination {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: #f0f0f0;
+}

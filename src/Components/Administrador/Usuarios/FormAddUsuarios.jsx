@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import sendRequest from "../../utils/SendRequest";
 
-const FormAddUsuarios = ({ isOpen, onRequestClose }) => {
+const FormAddUsuarios = ({ isOpen, onRequestClose,updateTableData  }) => {
     const [nombre, setNombre] = useState("");
     const [apellido, setApellido] = useState("");
     const [correo, setCorreo] = useState("");
@@ -37,6 +37,7 @@ const FormAddUsuarios = ({ isOpen, onRequestClose }) => {
             });
             console.log("Respuesta del servidor:", response);
             onRequestClose();
+            updateTableData();
         } catch (error) {
             console.error(error);
         }
