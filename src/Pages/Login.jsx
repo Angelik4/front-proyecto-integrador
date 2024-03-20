@@ -88,7 +88,7 @@ const Login = () => {
         </div>
         <button type="button" onClick={handleLogin}>Iniciar sesión</button>
         <Link className='olvidoContrasena' to='#'>¿Olvidó su contraseña?</Link>
-        <p>¿No tienes una cuenta? <Link to="#">Crear cuenta</Link></p>
+        <p>¿No tienes una cuenta? <Link to="/register">Crear cuenta</Link></p>
       </form>
     </div>
   );

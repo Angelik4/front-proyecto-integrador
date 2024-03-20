@@ -5,8 +5,10 @@ import "../css/Register.css";
 import logoLogin from '../images/Group16.png';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const Register = () => {
+
   const [datos, setDatos] = useState({
     nombre: '',
     apellido: '',
@@ -28,19 +30,51 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
     if (formValido()) {
-      // Enviar los datos del formulario
-      console.log('Datos enviados:', datos);
-      Swal.fire({
-        icon: 'success',
-        title: '¡Registro exitoso!',
-        text: 'Tus datos han sido enviados correctamente.',
-        confirmButtonText: 'Aceptar'
-      }).then(() => {
+
+      try {
+
+        const nombreCompleto = datos.nombre + ' ' + datos.apellido;
+        const correo = datos.correo;
+        const contrasena = datos.contrasena;
+
+        const datosRegistro = {
+          ...datos,
+          nombre: nombreCompleto,
+          correo: correo,
+          contrasena: contrasena,
+          idTipoIdentificacion: 1,
+          numeroIdentificacion: 7854236,
+          estado: 1, 
+          idRol: 2
+        };
+
+        const response = await axios.post('http://localhost:8081/usuario/registrar', datosRegistro);
+        
+        console.log('Datos enviados:', datosRegistro);
+        console.log('Respuesta del servidor:', response.data);
+        Swal.fire({
+          icon: 'success',
+          title: '¡Registro exitoso!',
+          text: 'Tus datos han sido enviados correctamente.',
+          confirmButtonText: 'Aceptar'
+        }).then(() => {
         formRef.current.reset(); // Restablecer el formulario
       });
+        
+      } catch (error) {
+        console.error('Error al enviar los datos:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Hubo un error al enviar los datos. Por favor, intenta nuevamente más tarde.',
+          confirmButtonText: 'Aceptar'
+        });
+        
+      }
+      
     } else {
       console.log('Formulario inválido. Por favor, completa todos los campos correctamente.');
     }
