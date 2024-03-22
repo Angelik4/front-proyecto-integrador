@@ -4,20 +4,41 @@ import { faUserPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import '../../../css/Panel.css';
 import FormAddUsuarios from '../Usuarios/FormAddUsuarios';
 import sendRequest from '../../utils/SendRequest';
+import FormEditUsuario from './FormEditUsuario';
+import FormDelete from "../Salas/FormDelete"
 
 const Usuario = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
   const [usuarios, setUsuarios] = useState([]);
   const [tableData, setTableData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8); 
 
-  const openModal = () => {
+  const openModal = (actionType, usuario) => {
     setIsOpen(true);
+    if (actionType === 'edit') {
+      setIsEditing(true);
+      setIsDeleting(false);
+      setSelectedUser(usuario);
+    } else if (actionType === 'delete') {
+      setIsEditing(false);
+      setIsDeleting(true);
+      setSelectedUser(usuario);
+    } else {
+      setIsEditing(false);
+      setIsDeleting(false);
+      setSelectedUser(null);
+    }
   };
 
   const closeModal = () => {
     setIsOpen(false);
+    setIsEditing(false);
+    setIsDeleting(false);
+    setSelectedUser(null);
   };
 
   const listarUsuarios = async () => {
@@ -81,7 +102,7 @@ const Usuario = () => {
           <FontAwesomeIcon icon={faSearch} style={{ color: '#333', marginRight: '5px' }} />
           <input type="text" placeholder="Buscar por Nombre/ID" />
         </div>
-        <button className="agregar-usuario" onClick={openModal}>
+        <button className="agregar-usuario" onClick={() => openModal('add')}>
           <FontAwesomeIcon icon={faUserPlus} style={{ color: '#fff', marginRight: '5px' }} />
           Agregar Usuario
         </button>
@@ -111,12 +132,8 @@ const Usuario = () => {
               <td>{usuario.rol}</td>
               <td>{usuario.estado}</td>
               <td>
-                <button className="editar-usuario" onClick={() => openModal('edit', usuario)}>
-                  Editar
-                </button>
-                <button className="eliminar-usuario" onClick={() => openModal('delete', usuario)}>
-                  Eliminar
-                </button>
+                <button className="editar-usuario" onClick={() => openModal('edit', usuario)}>Editar</button>
+                <button className="eliminar-usuario" onClick={() => openModal('delete', usuario)}>Eliminar</button>
               </td>
             </tr>
           ))}
@@ -131,7 +148,9 @@ const Usuario = () => {
           </li>
         ))}
       </ul>
-      <FormAddUsuarios isOpen={modalIsOpen} onRequestClose={closeModal} updateTableData={handleUpdateTableData} />
+      {isEditing && <FormEditUsuario isOpen={modalIsOpen} onRequestClose={closeModal} usuario={selectedUser} />}
+      {isDeleting && <FormDelete isOpen={modalIsOpen} onRequestClose={closeModal} itemType="usuario" />}
+      {!isEditing && !isDeleting && <FormAddUsuarios isOpen={modalIsOpen} onRequestClose={closeModal} />}
     </div>
   );
 };
