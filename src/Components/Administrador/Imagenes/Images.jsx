@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import "../../../css/Panel.css";
-import FormAddCategoria from '../Categorias/FormAddCategoria';
-import sendRequest from "../../utils/SendRequest"; // Importa la función para enviar solicitudes
+import FormAddImages from '../Imagenes/FormAddImages';
+import sendRequest from "../../utils/SendRequest"; 
 
-const Categoria = () => {
+const Images = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [tipoSalas, setTipoSalas] = useState([]);
+  const [salaImages, setSalaImages] = useState([]);
 
   const openModal = () => {
     setIsOpen(true);
@@ -16,12 +16,25 @@ const Categoria = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
+  /* useEffect(() => {
+    const obtenerCategorias = async () => {
+      try {
+        const response = await sendRequest("GET", "http://localhost:8081/tiposala/listar");
+        console.log("Categorías obtenidas:", response);
+        setSalaImages(response.data); 
+      } catch (error) {
+        console.error("Error al obtener las categorías:", error);
+      }
+    };
 
-  const listarCategorias = async () => {
+    obtenerCategorias(); 
+  }, []); */
+
+  const listarImages = async () => {
     try {
       const response = await sendRequest("GET", "http://localhost:8081/tiposala/listar");
-      console.log("Categorías obtenidas:", response);
-      setTipoSalas(response.data);
+      console.log("Imagenes obtenidas:", response);
+      setSalaImages(response.data);
     } catch (error) {
       console.error("Error al obtener las categorías:", error);
     }
@@ -40,38 +53,35 @@ const Categoria = () => {
               icon={faUserPlus}
               style={{ color: "#fff", marginRight: "5px" }}
             />
-          Agregar Categoria
+          Agregar Imagenes
           </button>
         </div>
-        <button className="btn-listar" onClick={listarCategorias}>Listar Categorías</button>
+        <button className="btn-listar" onClick={listarImages}>Listar Categorías</button>
       </div>
       <table>
         <thead>
           <tr>
             <th>ID</th>
-            <th>NOMBRE</th>
             <th>IMAGEN</th>
-            <th>DESCRIPCION</th>
             <th>ACCION</th>
           </tr>
         </thead>
         <tbody>
-          {tipoSalas.map((categoria) => (
-            <tr key={categoria.id}>
-              <td>{categoria.id}</td>
-              <td>{categoria.nombre}</td>
-              <td>{categoria.descripcion}</td>
+          {salaImages.map((images) => (
+            <tr key={images.id}>
+              <td>{images.id}</td>
+              <td>{images.imagen}</td>
               <td>
-                <button className="editar-usuario" onClick={() => openModal('edit', categoria)}>Editar</button>
-                <button className="eliminar-usuario" onClick={() => openModal('delete', categoria)}>Eliminar</button>
+                <button className="editar-usuario" onClick={() => openModal('edit', images)}>Editar</button>
+                <button className="eliminar-usuario" onClick={() => openModal('delete', images)}>Eliminar</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <FormAddCategoria isOpen={modalIsOpen} onRequestClose={closeModal} />
+      <FormAddImages isOpen={modalIsOpen} onRequestClose={closeModal} />
     </div>
   );
 };
 
-export default Categoria;
+export default Images;

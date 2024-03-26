@@ -2,15 +2,20 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import "../css/Login.css"
+import "../css/Login.css";
 import logoLogin from '../images/Group16.png';
+import sendRequest from "../Components/utils/SendRequest";
+import { useAuth } from '../Components/utils/AuthProvider'; // Importa el contexto de autenticación
 
 const Login = () => {
   const navigate = useNavigate();
+  const { isLoggedIn, login } = useAuth(); // Usa el contexto de autenticación
+
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isValidEmail, setIsValidEmail] = useState(true); // Iniciamos como válido por defecto
+  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [error, setError] = useState('');
 
   const handleEmailChange = (event) => {
     const newEmail = event.target.value;
@@ -28,20 +33,37 @@ const Login = () => {
     return regex.test(email);
   };
 
-  const handleLogin = () => {
-    console.log(email,password)
+  const handleLogin = async () => {
     if (email && password && isValidEmail) {
-      navigate('/home', {
-        replace: true,
-        state: {
-          logged: true,
-          email,
-        },
-      });
+      try {
+        const response = await sendRequest("POST", 'http://localhost:8081/auth/authenticate', {
+          correo: email,
+          contraseña: password
+        });
+
+        const token = response.jwt;
+        localStorage.setItem('token', token);
+        login(); // Actualiza el estado de autenticación
+
+        navigate('/home', {
+          replace: true,
+          state: {
+            logged: true,
+            email,
+          },
+        });
+      } catch (error) {
+        setError('Credenciales inválidas. Por favor, inténtelo de nuevo.');
+      }
     } else {
-      // No hacemos nada si los campos no están completos o el correo no es válido
+      setError('Por favor complete todos los campos correctamente.');
     }
   };
+
+  // Redirige al usuario a la página de inicio si ya está autenticado
+  if (isLoggedIn) {
+    navigate('/home');
+  }
 
   return (
     <div className="contenedor_login">
@@ -60,7 +82,7 @@ const Login = () => {
             id="email"
             name="email"
             value={email}
-            placeholder="Esteban_schiller@gmail.com"
+            placeholder="correo@gmail.com"
             onChange={handleEmailChange}
             required
           />
@@ -82,10 +104,7 @@ const Login = () => {
             }
           </div>
         </div>
-        <div className="contenedor_login-recordar-contrasena">
-          <input type="checkbox" id="recordar-contrasena" name="recordar-contrasena" />
-          <label htmlFor="recordar-contrasena">Recordar contraseña</label>
-        </div>
+        {error && <p className="mensaje-error">{error}</p>}
         <button type="button" onClick={handleLogin}>Iniciar sesión</button>
         <Link className='olvidoContrasena' to='#'>¿Olvidó su contraseña?</Link>
         <p>¿No tienes una cuenta? <Link to="/register">Crear cuenta</Link></p>

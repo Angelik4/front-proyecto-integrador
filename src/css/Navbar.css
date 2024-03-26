@@ -94,8 +94,7 @@
   .ct_header nav .btnLogin .fa-user {
     margin-right: 4px;
   }
-  .ct_header .iconBurgerMob, 
-  .ct_header .iconBurgerDesk{
+  .ct_header .iconBurger{
     background-color: transparent;
     border: transparent;
     color: var(--white);
@@ -118,7 +117,7 @@
         gap: 26px;
         align-items: center;
       }
-      .ct_header .iconBurgerMob{
+      .ct_header .iconBurger{
         display: none;
       }
   }

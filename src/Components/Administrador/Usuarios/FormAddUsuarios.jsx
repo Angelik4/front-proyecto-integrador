@@ -42,7 +42,6 @@ const FormAddUsuarios = ({ isOpen, onRequestClose,updateTableData  }) => {
             console.error(error);
         }
     };
-
     const customStyles = {
         content: {
             top: "50%",

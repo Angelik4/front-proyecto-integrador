@@ -11,8 +11,16 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
   const [categoria, setCategoria] = useState("");
   const [capacidad, setCapacidad] = useState("");
   const [categorias, setCategorias] = useState([]);
+  const [servicios, setServicios] = useState({
+    proyector: false,
+    wifi: false,
+    aireAcondicionado: false,
+    guarderiaMascotas: false,
+    guarderiaNinos: false,
+    cafeteria: false,
+  });
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     const obtenerCategorias = async () => {
       try {
         const response = await sendRequest("GET", "http://localhost:8081/tiposala/listar");
@@ -25,7 +33,13 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
 
     obtenerCategorias();
   }, []); */
-
+  const handleServiciosChange = (e) => {
+    const { id, checked } = e.target;
+    setServicios((prevServicios) => ({
+      ...prevServicios,
+      [id]: checked,
+    }));
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Obtener el id de la categoría seleccionada
@@ -37,13 +51,18 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
       descripcion,
       capacidad,
       tipoSala: categoriaId,
-      disponible: 1, 
-      estado: 1, 
-      promedioCalificacion: 0, 
+      disponible: 1,
+      estado: 1,
+      promedioCalificacion: 0,
+      servicios,
     };
 
     try {
-      const response = await sendRequest("POST", "http://localhost:8081/sala/registrar", sala);
+      const response = await sendRequest(
+        "POST",
+        "http://localhost:8081/sala/registrar",
+        sala
+      );
       console.log("Sala guardada:", response);
       onRequestClose();
     } catch (error) {
@@ -116,6 +135,62 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
               </option>
             ))}
           </select>
+          <div className="modal-service">
+            <div>
+              <input
+                type="checkbox"
+                id="proyector"
+                checked={servicios.proyector}
+                onChange={handleServiciosChange}
+              />
+              <label htmlFor="proyector">Proyector</label>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="wifi"
+                checked={servicios.wifi}
+                onChange={handleServiciosChange}
+              />
+              <label htmlFor="wifi">Wifi</label>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="aireAcondicionado"
+                checked={servicios.aireAcondicionado}
+                onChange={handleServiciosChange}
+              />
+              <label htmlFor="aireAcondicionado">Aire acondicionado</label>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="guarderiaMascotas"
+                checked={servicios.guarderiaMascotas}
+                onChange={handleServiciosChange}
+              />
+              <label htmlFor="guarderiaMascotas">Guardería mascotas</label>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="guarderiaNinos"
+                checked={servicios.guarderiaNinos}
+                onChange={handleServiciosChange}
+              />
+              <label htmlFor="guarderiaNinos">Guardería niños</label>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="cafeteria"
+                checked={servicios.cafeteria}
+                onChange={handleServiciosChange}
+              />
+              <label htmlFor="cafeteria">Cafetería</label>
+            </div>
+          </div>
           <button type="submit" className="btn-guardar">
             Guardar
           </button>

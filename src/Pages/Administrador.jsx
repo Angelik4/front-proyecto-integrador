@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding, faUser, faTableCellsLarge, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding, faUser, faTableCellsLarge, faSignOutAlt, faImage } from '@fortawesome/free-solid-svg-icons';
 import Salas from '../Components/Administrador/Salas/Salas';
 import Usuario from '../Components/Administrador/Usuarios/Usuario';
 import Categoria from '../Components/Administrador/Categorias/Categoria';
 import '../css/Administrador.css';
+import Images from '../Components/Administrador/Imagenes/Images';
 
 const Administrador = () => {
   const [activo, setActivo] = useState("Salas"); // Establecer "Salas" como activo al cargar la página
@@ -51,6 +52,15 @@ const Administrador = () => {
           </button>
         </div>
         <div className="icon-select">
+          <FontAwesomeIcon icon={faImage} style={{ color: '#f2994a' }} />
+          <button
+            className={`icon-button ${activo === "Images" ? "activo" : ""}`}
+            onClick={() => handleClick("Images")}
+          >
+            Imagenes
+          </button>
+        </div>
+        <div className="icon-select">
           <FontAwesomeIcon icon={faSignOutAlt} style={{ color: '#f2994a' }} />
           <button
             className={`icon-button ${activo === "Salir" ? "activo" : ""}`}
@@ -66,6 +76,7 @@ const Administrador = () => {
             {activo === "Salas" && <Salas />}
             {activo === "Usuario" && <Usuario />}
             {activo === "Categoria" && <Categoria />}
+            {activo === "Images" && <Images />}
           </>
         )}
       </div>
