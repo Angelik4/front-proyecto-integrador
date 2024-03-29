@@ -1,3 +1,4 @@
+// Usuario.js
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -5,7 +6,8 @@ import '../../../css/Panel.css';
 import FormAddUsuarios from '../Usuarios/FormAddUsuarios';
 import sendRequest from '../../utils/SendRequest';
 import FormEditUsuario from './FormEditUsuario';
-import FormDelete from "../Salas/FormDelete"
+import FormDelete from "../Salas/FormDelete";
+import Pagination from '../Pagination'; 
 
 const Usuario = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -13,9 +15,8 @@ const Usuario = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [usuarios, setUsuarios] = useState([]);
-  const [tableData, setTableData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(8); 
+  const [itemsPerPage] = useState(8);
 
   const openModal = (actionType, usuario) => {
     setIsOpen(true);
@@ -61,23 +62,14 @@ const Usuario = () => {
           };
         });
         setUsuarios(usuariosFormateados);
-        return usuariosFormateados; 
+        return usuariosFormateados;
       } else {
         console.error('La respuesta no contiene datos válidos:', response);
-        return []; 
+        return [];
       }
     } catch (error) {
       console.error('Error al obtener los usuarios:', error);
-      return []; 
-    }
-  };
-
-  const handleUpdateTableData = async () => {
-    try {
-      const updatedUsers = await listarUsuarios();
-      setTableData(updatedUsers);
-    } catch (error) {
-      console.error('Error al actualizar los usuarios:', error);
+      return [];
     }
   };
 
@@ -90,10 +82,6 @@ const Usuario = () => {
   const currentItems = usuarios.slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(usuarios.length / itemsPerPage); i++) {
-    pageNumbers.push(i);
-  }
 
   return (
     <div className="Ct-Tabla">
@@ -139,15 +127,7 @@ const Usuario = () => {
           ))}
         </tbody>
       </table>
-      <ul className="pagination">
-        {pageNumbers.map((number) => (
-          <li key={number} className="page-item">
-            <button onClick={() => paginate(number)} className="page-link">
-              {number}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <Pagination itemsPerPage={itemsPerPage} totalItems={usuarios.length} paginate={paginate} />
       {isEditing && <FormEditUsuario isOpen={modalIsOpen} onRequestClose={closeModal} usuario={selectedUser} />}
       {isDeleting && <FormDelete isOpen={modalIsOpen} onRequestClose={closeModal} itemType="usuario" />}
       {!isEditing && !isDeleting && <FormAddUsuarios isOpen={modalIsOpen} onRequestClose={closeModal} />}

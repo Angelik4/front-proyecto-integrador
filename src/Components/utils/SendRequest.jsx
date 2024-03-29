@@ -26,6 +26,9 @@ const sendRequest = async (method, endpoint, data = null) => {
       case "PUT":
         response = await axios.put(endpoint, data, config);
         break;
+      case "PATCH": // Agregar el caso para el método PATCH
+        response = await axios.patch(endpoint, data, config);
+        break;
       case "DELETE":
         response = await axios.delete(endpoint, config);
         break;

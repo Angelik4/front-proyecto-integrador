@@ -13,16 +13,21 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app)
 
-export async function uploadFile(files) {
-    const urls = [];
-  
-    for (const file of files) {
-      const storageRef = ref(storage, `images/${file.name}`);
-      await uploadBytes(storageRef, file);
-  
-      const url = await getDownloadURL(ref(storage, `images/${file.name}`));
-      urls.push(url);
-    }
-  
-    return urls;
+export async function uploadFile(files, muchas) {
+  const urls = [];
+
+  // Si files no es un arreglo, conviértelo en un arreglo con un solo elemento
+  if (!Array.isArray(files)) {
+    files = [files];
   }
+
+  for (const file of files) {
+    const storageRef = ref(storage, `images/${file.name}`);
+    await uploadBytes(storageRef, file);
+
+    const url = await getDownloadURL(storageRef);
+    urls.push(url);
+  }
+
+  return urls;
+}
