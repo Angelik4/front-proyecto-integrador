@@ -6,7 +6,7 @@ import Salas from '../Components/Administrador/Salas/Salas';
 import Usuario from '../Components/Administrador/Usuarios/Usuario';
 import Categoria from '../Components/Administrador/Categorias/Categoria';
 import '../css/Administrador.css';
-import Images from '../Components/Administrador/Imagenes/Images';
+import Servicios from '../Components/Administrador/Servicios/Servicios';
 
 const Administrador = () => {
   const [activo, setActivo] = useState("Salas"); // Establecer "Salas" como activo al cargar la página
@@ -54,10 +54,10 @@ const Administrador = () => {
         <div className="icon-select">
           <FontAwesomeIcon icon={faImage} style={{ color: '#f2994a' }} />
           <button
-            className={`icon-button ${activo === "Images" ? "activo" : ""}`}
-            onClick={() => handleClick("Images")}
+            className={`icon-button ${activo === "Servicios" ? "activo" : ""}`}
+            onClick={() => handleClick("Servicios")}
           >
-            Imagenes
+            Servicios
           </button>
         </div>
         <div className="icon-select">
@@ -76,7 +76,7 @@ const Administrador = () => {
             {activo === "Salas" && <Salas />}
             {activo === "Usuario" && <Usuario />}
             {activo === "Categoria" && <Categoria />}
-            {activo === "Images" && <Images />}
+            {activo === "Servicios" && <Servicios />}
           </>
         )}
       </div>

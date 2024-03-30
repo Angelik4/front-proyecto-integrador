@@ -1,4 +1,3 @@
-// Componente FormAddCategoria
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,12 +8,20 @@ import { uploadFile } from "../../utils/firebase/config";
 const FormAddCategoria = ({ isOpen, onRequestClose, actionType, categoriaToEdit, onCategoriaChange }) => {
   const [nombreCategoria, setNombreCategoria] = useState("");
   const [descripcionCategoria, setDescripcionCategoria] = useState("");
-  const [imagenCategoria, setImagenCategoria] = useState([]); // Inicializar imagenCategoria con null
+  const [imagenCategoria, setImagenCategoria] = useState(null); 
+  const [imagenPrevisualizada, setImagenPrevisualizada] = useState(null); 
 
   useEffect(() => {
     if (actionType === "edit" && categoriaToEdit) {
       setNombreCategoria(categoriaToEdit.nombre);
       setDescripcionCategoria(categoriaToEdit.descripcion);
+      setImagenPrevisualizada(categoriaToEdit.imagen); 
+    } else {
+      // Resetear los campos al abrir el modal en modo de agregar
+      setNombreCategoria("");
+      setDescripcionCategoria("");
+      setImagenCategoria(null);
+      setImagenPrevisualizada(null);
     }
   }, [actionType, categoriaToEdit]);
 
@@ -22,11 +29,10 @@ const FormAddCategoria = ({ isOpen, onRequestClose, actionType, categoriaToEdit,
     e.preventDefault();
 
     try {
-      // Si hay una imagen seleccionada, cargarla en Firebase y obtener la URL
-      let formData = new FormData(); // Crear un objeto FormData para enviar datos al backend
+      let formData = new FormData(); 
+
       if (imagenCategoria) {
         const imageURL = await uploadFile(imagenCategoria);
-        console.log("URL de la imagen:", imageURL);
         formData.append("imagen", imageURL[0]);
       }
 
@@ -45,7 +51,7 @@ const FormAddCategoria = ({ isOpen, onRequestClose, actionType, categoriaToEdit,
       }
 
       const response = await sendRequest(method, endpoint, formData, {
-        'Content-Type': 'multipart/form-data' // Asegurar que el tipo de contenido sea multipart/form-data
+        'Content-Type': 'multipart/form-data' 
       });
 
       console.log("Respuesta del servidor:", response);
@@ -53,6 +59,12 @@ const FormAddCategoria = ({ isOpen, onRequestClose, actionType, categoriaToEdit,
 
       // Después de agregar o editar una categoría, llama a la función onCategoriaChange para actualizar la lista de categorías en el componente padre
       onCategoriaChange();
+
+      // Limpiar los campos después de guardar exitosamente
+      setNombreCategoria("");
+      setDescripcionCategoria("");
+      setImagenCategoria(null);
+      setImagenPrevisualizada(null);
     } catch (error) {
       console.error(error);
     }
@@ -100,6 +112,9 @@ const FormAddCategoria = ({ isOpen, onRequestClose, actionType, categoriaToEdit,
             onChange={(e) => setDescripcionCategoria(e.target.value)}
           ></textarea>
           <label htmlFor="imagenCategoria">Imagen</label>
+          {imagenPrevisualizada && (
+            <img src={imagenPrevisualizada} alt="Imagen Previsualizada" style={{ maxWidth: "100%", marginBottom: "10px" }} />
+          )}
           <input
             type="file"
             id="imagenCategoria"

@@ -1,16 +1,31 @@
-const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
+import React, { useState } from 'react';
+
+const Pagination = ({ totalItems, itemsPerPage, onPageChange }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    onPageChange(page);
+  };
+
   return (
-    <ul className="pagination">
-      {[...Array(totalPages)].map((_, index) => (
-        <li key={index + 1} className="page-item">
-          <button onClick={() => paginate(index + 1)} className="page-link">
-            {index + 1}
-          </button>
-        </li>
-      ))}
-    </ul>
+    <div className="pagination">
+      <button
+        onClick={() => handlePageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+      >
+        Previous
+      </button>
+      <span>{currentPage}</span>
+      <button
+        onClick={() => handlePageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+      >
+        Next
+      </button>
+    </div>
   );
 };
 

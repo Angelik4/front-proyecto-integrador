@@ -19,20 +19,21 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
     guarderiaNinos: false,
     cafeteria: false,
   });
+  const [archivos, setArchivos] = useState([]);
 
-  /*   useEffect(() => {
-    const obtenerCategorias = async () => {
-      try {
-        const response = await sendRequest("GET", "http://localhost:8081/tiposala/listar");
-        console.log("Categorías obtenidas:", response);
-        setCategorias(response.data);
-      } catch (error) {
-        console.error("Error al obtener las categorías:", error);
-      }
-    };
-
+  useEffect(() => {
     obtenerCategorias();
-  }, []); */
+  }, []);
+
+  const obtenerCategorias = async () => {
+    try {
+      const response = await sendRequest("GET", "http://localhost:8081/tiposala/listar");
+      setCategorias(response);
+    } catch (error) {
+      console.error("Error al obtener las categorías:", error);
+    }
+  };
+
   const handleServiciosChange = (e) => {
     const { id, checked } = e.target;
     setServicios((prevServicios) => ({
@@ -40,12 +41,20 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
       [id]: checked,
     }));
   };
+
+  const handleArchivoChange = (e) => {
+    const files = Array.from(e.target.files);
+    setArchivos([...archivos, ...files]);
+  };
+
+  const handleRemoveArchivo = (index) => {
+    const newArchivos = archivos.filter((_, i) => i !== index);
+    setArchivos(newArchivos);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Obtener el id de la categoría seleccionada
     const categoriaId = categorias.find((c) => c.nombre === categoria)?.id;
-
-    // Crear el objeto con los valores del formulario
     const sala = {
       nombre,
       descripcion,
@@ -58,11 +67,7 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
     };
 
     try {
-      const response = await sendRequest(
-        "POST",
-        "http://localhost:8081/sala/registrar",
-        sala
-      );
+      const response = await sendRequest("POST", "http://localhost:8081/sala/registrar", sala);
       console.log("Sala guardada:", response);
       onRequestClose();
     } catch (error) {
@@ -99,7 +104,7 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
           <input
             type="text"
             id="nombre"
-            placeholder="Nueva Sala"
+            placeholder="Nombre de la sala"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
           />
@@ -135,62 +140,45 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
               </option>
             ))}
           </select>
+
           <div className="modal-service">
-            <div>
+            {Object.entries(servicios).map(([servicio, checked], index) => (
+              <div key={index}>
+                <input
+                  type="checkbox"
+                  id={servicio}
+                  checked={checked}
+                  onChange={handleServiciosChange}
+                />
+                <label htmlFor={servicio}>{servicio}</label>
+              </div>
+            ))}
+          </div>
+
+          <div className="content-url-img">
+            <label htmlFor="url-imagen">Selecciona las imágenes</label>
+            <div className="url-img-add">
               <input
-                type="checkbox"
-                id="proyector"
-                checked={servicios.proyector}
-                onChange={handleServiciosChange}
+                type="file"
+                id="archivo"
+                multiple
+                onChange={handleArchivoChange}
               />
-              <label htmlFor="proyector">Proyector</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="wifi"
-                checked={servicios.wifi}
-                onChange={handleServiciosChange}
-              />
-              <label htmlFor="wifi">Wifi</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="aireAcondicionado"
-                checked={servicios.aireAcondicionado}
-                onChange={handleServiciosChange}
-              />
-              <label htmlFor="aireAcondicionado">Aire acondicionado</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="guarderiaMascotas"
-                checked={servicios.guarderiaMascotas}
-                onChange={handleServiciosChange}
-              />
-              <label htmlFor="guarderiaMascotas">Guardería mascotas</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="guarderiaNinos"
-                checked={servicios.guarderiaNinos}
-                onChange={handleServiciosChange}
-              />
-              <label htmlFor="guarderiaNinos">Guardería niños</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="cafeteria"
-                checked={servicios.cafeteria}
-                onChange={handleServiciosChange}
-              />
-              <label htmlFor="cafeteria">Cafetería</label>
             </div>
           </div>
+          <ul className="list-url-img">
+            {archivos.map((archivo, index) => (
+              <li key={index}>
+                <span>{archivo.name}</span>
+                <button
+                  type="button"
+                  onClick={() => handleRemoveArchivo(index)}
+                >
+                  <FontAwesomeIcon icon={faXmark} />
+                </button>
+              </li>
+            ))}
+          </ul>
           <button type="submit" className="btn-guardar">
             Guardar
           </button>

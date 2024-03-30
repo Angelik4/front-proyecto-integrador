@@ -1,4 +1,3 @@
-// Categoria.js
 import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -97,8 +96,8 @@ const Categoria = () => {
           <tr>
             <th>ID</th>
             <th>NOMBRE</th>
-            <th>IMAGEN</th>
             <th>DESCRIPCION</th>
+            <th>IMAGEN</th>
             <th>ACCION</th>
           </tr>
         </thead>
@@ -117,7 +116,9 @@ const Categoria = () => {
           ))}
         </tbody>
       </table>
-      <Pagination itemsPerPage={itemsPerPage} totalItems={tipoSalas.length} paginate={paginate} />
+      {tipoSalas.length > itemsPerPage && (
+        <Pagination itemsPerPage={itemsPerPage} totalItems={tipoSalas.length} paginate={paginate} />
+      )}
       <FormAddCategoria isOpen={modalIsOpen} onRequestClose={closeModal} actionType={actionType} categoriaToEdit={categoriaToEdit} onCategoriaChange={listarCategorias} />
     </div>
   );

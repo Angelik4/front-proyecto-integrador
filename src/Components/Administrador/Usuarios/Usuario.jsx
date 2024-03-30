@@ -1,12 +1,9 @@
-// Usuario.js
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import '../../../css/Panel.css';
 import FormAddUsuarios from '../Usuarios/FormAddUsuarios';
 import sendRequest from '../../utils/SendRequest';
-import FormEditUsuario from './FormEditUsuario';
-import FormDelete from "../Salas/FormDelete";
 import Pagination from '../Pagination'; 
 
 const Usuario = () => {
@@ -127,9 +124,9 @@ const Usuario = () => {
           ))}
         </tbody>
       </table>
-      <Pagination itemsPerPage={itemsPerPage} totalItems={usuarios.length} paginate={paginate} />
-      {isEditing && <FormEditUsuario isOpen={modalIsOpen} onRequestClose={closeModal} usuario={selectedUser} />}
-      {isDeleting && <FormDelete isOpen={modalIsOpen} onRequestClose={closeModal} itemType="usuario" />}
+      {usuarios.length > itemsPerPage && (
+        <Pagination itemsPerPage={itemsPerPage} totalItems={usuarios.length} onPageChange={paginate} />
+      )}
       {!isEditing && !isDeleting && <FormAddUsuarios isOpen={modalIsOpen} onRequestClose={closeModal} />}
     </div>
   );
