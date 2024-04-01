@@ -44,14 +44,6 @@ const Login = () => {
         const token = response.jwt;
         localStorage.setItem('token', token);
         login(); // Actualiza el estado de autenticación
-
-        navigate('/home', {
-          replace: true,
-          state: {
-            logged: true,
-            email,
-          },
-        });
       } catch (error) {
         setError('Credenciales inválidas. Por favor, inténtelo de nuevo.');
       }

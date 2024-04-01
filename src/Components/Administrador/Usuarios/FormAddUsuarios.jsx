@@ -1,3 +1,5 @@
+// FormAddUsuarios.js
+
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,23 +32,25 @@ const FormAddUsuarios = ({ isOpen, onRequestClose, onUserChange }) => {
     e.preventDefault();
     try {
       const nombreCompleto = nombre + " " + apellido;
-      
       const usuario = {
         nombre: nombreCompleto,
         correo: correo,
-        contrasena: contrasena,
-        idTipoIdentificacion: 1, // Este valor es por defecto
-        numeroIdentificacion: 7854236, // Este valor es por defecto
-        estado: estado === "activo" ? 1 : 0, // Convertir estado a 1 o 0
-        idRol: parseInt(rolId), // Convertir a entero el ID del rol seleccionado
+        contrasena: contrasena, 
+        idTipoIdentificacion: 1, 
+        numeroIdentificacion: 7854236, 
+        estado: estado === "activo" ? 1 : 0,
+        idRol: Number.isNaN(parseInt(rolId)) ? null : parseInt(rolId), 
       };
-
-      const response = await sendRequest("POST", "http://localhost:8081/usuario/registrar", usuario);
-      
+      console.log("Datos del usuario a enviar:", usuario);
+      const url = "http://localhost:8081/usuario/registrar";
+      const method = "POST";
+  
+      const response = await sendRequest(method, url, usuario);
+  
       console.log("Respuesta del servidor:", response);
-      
+  
       onUserChange();
-      
+  
       onRequestClose();
     } catch (error) {
       console.error(error);
@@ -78,18 +82,17 @@ const FormAddUsuarios = ({ isOpen, onRequestClose, onUserChange }) => {
         </button>
         <h2>Agregar Usuario</h2>
         <form className="modal-form" onSubmit={handleSubmit}>
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="nombre">Nombre</label>
-              <input
-                type="text"
-                id="nombre"
-                placeholder="Nombre"
-                value={nombre}
-                onChange={(e) => setNombre(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
+          <div className="form-group">
+            <label htmlFor="nombre">Nombre</label>
+            <input
+              type="text"
+              id="nombre"
+              placeholder="Nombre"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
               <label htmlFor="apellido">Apellido</label>
               <input
                 type="text"
@@ -99,32 +102,28 @@ const FormAddUsuarios = ({ isOpen, onRequestClose, onUserChange }) => {
                 onChange={(e) => setApellido(e.target.value)}
               />
             </div>
+
+          <div className="form-group">
+            <label htmlFor="correo">Correo</label>
+            <input
+              type="text"
+              id="correo"
+              placeholder="Correo"
+              value={correo}
+              onChange={(e) => setCorreo(e.target.value)}
+            />
           </div>
 
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="correo">Correo</label>
-              <input
-                type="text"
-                id="correo"
-                placeholder="Correo"
-                value={correo}
-                onChange={(e) => setCorreo(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="contrasena">Contraseña</label>
-              <input
-                type="password"
-                id="contrasena"
-                placeholder="Contraseña"
-                value={contrasena}
-                onChange={(e) => setContrasena(e.target.value)}
-              />
-            </div>
+          <div className="form-group">
+            <label htmlFor="contrasena">Contraseña</label>
+            <input
+              type="password"
+              id="contrasena"
+              placeholder="Contraseña"
+              value={contrasena}
+              onChange={(e) => setContrasena(e.target.value)}
+            />
           </div>
-
-          <div className="form-row">
             <div className="form-group">
               <label htmlFor="rol">Rol</label>
               <select
@@ -138,18 +137,18 @@ const FormAddUsuarios = ({ isOpen, onRequestClose, onUserChange }) => {
                 ))}
               </select>
             </div>
-            <div className="form-group">
-              <label htmlFor="estado">Estado</label>
-              <select
-                id="estado"
-                value={estado}
-                onChange={(e) => setEstado(e.target.value)}
-              >
-                <option value="activo">Activo</option>
-                <option value="inactivo">Inactivo</option>
-              </select>
-            </div>
+          <div className="form-group">
+            <label htmlFor="estado">Estado</label>
+            <select
+              id="estado"
+              value={estado}
+              onChange={(e) => setEstado(e.target.value)}
+            >
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+            </select>
           </div>
+
           <button type="submit" className="btn-guardar">
             Guardar
           </button>
