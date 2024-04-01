@@ -4,79 +4,58 @@ import { faUserPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import '../../../css/Panel.css';
 import FormAddUsuarios from '../Usuarios/FormAddUsuarios';
 import sendRequest from '../../utils/SendRequest';
-import Pagination from '../Pagination'; 
+import Pagination from '../Pagination';
 
 const Usuario = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [usuarios, setUsuarios] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [actionType, setActionType] = useState("");
+  const [userToEdit, setUserToEdit] = useState(null);
+  const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
 
-  const openModal = (actionType, usuario) => {
-    setIsOpen(true);
-    if (actionType === 'edit') {
-      setIsEditing(true);
-      setIsDeleting(false);
-      setSelectedUser(usuario);
-    } else if (actionType === 'delete') {
-      setIsEditing(false);
-      setIsDeleting(true);
-      setSelectedUser(usuario);
-    } else {
-      setIsEditing(false);
-      setIsDeleting(false);
-      setSelectedUser(null);
-    }
+  const openModal = (actionType, user) => {
+    setModalIsOpen(true);
+    setActionType(actionType);
+    setUserToEdit(user);
   };
 
   const closeModal = () => {
-    setIsOpen(false);
-    setIsEditing(false);
-    setIsDeleting(false);
-    setSelectedUser(null);
+    setModalIsOpen(false);
+    setActionType("");
+    setUserToEdit(null);
   };
 
-  const listarUsuarios = async () => {
+  const listUsers = async () => {
     try {
       const response = await sendRequest('GET', 'http://localhost:8081/usuario/listar');
       console.log('Usuarios obtenidos:', response);
       if (response && response.length > 0) {
-        const usuariosFormateados = response.map((usuario) => {
-          const nombreCompleto = usuario.nombre.split(' ');
-          const nombre = nombreCompleto[0] || '';
-          const apellido = nombreCompleto.slice(1).join(' ') || '';
-          return {
-            id: usuario.id || '',
-            nombre: nombre || '',
-            apellido: apellido || '',
-            correo: usuario.correo || '',
-            contrasena: '******',
-            rol: usuario.idRol ? usuario.idRol.nombre : '',
-            estado: usuario.estado === 1 ? 'Activo' : 'Inactivo',
-          };
-        });
-        setUsuarios(usuariosFormateados);
-        return usuariosFormateados;
+        const formattedUsers = response.map((user) => ({
+          id: user.id || '',
+          nombre: user.nombre || '',
+          apellido: user.nombre ? user.nombre.split(' ')[1] || '' : '',
+          correo: user.correo || '',
+          contrasena: '******',
+          rol: user.idRol ? user.idRol.nombre : '',
+          estado: user.estado === 1 ? 'Activo' : 'Inactivo',
+        }));
+        setUsers(formattedUsers);
       } else {
         console.error('La respuesta no contiene datos válidos:', response);
-        return [];
       }
     } catch (error) {
       console.error('Error al obtener los usuarios:', error);
-      return [];
     }
   };
 
   useEffect(() => {
-    listarUsuarios();
+    listUsers();
   }, []);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = usuarios.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = users.slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -97,37 +76,33 @@ const Usuario = () => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>NOMBRE</th>
-            <th>APELLIDO</th>
-            <th>CORREO</th>
-            <th>CONTRASEÑA</th>
-            <th>ROL</th>
-            <th>ESTADO</th>
-            <th>ACCION</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Estado</th>
+            <th>Acción</th>
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((usuario) => (
-            <tr key={usuario.id}>
-              <td>{usuario.id}</td>
-              <td>{usuario.nombre}</td>
-              <td>{usuario.apellido}</td>
-              <td>{usuario.correo}</td>
-              <td>{usuario.contrasena}</td>
-              <td>{usuario.rol}</td>
-              <td>{usuario.estado}</td>
+          {currentItems.map((user) => (
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>{user.nombre}</td>
+              <td>{user.apellido}</td>
+              <td>{user.correo}</td>
+              <td>{user.rol}</td>
+              <td>{user.estado}</td>
               <td>
-                <button className="editar-usuario" onClick={() => openModal('edit', usuario)}>Editar</button>
-                <button className="eliminar-usuario" onClick={() => openModal('delete', usuario)}>Eliminar</button>
+                <button className="editar-usuario" onClick={() => openModal('edit', user)}>Editar</button>
+                <button className="eliminar-usuario" onClick={() => openModal('delete', user)}>Eliminar</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {usuarios.length > itemsPerPage && (
-        <Pagination itemsPerPage={itemsPerPage} totalItems={usuarios.length} onPageChange={paginate} />
-      )}
-      {!isEditing && !isDeleting && <FormAddUsuarios isOpen={modalIsOpen} onRequestClose={closeModal} />}
+      <Pagination itemsPerPage={itemsPerPage} totalItems={users.length} paginate={paginate} />
+      <FormAddUsuarios isOpen={modalIsOpen} onRequestClose={closeModal} actionType={actionType} userToEdit={userToEdit} onUserChange={listUsers} />
     </div>
   );
 };
