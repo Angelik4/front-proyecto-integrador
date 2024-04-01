@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import "../../../css/Panel.css";
 import data from "../../../api/data.json";
 import FormAddSalas from "../Salas/FormAddSalas";
 import FormEdit from "./FormEdit";
 import FormDelete from "./FormDelete";
+import SearchBar from "../SearchBar";
 
 const Salas = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [filteredData, setFilteredData] = useState(data.products)
 
   const openModal = (actionType) => {
     setIsOpen(true);
@@ -35,13 +37,7 @@ const Salas = () => {
   return (
     <div className="Ct-Tabla">
       <div className="buscador-container">
-        <div className="buscador">
-          <FontAwesomeIcon
-            icon={faSearch}
-            style={{ color: "#333", marginRight: "5px" }}
-          />
-          <input type="text" placeholder="Buscar por Nombre/ID" />
-        </div>
+        <SearchBar data={data.products} setFilteredData={setFilteredData} />
         <button className="agregar-usuario" onClick={() => openModal('add')}>
           <FontAwesomeIcon
             icon={faUserPlus}
@@ -63,9 +59,9 @@ const Salas = () => {
           </tr>
         </thead>
         <tbody>
-          {data.products.slice(0, 4).map((sala, index) => (
+          {filteredData.slice(0, 4).map((sala, index) => (
             <tr key={index}>
-              <td>{index + 1}</td>
+              <td>{sala.id}</td>
               <td>{sala.nombre}</td>
               <td>
                 <img src={sala.galery[0]} alt="" />
