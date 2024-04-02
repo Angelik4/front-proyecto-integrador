@@ -6,15 +6,20 @@ import "../css/Login.css";
 import logoLogin from '../images/Group16.png';
 import sendRequest from "../Components/utils/SendRequest";
 import { useAuth } from '../Components/utils/AuthProvider'; // Importa el contexto de autenticación
+import { jwtDecode } from "jwt-decode";
+
 
 const Login = () => {
   const navigate = useNavigate();
   const { isLoggedIn, login } = useAuth(); // Usa el contexto de autenticación
+
+
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [error, setError] = useState('');
+  const [userRole, setUserRole] = useState('');
 
   const handleEmailChange = (event) => {
     const newEmail = event.target.value;
@@ -42,7 +47,11 @@ const Login = () => {
 
         const token = response.jwt;
         localStorage.setItem('token', token);
-        login(); 
+        const decodedToken = jwtDecode(token);
+        const userRole = decodedToken?.rol;
+        setUserRole(userRole);
+        login()
+
       } catch (error) {
         setError('Credenciales inválidas. Por favor, inténtelo de nuevo.');
       }
@@ -51,9 +60,16 @@ const Login = () => {
     }
   };
 
-  if (isLoggedIn) {
-    navigate('/home');
-  }
+  useEffect(() => {
+    // Redirige al usuario a la página de inicio si ya está autenticado
+    if (isLoggedIn) {
+      if (userRole === 'Administrador') {
+        navigate('/administrador');
+      } else {
+        navigate('/home');
+      }
+    }
+  }, [isLoggedIn, navigate, userRole]);
 
   return (
     <div className="contenedor_login">
