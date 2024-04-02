@@ -9,7 +9,7 @@ import { useAuth } from '../Components/utils/AuthProvider';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const { isLoggedIn, login, logout } = useAuth(); // Usa el contexto de autenticación
+  const { isLoggedIn, login, logout } = useAuth();
 
   useEffect(() => {
     // Verifica si el usuario está autenticado al cargar el componente
@@ -18,7 +18,7 @@ const Navbar = () => {
     if (token) {
       login(); // Actualiza el estado de autenticación
     }
-  }, []);
+  },);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
