@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -6,16 +6,20 @@ import "../css/Login.css";
 import logoLogin from '../images/Group16.png';
 import sendRequest from "../Components/utils/SendRequest";
 import { useAuth } from '../Components/utils/AuthProvider'; // Importa el contexto de autenticación
+import { jwtDecode } from "jwt-decode";
+
 
 const Login = () => {
   const navigate = useNavigate();
   const { isLoggedIn, login } = useAuth(); // Usa el contexto de autenticación
+
 
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [error, setError] = useState('');
+  const [userRole, setUserRole] = useState('');
 
   const handleEmailChange = (event) => {
     const newEmail = event.target.value;
@@ -43,15 +47,11 @@ const Login = () => {
 
         const token = response.jwt;
         localStorage.setItem('token', token);
-        login(); // Actualiza el estado de autenticación
+        const decodedToken = jwtDecode(token);
+        const userRole = decodedToken?.rol;
+        setUserRole(userRole);
+        login()
 
-        navigate('/home', {
-          replace: true,
-          state: {
-            logged: true,
-            email,
-          },
-        });
       } catch (error) {
         setError('Credenciales inválidas. Por favor, inténtelo de nuevo.');
       }
@@ -60,10 +60,16 @@ const Login = () => {
     }
   };
 
-  // Redirige al usuario a la página de inicio si ya está autenticado
-  if (isLoggedIn) {
-    navigate('/home');
-  }
+  useEffect(() => {
+    // Redirige al usuario a la página de inicio si ya está autenticado
+    if (isLoggedIn) {
+      if (userRole === 'Administrador') {
+        navigate('/administrador');
+      } else {
+        navigate('/home');
+      }
+    }
+  }, [isLoggedIn, navigate, userRole]);
 
   return (
     <div className="contenedor_login">
