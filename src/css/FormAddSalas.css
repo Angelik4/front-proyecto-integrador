@@ -54,7 +54,7 @@
   
   .modal-service{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 110px 150px 160px;
     gap: 0 12px;
     margin: 20px 0;
   }

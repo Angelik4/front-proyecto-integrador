@@ -13,7 +13,7 @@ const Salas = () => {
   const [actionType, setActionType] = useState(""); // Definir estado para el tipo de acción (edit, delete)
   const [salaToEdit, setSalaToEdit] = useState(null); // Definir estado para la sala a editar
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(8);
+  const [itemsPerPage] = useState(5);
   const tableRef = useRef(null); // Referencia a la tabla
 
   const openModal = (actionType, sala) => {
@@ -98,6 +98,9 @@ const Salas = () => {
             <th>NOMBRE</th>
             <th>DESCRIPCION</th>
             <th>CATEGORIA</th>
+            <th>IMAGENES</th>
+            <th>SERVICIOS</th>
+            <th>CAPACIDAD</th>
             <th>ACCION</th>
           </tr>
         </thead>
@@ -107,7 +110,10 @@ const Salas = () => {
               <td>{sala.id}</td>
               <td>{sala.nombre}</td>
               <td>{sala.descripcion}</td>
-              <td>{sala.categoria}</td>
+              <td>{sala.tipoSala.nombre}</td>
+              <td>{}</td>
+              <td>{}</td>
+              <td>{sala.capacidad}</td>
               <td>
                 <button className="editar-usuario" onClick={() => openModal('edit', sala)}>Editar</button>
                 <button className="eliminar-usuario" onClick={() => handleDelete(sala)}>Eliminar</button>

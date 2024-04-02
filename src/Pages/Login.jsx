@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +10,6 @@ import { useAuth } from '../Components/utils/AuthProvider'; // Importa el contex
 const Login = () => {
   const navigate = useNavigate();
   const { isLoggedIn, login } = useAuth(); // Usa el contexto de autenticación
-
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -43,7 +42,7 @@ const Login = () => {
 
         const token = response.jwt;
         localStorage.setItem('token', token);
-        login(); // Actualiza el estado de autenticación
+        login(); 
       } catch (error) {
         setError('Credenciales inválidas. Por favor, inténtelo de nuevo.');
       }
@@ -52,7 +51,6 @@ const Login = () => {
     }
   };
 
-  // Redirige al usuario a la página de inicio si ya está autenticado
   if (isLoggedIn) {
     navigate('/home');
   }

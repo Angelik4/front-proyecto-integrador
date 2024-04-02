@@ -13,7 +13,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app)
 
-export async function uploadFile(files, muchas) {
+export async function uploadFile(files) {
   const urls = [];
 
   // Si files no es un arreglo, conviértelo en un arreglo con un solo elemento
@@ -29,5 +29,10 @@ export async function uploadFile(files, muchas) {
     urls.push(url);
   }
 
+  // Devolver un solo array de URLs
   return urls;
 }
+
+
+
+
