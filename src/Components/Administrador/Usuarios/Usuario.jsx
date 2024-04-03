@@ -1,10 +1,9 @@
-// Usuario.js
-
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import "../../../css/Panel.css";
-import FormEditRol from '../Usuarios/FormEditRol';
+import FormAddUsuarios from '../Usuarios/FormAddUsuarios'; // Importa el formulario de agregar usuarios
+import FormEditRol from '../Usuarios/FormEditRol'; // Importa el formulario de editar usuarios
 import sendRequest from "../../utils/SendRequest";
 import Swal from 'sweetalert2';
 import Pagination from '../Pagination';
@@ -16,7 +15,7 @@ const Usuario = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
 
-  const openModal = (usuario) => {
+  const openModal = (formType, usuario) => { // Agrega el parámetro formType para determinar qué formulario abrir
     setIsOpen(true);
     setUsuarioToEdit(usuario);
   };
@@ -37,7 +36,7 @@ const Usuario = () => {
       if (response && response.length > 0) {
         const formattedUsers = response.map((user) => ({
           id: user.id || '',
-          nombre: user.nombre || '',
+          nombre: user.nombre ? user.nombre.split(' ')[0] || '' : '',
           apellido: user.nombre ? user.nombre.split(' ')[1] || '' : '',
           correo: user.correo || '',
           contrasena: '******',
@@ -79,7 +78,7 @@ const Usuario = () => {
   };
 
   const handleEdit = (usuario) => {
-    openModal(usuario);
+    openModal('edit', usuario); // Abre el formulario de edición al hacer clic en "Editar"
   };
 
   const handleUserChange = () => {
@@ -140,7 +139,8 @@ const Usuario = () => {
       {usuarios.length > itemsPerPage && (
         <Pagination itemsPerPage={itemsPerPage} totalItems={usuarios.length} onPageChange={paginate} />
       )}
-      <FormEditRol isOpen={modalIsOpen} onRequestClose={closeModal} usuarioToEdit={usuarioToEdit} onUserChange={handleUserChange} />
+      {modalIsOpen && !usuarioToEdit && <FormAddUsuarios isOpen={modalIsOpen} onRequestClose={closeModal} onUserChange={handleUserChange} />}
+      {modalIsOpen && usuarioToEdit && <FormEditRol isOpen={modalIsOpen} onRequestClose={closeModal} usuarioToEdit={usuarioToEdit} onUserChange={handleUserChange} />}
     </div>
   );
 };

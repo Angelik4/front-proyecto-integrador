@@ -4,6 +4,7 @@ import "../../../css/FormAddSalas.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import sendRequest from "../../utils/SendRequest";
+import { uploadFile } from "../../utils/firebase/config";
 
 const FormAddSalas = ({ isOpen, onRequestClose }) => {
   const [nombre, setNombre] = useState("");
@@ -11,35 +12,46 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
   const [categoria, setCategoria] = useState("");
   const [capacidad, setCapacidad] = useState("");
   const [categorias, setCategorias] = useState([]);
-  const [servicios, setServicios] = useState({
-    proyector: false,
-    wifi: false,
-    aireAcondicionado: false,
-    guarderiaMascotas: false,
-    guarderiaNinos: false,
-    cafeteria: false,
-  });
+  const [servicios, setServicios] = useState([]);
   const [archivos, setArchivos] = useState([]);
+  const [serviciosSeleccionados, setServiciosSeleccionados] = useState([]);
 
   useEffect(() => {
     obtenerCategorias();
+    obtenerServicios();
   }, []);
 
   const obtenerCategorias = async () => {
     try {
-      const response = await sendRequest("GET", "http://localhost:8081/tiposala/listar");
+      const response = await sendRequest(
+        "GET",
+        "http://localhost:8081/tiposala/listar"
+      );
       setCategorias(response);
     } catch (error) {
       console.error("Error al obtener las categorías:", error);
     }
   };
+  
+  const obtenerServicios = async () => {
+    try {
+      const response = await sendRequest(
+        "GET",
+        "http://localhost:8081/servicio/listar"
+      );
+      setServicios(response);
+    } catch (error) {
+      console.error("Error al obtener los servicios:", error);
+    }
+  };
 
   const handleServiciosChange = (e) => {
     const { id, checked } = e.target;
-    setServicios((prevServicios) => ({
-      ...prevServicios,
-      [id]: checked,
-    }));
+    if (checked) {
+      setServiciosSeleccionados([...serviciosSeleccionados, parseInt(id)]);
+    } else {
+      setServiciosSeleccionados(serviciosSeleccionados.filter(servicioId => servicioId !== parseInt(id)));
+    }
   };
 
   const handleArchivoChange = (e) => {
@@ -53,27 +65,60 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const categoriaId = categorias.find((c) => c.nombre === categoria)?.id;
-    const sala = {
-      nombre,
-      descripcion,
-      capacidad,
-      tipoSala: categoriaId,
-      disponible: 1,
-      estado: 1,
-      promedioCalificacion: 0,
-      servicios,
-    };
-
-    try {
-      const response = await sendRequest("POST", "http://localhost:8081/sala/registrar", sala);
-      console.log("Sala guardada:", response);
-      onRequestClose();
-    } catch (error) {
-      console.error("Error al guardar la sala:", error);
-    }
+  e.preventDefault();
+  const categoriaId = categorias.find((c) => c.nombre === categoria)?.id;
+  const sala = {
+    nombre,
+    descripcion,
+    capacidad,
+    tipoSala: categoriaId,
+    disponible: 1,
+    estado: 1,
+    promedioCalificacion: 0,
   };
+  try {
+    // Envía la solicitud para registrar la sala y obtén el ID de la sala
+    const responseSala = await sendRequest("POST", "http://localhost:8081/sala/registrar", sala);
+    const idSala = responseSala.id; // Obtén el ID de la sala registrada
+
+    // Envía la solicitud para relacionar los servicios con la sala
+    const responseServiciosSala = await sendRequest("POST", "http://localhost:8081/serviciosala/registrar", {
+      idServicios: serviciosSeleccionados,
+      idSala: idSala
+    });
+
+    console.log("Servicios relacionados con la sala:", responseServiciosSala);
+
+    // Sube los archivos y obtén las rutas de las imágenes
+    const paths = await Promise.all(archivos.map(uploadFile));
+
+    console.log("Rutas de las imágenes:", paths);
+
+    // Verifica que se hayan subido todas las imágenes correctamente
+    if (paths.every(path => typeof path === 'string')) {
+      // Aplanar el array de rutas de imágenes
+      const imagenes = paths.flat();
+
+      console.log("Rutas de las imágenes a enviar:", imagenes);
+
+      // Envía la solicitud al servidor después de que todas las imágenes se hayan subido correctamente
+      const responseImagenes = await sendRequest("POST", "http://localhost:8081/imagen/registrar", imagenes.map((path, index) => ({
+        nombre: `imagen_${index}`,
+        imagen: path,
+        idSala: idSala
+      })));
+
+      console.log("Respuesta del registro de imágenes:", responseImagenes);
+
+      onRequestClose(); // Cierra el modal después de realizar todas las operaciones
+    } else {
+      // Si alguna imagen no se subió correctamente, muestra un mensaje de error
+      console.error("Error al subir una o más imágenes");
+    }
+  } catch (error) {
+    console.error("Error al registrar la sala y relacionar los servicios:", error);
+  }
+};
 
   const customStyles = {
     content: {
@@ -140,17 +185,17 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
               </option>
             ))}
           </select>
-
+          <label htmlFor="servicio">Servicios</label>
           <div className="modal-service">
-            {Object.entries(servicios).map(([servicio, checked], index) => (
-              <div key={index}>
+            {Array.isArray(servicios) && servicios.map((servicio) => (
+              <div key={servicio.id}>
                 <input
                   type="checkbox"
-                  id={servicio}
-                  checked={checked}
+                  id={servicio.id}
+                  value={servicio.id}
                   onChange={handleServiciosChange}
                 />
-                <label htmlFor={servicio}>{servicio}</label>
+                <label htmlFor={servicio.id}>{servicio.nombre}</label>
               </div>
             ))}
           </div>
