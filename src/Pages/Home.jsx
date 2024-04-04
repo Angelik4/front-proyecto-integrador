@@ -1,6 +1,5 @@
 import React from 'react'
 import '../css/Home.css';
-import Calendar from '../Components/Calendar';
 import CardsIntroHome from '../Components/Home/CardsIntroHome';
 import Recommendations from '../Components/Home/Recommendations'; 
 

@@ -37,9 +37,9 @@ const Navbar = () => {
         <Link to="/favorites" className="menu-item">
           <FontAwesomeIcon icon={faHeart} /> Favoritos
         </Link>
-        <button onClick={handleLogout} className="menu-item">
+        <Link onClick={handleLogout} className="menu-item">
           <FontAwesomeIcon icon={faSignOutAlt} /> Cerrar sesión
-        </button>
+        </Link>
       </div>
     );
   };
@@ -61,7 +61,7 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <div>
+            <div className='content_btns'>
               <Link className='createAccount' to="/register">Crear cuenta</Link>
               <Link className='btnLogin' to="/login">Iniciar sesión</Link>
             </div>
