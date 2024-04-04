@@ -36,6 +36,7 @@ const Salas = () => {
     try {
       const response = await sendRequest("GET", "http://localhost:8081/sala/listar");
       setSalas(response);
+      console.log(response)
     } catch (error) {
       console.error("Error al obtener las salas:", error);
     }
