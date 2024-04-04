@@ -84,13 +84,15 @@ const Search = ({ handleSearch, handleCategories }) => {
           </label>
         </div>
         <div className='fm-form-select'>
-          <input
-            type="text"
-            placeholder='Oficinas'
-            value={searchTerm}
-            onChange={handleChange}
-          />
-          <FontAwesomeIcon className='iconLupa' icon={faMagnifyingGlass} />
+          <div className='fm-form-search'>
+            <input
+              type="text"
+              placeholder='Oficinas'
+              value={searchTerm}
+              onChange={handleChange}
+            />
+            <FontAwesomeIcon className='iconLupa' icon={faMagnifyingGlass} />
+          </div>
           <Calendar/>
           <button type="button" onClick={handleClearFilters}>Buscar</button>
         </div>
