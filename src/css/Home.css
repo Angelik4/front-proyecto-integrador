@@ -328,10 +328,10 @@
     height: 600px;
   }
   .fm-content-form {
-    top: 150%;
-    left: 55%;
+    top: 60%;
+    left: 0;
     right: 0;
-    margin: 0;
+    margin: auto;
     bottom: inherit;
   }
   .ct_banner-page .ct_banner-title {

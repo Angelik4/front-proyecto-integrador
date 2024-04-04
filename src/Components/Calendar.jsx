@@ -27,7 +27,7 @@ const Calendar = () => {
   startDate={startDate}
   selectsStart
   timeIntervals={60}
-  dateFormat="yyyy/MMMM/dd" // Cambia el formato de fecha aquí
+  dateFormat="yyyy/MM/dd h aa" // Cambia el formato de fecha aquí
   showTimeSelect
   withPortal
   className="auto-width"
@@ -48,7 +48,7 @@ const Calendar = () => {
   endDate={endDate}
   selectsEnd
   timeIntervals={60}
-  dateFormat="Pp" // Cambia el formato de fecha aquí
+  dateFormat="yyyy/MM/dd h aa" // Cambia el formato de fecha aquí
   showTimeSelect
   withPortal
   className="auto-width"
