@@ -82,6 +82,9 @@ const Search = ({ handleSearch, handleCategories }) => {
             />
             Oficinas virtuales
           </label>
+          <div className='fm-form-clear-categories'>
+          <button type="button" onClick={handleClearFilters}>Limpiar filtros</button>
+        </div>
         </div>
         <div className='fm-form-select'>
           <div className='fm-form-search'>
@@ -94,7 +97,7 @@ const Search = ({ handleSearch, handleCategories }) => {
             <FontAwesomeIcon className='iconLupa' icon={faMagnifyingGlass} />
           </div>
           <Calendar/>
-          <button type="button" onClick={handleClearFilters}>Buscar</button>
+          {/* <button type="button" onClick={handleClearFilters}>Buscar</button> */}
         </div>
       </form>
     </div>
