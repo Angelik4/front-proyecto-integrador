@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-import { deepOrange } from '@mui/material/colors';
 import { jwtDecode } from 'jwt-decode';
 import sendRequest from "./SendRequest";
 
@@ -65,8 +62,7 @@ export default function LetterAvatars() {
     };
 
     return (
-        <Stack direction="row" spacing={2}>
-            <Avatar sx={{ bgcolor: '#F2994A' }}>{avatarTexto}</Avatar>
-        </Stack>
+        <div className="ct-avatar">{avatarTexto}</div>
+        
     );
 }
