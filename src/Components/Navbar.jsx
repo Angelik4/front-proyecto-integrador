@@ -51,15 +51,15 @@ const Navbar = () => {
         <Link to="/"><img src={logoCoworking} alt="logo Coworking Now" /></Link>
         {isLoggedIn ? (
           <>
-            <div>
-              <LetterAvatars/>
-              <button className='iconBurger' onClick={toggleMenu}>
-                {showMenu ? <FontAwesomeIcon icon={faXmark} /> : <FontAwesomeIcon icon={faBars} />}
-              </button>
+            <div className='content-avatar'>
+                <LetterAvatars/>
+                <button className='iconBurger' onClick={toggleMenu}>
+                  {showMenu ? <FontAwesomeIcon icon={faXmark} /> : <FontAwesomeIcon icon={faBars} />}
+                </button>
+              </div>
               <nav className={showMenu ? 'active' : ''}>
                 <DropdownMenu />
               </nav>
-            </div>
           </>
         ) : (
           <>
