@@ -89,32 +89,19 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
 
     console.log("Servicios relacionados con la sala:", responseServiciosSala);
 
-    // Sube los archivos y obtén las rutas de las imágenes
-    const paths = await Promise.all(archivos.map(uploadFile));
-
-    console.log("Rutas de las imágenes:", paths);
-
-    // Verifica que se hayan subido todas las imágenes correctamente
-    if (paths.every(path => typeof path === 'string')) {
-      // Aplanar el array de rutas de imágenes
-      const imagenes = paths.flat();
-
-      console.log("Rutas de las imágenes a enviar:", imagenes);
-
-      // Envía la solicitud al servidor después de que todas las imágenes se hayan subido correctamente
-      const responseImagenes = await sendRequest("POST", "http://localhost:8081/imagen/registrar", imagenes.map((path, index) => ({
-        nombre: `imagen_${index}`,
-        imagen: path,
-        idSala: idSala
-      })));
-
-      console.log("Respuesta del registro de imágenes:", responseImagenes);
-
+       // Verifica que se hayan subido todas las imágenes correctamente
+       const paths = await Promise.all(archivos.map(uploadFile));
+       const arrayStrings = paths.map((array) => array[0]);
+   
+       arrayStrings.forEach(async (imagen, index) => {
+         await sendRequest("POST", "http://localhost:8081/imagen/registrar", {
+           nombre: `imagen_${index}`,
+           imagen: imagen,
+           idSala: idSala
+         });
+       });
       onRequestClose(); // Cierra el modal después de realizar todas las operaciones
-    } else {
-      // Si alguna imagen no se subió correctamente, muestra un mensaje de error
-      console.error("Error al subir una o más imágenes");
-    }
+    
   } catch (error) {
     console.error("Error al registrar la sala y relacionar los servicios:", error);
   }
