@@ -5,6 +5,7 @@ import { faBars, faXmark, faUser, faHeart, faSignOutAlt } from '@fortawesome/fre
 import logoCoworking from '../images/logo-coworking.webp';
 import '../css/Navbar.css';
 import { useAuth } from '../Components/utils/AuthProvider';
+import LetterAvatars from '../Components/utils/LetterAvatars';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -51,6 +52,7 @@ const Navbar = () => {
         {isLoggedIn ? (
           <>
             <div>
+              <LetterAvatars/>
               <button className='iconBurger' onClick={toggleMenu}>
                 {showMenu ? <FontAwesomeIcon icon={faXmark} /> : <FontAwesomeIcon icon={faBars} />}
               </button>
