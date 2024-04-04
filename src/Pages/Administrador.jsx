@@ -7,10 +7,15 @@ import Usuario from '../Components/Administrador/Usuarios/Usuario';
 import Categoria from '../Components/Administrador/Categorias/Categoria';
 import '../css/Administrador.css';
 import Servicios from '../Components/Administrador/Servicios/Servicios';
+import { useEffect } from 'react';
+import { useAuth } from '../Components/utils/AuthProvider';
 
 const Administrador = () => {
   const [activo, setActivo] = useState("Salas"); // Establecer "Salas" como activo al cargar la página
-
+  const { isLoggedIn} = useAuth(); // Usa el contexto de autenticación
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
   const navigate = useNavigate();
 
   const handleClick = (opcion) => {

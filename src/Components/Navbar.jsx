@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import logoCoworking from '../images/logo-coworking.webp';
@@ -10,6 +10,7 @@ import { useAuth } from '../Components/utils/AuthProvider';
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const { isLoggedIn, login, logout } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Verifica si el usuario está autenticado al cargar el componente
@@ -27,7 +28,8 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     logout(); // Actualiza el estado de autenticación
-   
+    navigate('/');
+
   };
 
   return (
