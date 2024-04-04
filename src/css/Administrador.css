@@ -57,3 +57,23 @@
 .icon-select button .icon {
     margin-right: 5px;
 }
+.container-imagenes {
+    width: 130px;
+    height: auto;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.imagen {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 10px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.imagen img {
+    width: 100%;
+    height: auto;
+}

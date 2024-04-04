@@ -1,29 +1,39 @@
 // CardsIntroHome.jsx
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from '@react-hook/media-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { StateContext } from '../utils/StateProvider';
 import Search from './Search';
 import ButtonReservar from '../ButtonReservar';
+import sendRequest from "../utils/SendRequest";
 
 const CardsIntroHome = () => {
-  const [state] = useContext(StateContext);
-
-  const { products: originalProducts } = state; // Guardamos la lista original de productos
   const isMobile = useMediaQuery('(max-width: 768px)');
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = isMobile ? 2 : 4;
+  const [salas, setSalas] = useState([]);
 
   // Estado local para el término de búsqueda y filtros de categorías
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState({
-    spaces: false,
-    privates: false,
-    vips: false,
-    virtual: false,
+    multiple: false,
+    personal: false,
+    vip: false,
+    pet: false,
   });
+  useEffect(() => {
+    listarSalas();
+  }, []);
+
+  const listarSalas = async () => {
+    try {
+      const response = await sendRequest("GET", "http://localhost:8081/sala/listar");
+      setSalas(response);
+    } catch (error) {
+      console.error("Error al obtener las salas:", error);
+    }
+  };
 
   // Función para manejar el cambio en el término de búsqueda
   const handleSearchChange = (value) => {
@@ -38,25 +48,25 @@ const CardsIntroHome = () => {
   };
 
   // Filtrar productos según el término de búsqueda y filtros de categorías
-  const filteredProducts = originalProducts.filter(producto => {
-    const includesSearchTerm = producto.nombre.toLowerCase().includes(searchTerm.toLowerCase());
+  const filteredProducts = salas.filter(sala => {
+    const includesSearchTerm = sala.nombre.toLowerCase().includes(searchTerm.toLowerCase());
 
     // Si no hay categorías seleccionadas, mostrar todos los productos
     if (
-      !selectedCategories.spaces &&
-      !selectedCategories.privates &&
-      !selectedCategories.vips &&
-      !selectedCategories.virtual
+      !selectedCategories.multiple &&
+      !selectedCategories.personal &&
+      !selectedCategories.vip &&
+      !selectedCategories.pet
     ) {
       return includesSearchTerm;
     }
 
     return (
       includesSearchTerm &&
-      ((selectedCategories.spaces && producto.categoria === 'spaces') ||
-      (selectedCategories.privates && producto.categoria === 'privates') ||
-      (selectedCategories.vips && producto.categoria === 'vips') ||
-      (selectedCategories.virtual && producto.categoria === 'virtual'))
+      ((selectedCategories.multiple && sala.tipoSala.nombre === 'Múltiple') ||
+      (selectedCategories.personal && sala.tipoSala.nombre === 'Sala Personal') ||
+      (selectedCategories.vip && sala.tipoSala.nombre === 'Vip') ||
+      (selectedCategories.pet && sala.tipoSala.nombre === 'Pet Friendly'))
     );
   });
 
@@ -81,14 +91,14 @@ const CardsIntroHome = () => {
         <p className='numberPages'>{currentProducts.length} de {filteredProducts.length} Productos Mostrados</p>
       </div>
       <section className='cards_display'>
-        {currentProducts.map((producto, index) => (
+        {currentProducts.map((sala, index) => (
           <div key={index} className="cards_container">
-            <img src={producto.imagen} alt={producto.nombre} />
-            <h2>{producto.nombre}</h2>
-            <p>{producto.descripcion}</p>
+            <img src={Object.values(sala.imagenes[0])[0]} alt={sala.nombre} />
+            <h2>{sala.nombre}</h2>
+            <p>{sala.descripcion}</p>
             <div className='cards_btnContent'>
               <ButtonReservar/>
-              <Link className='cards_btnMore' to={`detalle/${producto.id}`}>Ver más</Link>
+              <Link className='cards_btnMore' to={`detalle/${sala.id}`}>Ver más</Link>
             </div>
           </div>
         ))}

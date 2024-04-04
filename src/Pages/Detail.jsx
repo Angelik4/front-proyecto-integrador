@@ -13,7 +13,7 @@ const Detail = () => {
   const [product, setProduct] = useState(null);
 
 useEffect(() => {
-  axios.get(`http://localhost:4000/products/${id}`)
+  axios.get(`http://localhost:8081/sala/listar/${id}`)
   .then(response => setProduct(response.data))
   .catch(error => console.log(error))
 }, [id])

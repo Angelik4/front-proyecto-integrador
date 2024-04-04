@@ -1,8 +1,7 @@
 import React from 'react'
 import '../css/Home.css';
-import Calendar from '../Components/Calendar';
-/* import CardsIntroHome from '../Components/Home/CardsIntroHome';
-import Recommendations from '../Components/Home/Recommendations'; */
+import CardsIntroHome from '../Components/Home/CardsIntroHome';
+import Recommendations from '../Components/Home/Recommendations';  
 
 const Home = () => {
   return (
@@ -12,12 +11,11 @@ const Home = () => {
           <div className='ct_banner-title'>
             <h1>Conoce una manera de <br/> trabajar diferente</h1>
             <p>Lorem ipsum dolor sit amet consectetur</p>
-            <Calendar/>
           </div>
         </div>
       </div>
-    {/*   <CardsIntroHome/>
-      <Recommendations/> */}
+     <CardsIntroHome/>
+     <Recommendations/> 
     </div>
   )
 }

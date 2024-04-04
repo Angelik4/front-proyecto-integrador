@@ -74,7 +74,7 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
     tipoSala: categoriaId,
     disponible: 1,
     estado: 1,
-    promedioCalificacion: 0,
+    promedioCalificacion: 9,
   };
   try {
     // Envía la solicitud para registrar la sala y obtén el ID de la sala
