@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faXmark, faUser, faHeart, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import logoCoworking from '../images/logo-coworking.webp';
 import '../css/Navbar.css';
 import { useAuth } from '../Components/utils/AuthProvider';
-
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -13,13 +12,11 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Verifica si el usuario está autenticado al cargar el componente
     const token = localStorage.getItem('token');
-    console.log(token)
     if (token) {
-      login(); // Actualiza el estado de autenticación
+      login();
     }
-  },);
+  }, []);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -27,31 +24,49 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    logout(); // Actualiza el estado de autenticación
+    logout();
     navigate('/');
+  };
 
+  const DropdownMenu = () => {
+    return (
+      <div className="dropdown">
+        <Link to="/profile" className="menu-item">
+          <FontAwesomeIcon icon={faUser} /> Mi perfil
+        </Link>
+        <Link to="/favorites" className="menu-item">
+          <FontAwesomeIcon icon={faHeart} /> Favoritos
+        </Link>
+        <button onClick={handleLogout} className="menu-item">
+          <FontAwesomeIcon icon={faSignOutAlt} /> Cerrar sesión
+        </button>
+      </div>
+    );
   };
 
   return (
     <header className='ct_container-header'>
       <div className='ct_header'>
         <Link to="/"><img src={logoCoworking} alt="logo Coworking Now" /></Link>
-        <button className='iconBurger' onClick={toggleMenu}>
-          {showMenu ? <FontAwesomeIcon icon={faXmark} /> : <FontAwesomeIcon icon={faBars} />}
-        </button>
-        <nav className={showMenu ? 'active' : ''}>
-          {isLoggedIn ? (
-            <>
-              <Link to="/profile">Mi perfil</Link>
-              <button onClick={handleLogout}>Cerrar sesión</button>
-            </>
-          ) : (
-            <>
+        {isLoggedIn ? (
+          <>
+            <div>
+              <button className='iconBurger' onClick={toggleMenu}>
+                {showMenu ? <FontAwesomeIcon icon={faXmark} /> : <FontAwesomeIcon icon={faBars} />}
+              </button>
+              <nav className={showMenu ? 'active' : ''}>
+                <DropdownMenu />
+              </nav>
+            </div>
+          </>
+        ) : (
+          <>
+            <div>
               <Link className='createAccount' to="/register">Crear cuenta</Link>
               <Link className='btnLogin' to="/login">Iniciar sesión</Link>
-            </>
-          )}
-        </nav>
+            </div>
+          </>
+        )}
       </div>
     </header>
   );
