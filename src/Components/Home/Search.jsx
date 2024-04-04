@@ -1,7 +1,7 @@
-// Search.jsx
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import Calendar from '../Calendar';
 
 const Search = ({ handleSearch, handleCategories }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -45,18 +45,6 @@ const Search = ({ handleSearch, handleCategories }) => {
         <div className='fm-form-title'>
           <p>¿Dónde te gustaría trabajar?</p>
         </div>
-        <div className='fm-form-select'>
-          <input
-            type="text"
-            placeholder='Oficinas'
-            value={searchTerm}
-            onChange={handleChange}
-          />
-          <FontAwesomeIcon className='iconLupa' icon={faMagnifyingGlass} />
-        </div>
-        <div className='fm-form-title'>
-          <p>Filtrar por categorías:</p>
-        </div>
         <div className='fm-form-checkbox'>
           <label htmlFor="spaces">
             <input
@@ -95,8 +83,17 @@ const Search = ({ handleSearch, handleCategories }) => {
             Oficinas virtuales
           </label>
         </div>
-          <button type="button" onClick={handleClearFilters}>Limpiar filtro</button>
-        {/* <input type="submit" value="Buscar" /> */}
+        <div className='fm-form-select'>
+          <input
+            type="text"
+            placeholder='Oficinas'
+            value={searchTerm}
+            onChange={handleChange}
+          />
+          <FontAwesomeIcon className='iconLupa' icon={faMagnifyingGlass} />
+          <Calendar/>
+          <button type="button" onClick={handleClearFilters}>Buscar</button>
+        </div>
       </form>
     </div>
   );
