@@ -47,7 +47,7 @@ const Detail = () => {
           <h3>{product.nombre}</h3>
           <div className="content-details">
             <div className="text-container">
-              <h4>{product.categoria}</h4>
+              <h4>{product.tipoSala.nombre}</h4>
               <p>{product.descripcion}</p>
               <ButtonReservar />
             </div>
