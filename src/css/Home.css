@@ -29,9 +29,10 @@
   margin: 0 0 10px;
 }
 .fm-content-form {
+  position: relative;
   background-color: var(--darkBlue);
-  width: 80%;
-  max-width: 440px;
+  width: 700px;
+  max-width: 800px;
   margin: auto;
   padding: 20px 30px;
   color: var(--white);
@@ -58,29 +59,29 @@
   padding: 0 10px 0 0;
 }
 .fm-form-select {
-  display: grid;
-  grid-template-columns: 100%;
-  gap: 14px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
   position: relative;
 }
 .fm-form-select input{
+  flex: 1;
   height: 34px;
   border-radius: 6px;
+  padding: 0 10px 0 10px;
 }
 .fm-form-select input[type="submit"]{
   background-color: var(--orange);
   color: var(--white);
 }
 
-.fm-form-select input{
-  height: 34px;
-  padding: 0 20px;
-}
 .fm-form-select .iconLupa{
   position: absolute;
-  right: 20px;
-  top: 10px;
+  left: 37%;
+  top: 50%;
+  transform: translateY(-50%);
   color: var(--black2);
+  z-index: 1;
 }
 .fm-form-Filter {
   position: relative;
@@ -95,9 +96,10 @@
   padding: 0 10px 0 0;
 }
 .fm-form-checkbox {
-  display: grid;
-  grid-template-columns: 100%;
-  gap: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
   font-size: 14px;
 }
 .fm-form-checkbox label{
@@ -109,9 +111,10 @@
 .fm-content-form button {
   height: 34px;
   border-radius: 6px;
-  padding: 0 20px;
+  padding: 0 10px;
   background-color: var(--orange);
   color: var(--white);
+  cursor: pointer;
 }
 
 .fm-form-clear-categories button {
@@ -121,6 +124,24 @@
   border-bottom: 1px solid var(--orange); 
   background-color: transparent; 
   cursor: pointer; 
+}
+/* .date-picker-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.date-picker {
+  z-index: 999; /* Asegura que el calendario esté por encima de otros elementos 
+} */
+
+.date-picker-container {
+  display: flex;
+}
+
+
+.auto-width {
+  width: 150px; 
 }
 
 /* ---------CSS CARDS -------------- */
@@ -307,8 +328,8 @@
     height: 600px;
   }
   .fm-content-form {
-    top: 52%;
-    left: 7%;
+    top: 150%;
+    left: 55%;
     right: 0;
     margin: 0;
     bottom: inherit;

@@ -1,55 +1,69 @@
-import React, { useState, useEffect } from "react";
-import { DateRange } from "react-date-range";
-import "react-date-range/dist/styles.css"; // Estilos base
-import "react-date-range/dist/theme/default.css"; // Tema predeterminado
-import { addDays, isWithinInterval } from "date-fns"; // Importación de date-fns
-import es from "date-fns/locale/es"; // Importación del idioma español
+import React, { useState, useEffect } from 'react';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import es from 'date-fns/locale/es';
+import { setHours, setMinutes } from 'date-fns';
+
+registerLocale('es', es);
 
 const Calendar = () => {
-  const [fechasOcupadas, setFechasOcupadas] = useState([]);
+  const [startDate, setStartDate] = useState(setMinutes(setHours(new Date(), 0), 0));
+  const [endDate, setEndDate] = useState(setMinutes(setHours(new Date(), 0), 0)); 
 
-  const [monthsToShow, setMonthsToShow] = useState(2);
+  // Lista de horas ocupadas
+  const horasOcupadas = [17, 18, 19, 20];
 
-  const [selectionRange, setSelectionRange] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
-    key: "selection"
-  });
-
- /*  console.log(selectionRange.startDate?.toISOString().split("T").shift());
-  console.log(selectionRange.endDate?.toISOString().split("T").shift()); */
-
-  useEffect(() => {
-    const reservationsFromServer = [
-      { start: "2024-03-22", end: "2024-03-25" },
-      { start: "2024-04-12", end: "2024-04-18" },
-      { start: "2024-04-27", end: "2024-04-30" }
-    ];
-
-    const disabledDates = [];
-
-    reservationsFromServer.forEach((reservation) => {
-      const { start, end } = reservation;
-      const startDate = new Date(start);
-      startDate.setDate(startDate.getDate() + 1);
-      const endDate = new Date(end);
-      endDate.setDate(endDate.getDate() + 1);
-      const interval = { start: startDate, end: endDate };
-      disabledDates.push(interval);
-    });
-
-    setFechasOcupadas(disabledDates);
-  }, []);
+  // Función para deshabilitar horas ocupadas
+  const esHoraOcupada = date => {
+    const hour = date.getHours();
+    return !horasOcupadas.includes(hour);
+  };
 
   return (
-    <div className="calendar-container">
-      <DateRange
-        className="calendar"
-        ranges={[selectionRange]}
-        onChange={(range) => setSelectionRange(range.selection)}
-        months={monthsToShow}
-        locale={es}
-      />
+    <div className="date-picker-container">
+      <DatePicker
+  selected={startDate}
+  onChange={(date) => setStartDate(date)}
+  startDate={startDate}
+  selectsStart
+  timeIntervals={60}
+  dateFormat="yyyy/MMMM/dd" // Cambia el formato de fecha aquí
+  showTimeSelect
+  withPortal
+  className="auto-width"
+  locale={es}
+  timeCaption="Hora"
+  showIcon
+  excludeTimes={[
+    setHours(new Date(), 17),
+    setHours(new Date(), 18),
+    setHours(new Date(), 19),
+    setHours(new Date(), 20)
+  ]}
+  filterTime={esHoraOcupada}
+/> 
+<DatePicker
+  selected={endDate}
+  onChange={(date) => setEndDate(date)}
+  endDate={endDate}
+  selectsEnd
+  timeIntervals={60}
+  dateFormat="Pp" // Cambia el formato de fecha aquí
+  showTimeSelect
+  withPortal
+  className="auto-width"
+  locale={es}
+  timeCaption="Hora"
+  showIcon
+  excludeTimes={[
+    setHours(new Date(), 17),
+    setHours(new Date(), 18),
+    setHours(new Date(), 19),
+    setHours(new Date(), 20)
+  ]}
+  filterTime={esHoraOcupada}
+/> 
+
     </div>
   );
 };
