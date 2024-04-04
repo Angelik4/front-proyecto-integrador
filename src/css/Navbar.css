@@ -12,6 +12,8 @@
   padding: 16px;
   align-items: center;
   position: relative;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .ct_header img {
@@ -21,15 +23,6 @@
 .ct_header nav,
 .ct_header .contentDropAvatar {
   display: none;
-}
-
-.ct_header nav.active {
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-  background: var(--darkBlue);
-  padding: 20px;
-  width: 200px;
 }
 
 .ct_header .contentDropAvatar.active {
@@ -42,13 +35,16 @@
   border-radius: 8px;
 }
 
-.ct_header nav a,
-.ct_header nav li {
-  color: var(--white);
+.ct_header a,
+.ct_header  li {
+  color: var(--black);
   text-decoration: none;
   list-style: none;
 }
-
+.content_btns{
+  display: flex;
+  gap: 10px;
+}
 .ct_header .contentDropAvatar a {
   color: var(--black);
 }
@@ -63,7 +59,7 @@
   color:#000
 }
 
-.ct_header nav div .ct_dropdown {
+.ct_header  div .ct_dropdown {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -71,12 +67,12 @@
   border: 0dvi;
 }
 
-.ct_header nav a:hover,
-.ct_header nav a:hover {
+.ct_header a:hover,
+.ct_header  a:hover {
   color: var(--orange);
 }
 
-.ct_header nav .createAccount {
+.ct_header  .createAccount {
   border: 1px solid var(--white);
   height: 36px;
   padding: 0 8px;
@@ -84,24 +80,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--white);
 }
 
-.ct_header nav .createAccount:hover {
+.ct_header  .createAccount:hover {
   border: 1px solid var(--orange);
   color: var(--white);
 }
 
-.ct_header nav .btnLogin {
+.ct_header .btnLogin {
   background-color: var(--orange);
   padding: 7px;
   border-radius: 6px;
-}
-
-.ct_header nav .btnLogin:hover {
   color: var(--white);
 }
 
-.ct_header nav .btnLogin .fa-user {
+.ct_header  .btnLogin:hover {
+  color: var(--white);
+}
+
+.ct_header  .btnLogin .fa-user {
   margin-right: 4px;
 }
 
@@ -131,17 +129,15 @@
   padding: 12px 16px;
   text-decoration: none;
   border-radius: 0cap;
+  border: 0;
+  background-color: var(--white);
 }
 
 .menu-item:hover {
   background-color: #ddd;
 }
 
-@media only screen and (max-width: 868px) {
-  .ct_header nav.active {
-    width: 150px;
-  }
-
+@media only screen and (min-width: 868px) {
   .ct_header .iconBurger {
     display: block;
   }
@@ -151,10 +147,14 @@
   }
 
   .ct_header nav.active {
+    width: 150px;
     display: flex;
     flex-direction: column;
     position: absolute;
     top: 56px;
-    right: 0;
+    right: 46px;
+  }
+  .ct_header {
+    flex-direction: row;
   }
 }
