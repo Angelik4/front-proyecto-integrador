@@ -6,11 +6,13 @@ import logoCoworking from '../images/logo-coworking.webp';
 import '../css/Navbar.css';
 import { useAuth } from '../Components/utils/AuthProvider';
 import LetterAvatars from '../Components/utils/LetterAvatars';
+import Profile from '../Components/utils/Profile';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const { isLoggedIn, login, logout } = useAuth();
   const navigate = useNavigate();
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -29,10 +31,14 @@ const Navbar = () => {
     navigate('/');
   };
 
+  const closeModal = () => {
+    setIsProfileOpen(false);
+  };
+
   const DropdownMenu = () => {
     return (
       <div className="dropdown">
-        <Link to="/profile" className="menu-item">
+        <Link className="menu-item" onClick={() => setIsProfileOpen(true)}>
           <FontAwesomeIcon icon={faUser} /> Mi perfil
         </Link>
         <Link to="/favorites" className="menu-item">
@@ -52,14 +58,15 @@ const Navbar = () => {
         {isLoggedIn ? (
           <>
             <div className='content-avatar'>
-                <LetterAvatars/>
-                <button className='iconBurger' onClick={toggleMenu}>
-                  {showMenu ? <FontAwesomeIcon icon={faXmark} /> : <FontAwesomeIcon icon={faBars} />}
-                </button>
-              </div>
-              <nav className={showMenu ? 'active' : ''}>
-                <DropdownMenu />
-              </nav>
+              <LetterAvatars />
+              <button className='iconBurger' onClick={toggleMenu}>
+                {showMenu ? <FontAwesomeIcon icon={faXmark} /> : <FontAwesomeIcon icon={faBars} />}
+              </button>
+            </div>
+            <nav className={showMenu ? 'active' : ''}>
+              <DropdownMenu />
+              {isProfileOpen && <Profile isOpen={isProfileOpen} onRequestClose={closeModal} />}
+            </nav>
           </>
         ) : (
           <>
