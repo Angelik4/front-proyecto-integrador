@@ -32,6 +32,7 @@ const Detail = () => {
         original: url,
         thumbnail: url,
       }));
+      console.log('Imágenes formateadas:', formattedImages); // Agregar console para verificar las imágenes
       setImages(formattedImages);
     }
   }, [product]);

@@ -92,7 +92,7 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
        // Verifica que se hayan subido todas las imágenes correctamente
        const paths = await Promise.all(archivos.map(uploadFile));
        const arrayStrings = paths.map((array) => array[0]);
-   
+       console.log("Imagen relacionados con la sala:", arrayStrings);
        arrayStrings.forEach(async (imagen, index) => {
          await sendRequest("POST", "http://localhost:8081/imagen/registrar", {
            nombre: `imagen_${index}`,
