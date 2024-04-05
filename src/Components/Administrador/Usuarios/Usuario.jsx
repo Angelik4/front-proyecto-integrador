@@ -7,10 +7,12 @@ import FormEditRol from '../Usuarios/FormEditRol'; // Importa el formulario de e
 import sendRequest from "../../utils/SendRequest";
 import Swal from 'sweetalert2';
 import Pagination from '../Pagination';
+import SearchBar from "../SearchBar";
 
 const Usuario = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [usuarios, setUsuarios] = useState([]);
+  const [usuariosOriginal, setUsuariosOriginal] = useState([]);
   const [usuarioToEdit, setUsuarioToEdit] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
@@ -44,6 +46,7 @@ const Usuario = () => {
           estado: user.estado === 1 ? 'Activo' : 'Inactivo',
         }));
         setUsuarios(formattedUsers);
+        setUsuariosOriginal(response);
       } else {
         console.error('La respuesta no contiene datos válidos:', response);
       }
@@ -81,6 +84,20 @@ const Usuario = () => {
     openModal('edit', usuario); // Abre el formulario de edición al hacer clic en "Editar"
   };
 
+  const handleSearch = (searchTerm) => {
+    if (searchTerm === "") {
+      setUsuarios(usuariosOriginal);
+    } else {
+      const filteredUsuarios = usuariosOriginal.filter((usuario) => {
+        const idIncludesTerm = usuario.id.toString().includes(searchTerm);
+        return (
+          usuario.nombre.toLowerCase().includes(searchTerm.toLowerCase()) || idIncludesTerm
+        );
+      });
+      setUsuarios(filteredUsuarios);
+    }
+  };
+
   const handleUserChange = () => {
     listarUsuarios();
     closeModal();
@@ -95,10 +112,7 @@ const Usuario = () => {
   return (
     <div className="Ct-Tabla">
       <div className="buscador-container">
-        <div className="buscador">
-          <FontAwesomeIcon icon={faSearch} style={{ color: '#333', marginRight: '5px' }} />
-          <input type="text" placeholder="Buscar por Nombre/ID" />
-        </div>
+        <SearchBar onSearch={handleSearch} />
         <button className="agregar-usuario" onClick={() => openModal('add')}>
           <FontAwesomeIcon icon={faUserPlus} style={{ color: '#fff', marginRight: '5px' }} />
           Agregar Usuario

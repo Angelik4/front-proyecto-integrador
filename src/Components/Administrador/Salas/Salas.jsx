@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import "../../../css/Panel.css";
 import FormAddSalas from "../Salas/FormAddSalas";
 import sendRequest from "../../utils/SendRequest";
 import Swal from "sweetalert2";
 import Pagination from "../Pagination";
+import SearchBar from "../SearchBar";
 
 const Salas = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [salas, setSalas] = useState([]);
+  const [salasOriginal, setSalasOriginal] = useState([]);
   const [actionType, setActionType] = useState("");
   const [salaToEdit, setSalaToEdit] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,6 +38,7 @@ const Salas = () => {
     try {
       const response = await sendRequest("GET", "http://localhost:8081/sala/listar");
       setSalas(response);
+      setSalasOriginal(response);
       console.log(response)
     } catch (error) {
       console.error("Error al obtener las salas:", error);
@@ -83,16 +86,27 @@ const Salas = () => {
     openModal("edit", sala);
   };
 
+  const handleSearch = (searchTerm) => {
+    if (searchTerm === "") {
+      setSalas(salasOriginal);
+    } else {
+      const filteredSalas = salasOriginal.filter((sala) => {
+        const idIncludesTerm = sala.id.toString().includes(searchTerm);
+        return (
+          sala.nombre.toLowerCase().includes(searchTerm.toLowerCase()) || idIncludesTerm
+        );
+      });
+      setSalas(filteredSalas);
+    }
+  };
+
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="Ct-Tabla">
       <div className="buscador-container">
         <div className="content-buscador">
-          <div className="buscador">
-            <FontAwesomeIcon icon={faSearch} style={{ color: "#333", marginRight: "5px" }} />
-            <input type="text" placeholder="Buscar por Nombre/ID" />
-          </div>
+          <SearchBar onSearch={handleSearch} />
           <button className="agregar-usuario" onClick={() => openModal("add", null)}>
             <FontAwesomeIcon icon={faUserPlus} style={{ color: "#fff", marginRight: "5px" }} />
             Agregar Sala

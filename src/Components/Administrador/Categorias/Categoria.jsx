@@ -6,10 +6,12 @@ import FormAddCategoria from '../Categorias/FormAddCategoria';
 import sendRequest from "../../utils/SendRequest"; // Importa la función para enviar solicitudes
 import Swal from 'sweetalert2';
 import Pagination from '../Pagination'; // Importa el componente de paginación
+import SearchBar from "../SearchBar";
 
 const Categoria = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [tipoSalas, setTipoSalas] = useState([]);
+  const [categoriasOriginal, setCategoriasOriginal] = useState([]);
   const [actionType, setActionType] = useState(""); // Definir estado para el tipo de acción (edit, delete)
   const [categoriaToEdit, setCategoriaToEdit] = useState(null); // Definir estado para la categoría a editar
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,6 +39,7 @@ const Categoria = () => {
       const response = await sendRequest("GET", "http://localhost:8081/tiposala/listar");
       console.log("Categorías obtenidas:", response);
       setTipoSalas(response);
+      setCategoriasOriginal(response);
     } catch (error) {
       console.error("Error al obtener las categorías:", error);
     }
@@ -71,6 +74,20 @@ const Categoria = () => {
     }
   };
 
+  const handleSearch = (searchTerm) => {
+    if (searchTerm === "") {
+      setTipoSalas(categoriasOriginal);
+    } else {
+      const filteredCategorias = categoriasOriginal.filter((categoria) => {
+        const idIncludesTerm = categoria.id.toString().includes(searchTerm);
+        return (
+          categoria.nombre.toLowerCase().includes(searchTerm.toLowerCase()) || idIncludesTerm
+        );
+      });
+      setTipoSalas(filteredCategorias);
+    }
+  };
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = tipoSalas.slice(indexOfFirstItem, indexOfLastItem);
@@ -81,10 +98,7 @@ const Categoria = () => {
     <div className="Ct-Tabla">
       <div className="buscador-container">
         <div className="content-buscador">
-          <div className="buscador">
-            <FontAwesomeIcon icon={faSearch} style={{ color: '#333', marginRight: '5px' }} />
-            <input type="text" placeholder="Buscar por Nombre/ID" />
-          </div>
+          <SearchBar onSearch={handleSearch} />
           <button className="agregar-usuario" onClick={() => openModal('add', null)}>
             <FontAwesomeIcon icon={faUserPlus} style={{ color: "#fff", marginRight: "5px" }} />
             Agregar Categoria
