@@ -7,6 +7,7 @@ import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Register from './Pages/Register';
 import Question from './Pages/Question';
+import Favorites from './Components/Favorites';
 import Detail from './Pages/Detail';
 import Administrador from './Pages/Administrador';
 import { ProtectedRoute } from './Components/utils/ProtectedRoute';
@@ -27,6 +28,7 @@ function App() {
             <Route path="/detalle/:id" element={<Detail />} />
             <Route path="/galeria" element={<Galeria />} />
             <Route path="/question" element={<Question />} />
+            <Route path="/favorites" element={<Favorites />} />
             {/* <Route path="/administrador" element={<Administrador />} /> */}
             <Route
               path="/administrador"
