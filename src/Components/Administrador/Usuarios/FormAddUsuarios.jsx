@@ -14,9 +14,12 @@ const FormAddUsuarios = ({ isOpen, onRequestClose, onUserChange }) => {
   const [rolId, setRolId] = useState(""); 
   const [estado, setEstado] = useState("activo"); 
   const [roles, setRoles] = useState([]);
+  const [numeroAleatorio, setNumeroAleatorio] = useState();
+
 
   useEffect(() => {
     obtenerRoles();
+    generarNumeroAleatorio();
   }, []);
 
   const obtenerRoles = async () => {
@@ -26,6 +29,11 @@ const FormAddUsuarios = ({ isOpen, onRequestClose, onUserChange }) => {
     } catch (error) {
       console.error("Error al obtener los roles:", error);
     }
+  };
+  
+  const generarNumeroAleatorio = () => {
+    const numero = Math.floor(Math.random() * 900000000) + 100000000;
+    setNumeroAleatorio(numero.toString());
   };
 
   const handleSubmit = async (e) => {
@@ -37,23 +45,24 @@ const FormAddUsuarios = ({ isOpen, onRequestClose, onUserChange }) => {
         correo: correo,
         contrasena: contrasena, 
         idTipoIdentificacion: 1, 
-        numeroIdentificacion: 7854236, 
+        numeroIdentificacion: numeroAleatorio,
         estado: estado === "activo" ? 1 : 0,
         idRol: Number.isNaN(parseInt(rolId)) ? null : parseInt(rolId), 
       };
+      console.log("numero",usuario.numeroIdentificacion)
       console.log("Datos del usuario a enviar:", usuario);
       const url = "http://localhost:8081/usuario/registrar";
       const method = "POST";
   
       const response = await sendRequest(method, url, usuario);
   
-      console.log("Respuesta del servidor:", response);
+      console.log("Respuesta del servidor BETH:", response);
   
       onUserChange();
   
       onRequestClose();
     } catch (error) {
-      console.error(error);
+      console.error("Error al enviar la solicitud:", error.response);
     }
   };
 
