@@ -142,33 +142,39 @@ const ButtonReservar = ({ salaId, occupiedTimes }) => {
             <CalendarDetails salaId={salaId} occupiedTimes={occupiedTimes} setSelectedDates={setSelectedDates} />
           </div>
           <div className="campo-formulario">
-            <label htmlFor="email">Correo electrónico:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={email}
-              placeholder="correo@gmail.com"
-              onChange={handleEmailChange}
-              required
-            />
+            <div className="campo-formulario_item">
+              <label htmlFor="email">Correo electrónico:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={email}
+                placeholder="correo@gmail.com"
+                onChange={handleEmailChange}
+                required
+              />
+            </div>
             {!isValidEmail && <p className="mensaje-error">Su correo no tiene el formato correcto</p>}
-            <label htmlFor="cantidad">Cantidad de Personas</label>
-            <input
-              type="number"
-              id="cantidad"
-              placeholder="Número de Personas"
-              value={cantidad}
-              onChange={(e) => setCantidad(e.target.value)} // Manejo de estado para cantidad
-            />
-            <label htmlFor="calificacion">Calificación</label>
-            <input
-              type="number"
-              id="calificacion"
-              placeholder="Calificación  (0 a 10)"
-              value={calificacion}
-              onChange={(e) => setCalificacion(e.target.value)} // Manejo de estado para calificacion
-            />
+            <div className="campo-formulario_item">
+              <label htmlFor="cantidad">Cantidad de Personas</label>
+              <input
+                type="number"
+                id="cantidad"
+                placeholder="Número de Personas"
+                value={cantidad}
+                onChange={(e) => setCantidad(e.target.value)} // Manejo de estado para cantidad
+              />
+            </div>
+            <div className="campo-formulario_item">
+              <label htmlFor="calificacion">Calificación</label>
+              <input
+                type="number"
+                id="calificacion"
+                placeholder="Calificación  (0 a 10)"
+                value={calificacion}
+                onChange={(e) => setCalificacion(e.target.value)} // Manejo de estado para calificacion
+              />
+            </div>
           </div>
           <button className="btn-enviar" onClick={handleSubmit}>
             Enviar

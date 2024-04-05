@@ -16,6 +16,9 @@
     border: 1px solid #ccc;
     border-radius: 10px;
 }
+.campo-formulario_item{
+ margin-top: 20px;
+}
 
 .imagen-logo {
     text-align: center;

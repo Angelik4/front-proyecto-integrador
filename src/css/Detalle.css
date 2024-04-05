@@ -96,9 +96,24 @@
 }
 
 .react-datepicker__input-container input {
-  background-color: var(--orange);
-  color: #fff;
+  background-color: var(--white);
+  color: var(--black);
   cursor: pointer;
+  border-radius: 6px;
+}
+.modal-containerButton .btn-enviar{
+  display: block;
+    margin: 20px auto 0;
+    border: 0;
+    background: var(--orange);
+    color: var(--white);
+    padding: 8px;
+    width: 200px;
+    font-size: 20px;
+    border-radius: 4px;
+}
+.image-gallery-bullets{
+  z-index: 0 !important;
 }
 
 .date-picker-container2 {
@@ -108,6 +123,11 @@
 
 .date-picker-container2 label {
   color: var(--black2);
+}
+.date-picker-container2 div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .date-picker-wrapper {

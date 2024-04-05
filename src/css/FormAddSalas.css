@@ -7,6 +7,9 @@
     max-width: 500px;
     max-height: 610px;
     z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .modal-container{
     position: relative;
