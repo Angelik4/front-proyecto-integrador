@@ -27,8 +27,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    logout();
-    navigate('/');
+    logout();    
   };
 
   const closeModal = () => {
@@ -44,7 +43,7 @@ const Navbar = () => {
         <Link to="/favorites" className="menu-item">
           <FontAwesomeIcon icon={faHeart} /> Favoritos
         </Link>
-        <Link onClick={handleLogout} className="menu-item">
+        <Link to="/" onClick={handleLogout} className="menu-item">
           <FontAwesomeIcon icon={faSignOutAlt} /> Cerrar sesión
         </Link>
       </div>
