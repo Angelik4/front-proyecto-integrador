@@ -93,7 +93,7 @@ const CardsIntroHome = () => {
       <section className='cards_display'>
         {currentProducts.map((sala, index) => (
           <div key={index} className="cards_container">
-            <img src={Object.values(sala.imagenes[0])[0]} alt={sala.nombre} />
+            {/* <img src={Object.values(sala.imagenes[0])[0]} alt={sala.nombre} /> */}
             <h2>{sala.nombre}</h2>
             <p>{sala.descripcion}</p>
             <div className='cards_btnContent'>

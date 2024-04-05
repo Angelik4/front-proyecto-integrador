@@ -15,7 +15,7 @@ const Salas = () => {
   const [actionType, setActionType] = useState("");
   const [salaToEdit, setSalaToEdit] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
+  const [itemsPerPage] = useState(4);
   const tableRef = useRef(null);
 
   const openModal = (actionType, sala) => {
@@ -39,12 +39,15 @@ const Salas = () => {
       const response = await sendRequest("GET", "http://localhost:8081/sala/listar");
       setSalas(response);
       setSalasOriginal(response);
-      console.log(response)
+      console.log(response);
     } catch (error) {
       console.error("Error al obtener las salas:", error);
     }
   };
-
+  const handleFormSubmitSuccess = () => {
+    // Actualiza la lista de productos
+    listarSalas();
+  };
   const handleDelete = async (sala) => {
     try {
       if (sala) {
@@ -127,39 +130,45 @@ const Salas = () => {
           </tr>
         </thead>
         <tbody>
-          {salas.map((sala) => (
-            <tr key={sala.id}>
-              <td>{sala.id}</td>
-              <td>{sala.nombre}</td>
-              <td>{sala.descripcion}</td>
-              <td>{sala.tipoSala.nombre}</td>
-              <td className="container-imagenes">
-                {sala.imagenes.map((imagen, index) => (
-                  <div className="imagen" key={index}>
-                    <img src={Object.values(imagen)[0]} alt={`Imagen ${index + 1}`} />
-                  </div>
-                ))}
-              </td>
-              <td>
-                {sala.servicios.map((servicio, index) => (
-                  <li key={index}>{Object.values(servicio)[0]}</li>
-                ))}
-              </td>
-              <td>{sala.capacidad}</td>
-              <td>
-                <button className="editar-usuario" onClick={() => handleEdit(sala)}>
-                  Editar
-                </button>
-                <button className="eliminar-usuario" onClick={() => handleDelete(sala)}>
-                  Eliminar
-                </button>
-              </td>
-            </tr>
-          ))}
+          {salas
+            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+            .map((sala) => (
+              <tr key={sala.id}>
+                <td>{sala.id}</td>
+                <td>{sala.nombre}</td>
+                <td>{sala.descripcion}</td>
+                <td>{sala.tipoSala.nombre}</td>
+                <td className="container-imagenes">
+                  {sala.imagenes.map((imagen, index) => (
+                    <div className="imagen" key={index}>
+                      <img src={Object.values(imagen)[0]} alt={`Imagen ${index + 1}`} />
+                    </div>
+                  ))}
+                </td>
+                <td>
+                  {sala.servicios.map((servicio, index) => (
+                    <li key={index}>{Object.values(servicio)[0]}</li>
+                  ))}
+                </td>
+                <td>{sala.capacidad}</td>
+                <td>
+                  <button className="editar-usuario" onClick={() => handleEdit(sala)}>
+                    Editar
+                  </button>
+                  <button className="eliminar-usuario" onClick={() => handleDelete(sala)}>
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
       {salas.length > itemsPerPage && (
-        <Pagination itemsPerPage={itemsPerPage} totalItems={salas.length} paginate={paginate} />
+        <Pagination
+          totalItems={salas.length}
+          itemsPerPage={itemsPerPage}
+          onPageChange={paginate}
+        />
       )}
       <FormAddSalas
         isOpen={modalIsOpen}
@@ -167,6 +176,7 @@ const Salas = () => {
         actionType={actionType}
         salaToEdit={salaToEdit}
         onSalaChange={listarSalas}
+        onSubmitSuccess={handleFormSubmitSuccess}
       />
     </div>
   );

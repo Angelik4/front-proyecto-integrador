@@ -16,6 +16,8 @@ const Navbar = () => {
     const token = localStorage.getItem('token');
     if (token) {
       login();
+    }else{
+      logout();
     }
   }, []);
 

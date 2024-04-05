@@ -17,7 +17,7 @@ const Detail = () => {
     const fetchProduct = async () => {
       try {
         const response = await sendRequest('GET', `http://localhost:8081/sala/busqueda/${id}`);
-        console.log('Respuesta de la solicitud:', response); // Agregar console para ver la respuesta
+        console.log('Respuesta de la solicitud:', response.id); // Agregar console para ver la respuesta
         setProduct(response);
       } catch (error) {
         console.error('Error al obtener el producto:', error);
