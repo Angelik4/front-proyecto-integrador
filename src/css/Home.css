@@ -81,7 +81,6 @@
   top: 50%;
   transform: translateY(-50%);
   color: var(--black2);
-  z-index: 1;
 }
 .fm-form-Filter {
   position: relative;
