@@ -118,10 +118,10 @@
 }
 
 .fm-form-clear-categories button {
+  height: auto;
   opacity: 0.9; 
   color: var(--orange);
   border: none; 
-  border-bottom: 1px solid var(--orange); 
   background-color: transparent; 
   cursor: pointer; 
 }
