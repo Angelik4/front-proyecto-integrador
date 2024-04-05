@@ -22,7 +22,7 @@ const Recommendations = () => {
       <div className="recom_content-cards">
         {salas.slice(0, 3).map((sala, index) => (
           <div key={index} className="recom_cards">
-                {/* <img  src={Object.values(sala.imagenes[0])[0]} alt={sala.nombre} /> */}
+                <img  src={Object.values(sala.imagenes[0])[0]} alt={sala.nombre} /> 
             <div className="recom_cards-text">
                 <h2>{sala.nombre}</h2>
                 <p>{sala.descripcion}</p>
