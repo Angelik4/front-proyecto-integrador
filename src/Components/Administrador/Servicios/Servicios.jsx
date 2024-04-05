@@ -6,10 +6,12 @@ import FormAddServicio from '../Servicios/FormAddServicios';
 import sendRequest from "../../utils/SendRequest";
 import Swal from 'sweetalert2';
 import Pagination from '../Pagination';
+import SearchBar from "../SearchBar";
 
 const Servicios = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [servicios, setServicios] = useState([]);
+  const [serviciosOriginal, setServiciosOriginal] = useState([]);
   const [actionType, setActionType] = useState("");
   const [servicioToEdit, setServicioToEdit] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,6 +38,7 @@ const Servicios = () => {
       const response = await sendRequest("GET", "http://localhost:8081/servicio/listar");
       console.log("Servicios obtenidos:", response);
       setServicios(response);
+      setServiciosOriginal(response);
     } catch (error) {
       console.error("Error al obtener los servicios:", error);
     }
@@ -67,6 +70,20 @@ const Servicios = () => {
     }
   };
 
+  const handleSearch = (searchTerm) => {
+    if (searchTerm === "") {
+      setServicios(serviciosOriginal);
+    } else {
+      const filteredServicios= serviciosOriginal.filter((servicio) => {
+        const idIncludesTerm = servicio.id.toString().includes(searchTerm);
+        return (
+          servicio.nombre.toLowerCase().includes(searchTerm.toLowerCase()) || idIncludesTerm
+        );
+      });
+      setServicios(filteredServicios);
+    }
+  };
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = servicios.slice(indexOfFirstItem, indexOfLastItem);
@@ -77,10 +94,7 @@ const Servicios = () => {
     <div className="Ct-Tabla">
       <div className="buscador-container">
         <div className="content-buscador">
-          <div className="buscador">
-            <FontAwesomeIcon icon={faSearch} style={{ color: '#333', marginRight: '5px' }} />
-            <input type="text" placeholder="Buscar por Nombre/ID" />
-          </div>
+          <SearchBar onSearch={handleSearch} />
           <button className="agregar-usuario" onClick={() => openModal('add', null)}>
             <FontAwesomeIcon icon={faUserPlus} style={{ color: "#fff", marginRight: "5px" }} />
             Agregar Servicio
