@@ -47,6 +47,8 @@
 
 .campo-formulario-register label {
     color: var(--gray);
+    margin-bottom: 4px;
+    display: block;
 }
 
 .icon-eye {

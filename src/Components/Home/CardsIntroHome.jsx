@@ -3,16 +3,18 @@ import React, { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from '@react-hook/media-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faHeart } from '@fortawesome/free-solid-svg-icons';
 import Search from './Search';
 import ButtonReservar from '../ButtonReservar';
 import sendRequest from "../utils/SendRequest";
+import { useAuth } from '../utils/AuthProvider';
 
 const CardsIntroHome = () => {
   const isMobile = useMediaQuery('(max-width: 768px)');
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = isMobile ? 2 : 4;
   const [salas, setSalas] = useState([]);
+  const { isLoggedIn } = useAuth();
 
   // Estado local para el término de búsqueda y filtros de categorías
   const [searchTerm, setSearchTerm] = useState('');
@@ -32,6 +34,20 @@ const CardsIntroHome = () => {
       setSalas(response);
     } catch (error) {
       console.error("Error al obtener las salas:", error);
+    }
+  };
+
+  const addFav = (id, name, description) => {
+    const storedFavs = JSON.parse(localStorage.getItem("favCards")) || [];
+    const isAlreadyFav = storedFavs.some((fav) => fav.id === id);
+  
+    if (!isAlreadyFav) {
+      alert('Se ha agregado a favoritos...');
+      const updatedFavs = [...storedFavs, { id, name, description }];
+  
+      localStorage.setItem("favCards", JSON.stringify(updatedFavs));
+    } else {
+      alert('Este producto ya está en favoritos.');
     }
   };
 
@@ -60,7 +76,7 @@ const CardsIntroHome = () => {
     ) {
       return includesSearchTerm;
     }
-
+   
     return (
       includesSearchTerm &&
       ((selectedCategories.multiple && sala.tipoSala.nombre === 'Múltiple') ||
@@ -93,11 +109,16 @@ const CardsIntroHome = () => {
       <section className='cards_display'>
         {currentProducts.map((sala, index) => (
           <div key={index} className="cards_container">
-            <img src={Object.values(sala.imagenes[0])[0]} alt={sala.nombre} />
+            <img src={Object.values(sala.imagenes[0])[0]} alt={sala.nombre} /> 
             <h2>{sala.nombre}</h2>
             <p>{sala.descripcion}</p>
             <div className='cards_btnContent'>
               <Link className='cards_btnMore' to={`detalle/${sala.id}`}>Ver más</Link>
+              {isLoggedIn && ( // Mostrar el botón de favoritos si el usuario está logueado
+                <button onClick={() => addFav(sala.id, sala.nombre, sala.descripcion)} className="favButton">
+                  <FontAwesomeIcon icon={faHeart} /> Add fav
+                </button>
+              )}
             </div>
           </div>
         ))}

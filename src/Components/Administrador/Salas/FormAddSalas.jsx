@@ -6,7 +6,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import sendRequest from "../../utils/SendRequest";
 import { uploadFile } from "../../utils/firebase/config";
 
-const FormAddSalas = ({ isOpen, onRequestClose }) => {
+const FormAddSalas = ({ isOpen, onRequestClose, onSubmitSuccess }) => {
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [categoria, setCategoria] = useState("");
@@ -20,6 +20,14 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
     obtenerCategorias();
     obtenerServicios();
   }, []);
+  const clearForm = () => {
+    setNombre("");
+    setDescripcion("");
+    setCategoria("");
+    setCapacidad("");
+    setArchivos([]);
+    setServiciosSeleccionados([]);
+  };
 
   const obtenerCategorias = async () => {
     try {
@@ -92,7 +100,7 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
        // Verifica que se hayan subido todas las imágenes correctamente
        const paths = await Promise.all(archivos.map(uploadFile));
        const arrayStrings = paths.map((array) => array[0]);
-   
+       console.log("Imagen relacionados con la sala:", arrayStrings);
        arrayStrings.forEach(async (imagen, index) => {
          await sendRequest("POST", "http://localhost:8081/imagen/registrar", {
            nombre: `imagen_${index}`,
@@ -101,7 +109,8 @@ const FormAddSalas = ({ isOpen, onRequestClose }) => {
          });
        });
       onRequestClose(); // Cierra el modal después de realizar todas las operaciones
-    
+      onSubmitSuccess();
+      clearForm();
   } catch (error) {
     console.error("Error al registrar la sala y relacionar los servicios:", error);
   }
