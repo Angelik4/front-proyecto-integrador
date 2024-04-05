@@ -6,6 +6,7 @@ import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import ButtonReservar from '../Components/ButtonReservar';
 import sendRequest from '../Components/utils/SendRequest';
+import "../css/Detalle.css"
 
 const Detail = () => {
   const { id } = useParams();
