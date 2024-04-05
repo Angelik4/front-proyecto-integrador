@@ -84,12 +84,13 @@ const Profile = ({ isOpen, onRequestClose }) => {
                 <button onClick={onRequestClose} className="btn-cerrar">
                     <FontAwesomeIcon icon={faTimes} />
                 </button>
-                <div className='content-avatar'>
-                    <div className="ct-avatar">{avatar}</div>
-                </div>
-
-                <h1>{nombre} {apellido} </h1>
-                <h2>{correo}</h2>
+               <div className="content-datos">
+                    <div className='content-avatar'>
+                        <div className="ct-avatar">{avatar}</div>
+                    </div>
+                    <h1>{nombre} {apellido} </h1>
+                    <h2>{correo}</h2>
+               </div>
 
             </div>
         </Modal>
