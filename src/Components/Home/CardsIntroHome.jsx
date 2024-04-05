@@ -60,7 +60,7 @@ const CardsIntroHome = () => {
     ) {
       return includesSearchTerm;
     }
-
+   
     return (
       includesSearchTerm &&
       ((selectedCategories.multiple && sala.tipoSala.nombre === 'Múltiple') ||

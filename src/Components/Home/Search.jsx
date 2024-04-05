@@ -6,10 +6,10 @@ import Calendar from '../Calendar';
 const Search = ({ handleSearch, handleCategories }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState({
-    spaces: false,
-    privates: false,
-    vips: false,
-    virtual: false,
+    multiple: false,
+    personal: false,
+    vip: false,
+    pet: false,
   });
 
   const handleChange = (e) => {
@@ -26,16 +26,16 @@ const Search = ({ handleSearch, handleCategories }) => {
 
   const handleClearFilters = () => {
     setSelectedCategories({
-      spaces: false,
-      privates: false,
-      vips: false,
-      virtual: false,
+      multiple: false,
+      personal: false,
+      vip: false,
+      pet: false,
     });
     handleCategories({
-      spaces: false,
-      privates: false,
-      vips: false,
-      virtual: false,
+      multiple: false,
+      personal: false,
+      vip: false,
+      pet: false,
     });
   };
 
@@ -46,41 +46,41 @@ const Search = ({ handleSearch, handleCategories }) => {
           <p>¿Dónde te gustaría trabajar?</p>
         </div>
         <div className='fm-form-checkbox'>
-          <label htmlFor="spaces">
+          <label htmlFor="multiple">
             <input
               type="checkbox"
-              id="spaces"
+              id="multiple"
               onChange={handleCategoryChange}
-              checked={selectedCategories.spaces}
+              checked={selectedCategories.multiple}
             />
-            Espacios de coworking
+            Múltiple
           </label>
           <label htmlFor="private">
             <input
               type="checkbox"
-              id="privates"
+              id="personal"
               onChange={handleCategoryChange}
-              checked={selectedCategories.privates}
+              checked={selectedCategories.personal}
             />
-            Oficinas privadas
+            Sala Personal
           </label>
-          <label htmlFor="vips">
+          <label htmlFor="vip">
             <input
               type="checkbox"
-              id="vips"
+              id="vip"
               onChange={handleCategoryChange}
-              checked={selectedCategories.vips}
+              checked={selectedCategories.vip}
             />
-            Salas VIP
+            Vip
           </label>
-          <label htmlFor="virtual">
+          <label htmlFor="pet">
             <input
               type="checkbox"
-              id="virtual"
+              id="pet"
               onChange={handleCategoryChange}
-              checked={selectedCategories.virtual}
+              checked={selectedCategories.pet}
             />
-            Oficinas virtuales
+            Pet Friendly
           </label>
           <div className='fm-form-clear-categories'>
           <button type="button" onClick={handleClearFilters}>Limpiar filtros</button>
