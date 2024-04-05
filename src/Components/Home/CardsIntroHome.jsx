@@ -113,7 +113,6 @@ const CardsIntroHome = () => {
             <h2>{sala.nombre}</h2>
             <p>{sala.descripcion}</p>
             <div className='cards_btnContent'>
-              <ButtonReservar/>
               <Link className='cards_btnMore' to={`detalle/${sala.id}`}>Ver más</Link>
               {isLoggedIn && ( // Mostrar el botón de favoritos si el usuario está logueado
                 <button onClick={() => addFav(sala.id, sala.nombre, sala.descripcion)} className="favButton">

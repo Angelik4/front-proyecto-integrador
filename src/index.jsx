@@ -3,15 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { AuthProvider } from './Components/utils/AuthProvider'
+import { AuthProvider } from './Components/utils/AuthProvider';
+import Modal from 'react-modal';
+
+// Configuración del elemento raíz de la aplicación
+Modal.setAppElement('#root');
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-        <App />
+      <App />
     </AuthProvider>
   </React.StrictMode>,
-  document.getElementById('root') // Monta la aplicación en el elemento con el ID 'root' en el HTML
+  document.getElementById('root')
 );
 
 reportWebVitals();
