@@ -67,6 +67,57 @@
   font-size: 16px;
   color: var(--black);
 }
+
+.modal-containerButton {
+  position: relative;
+
+}
+
+.modal-containerButton .btn-cerrar{
+  background: transparent;
+  border: 0;
+  font-size: 24px;
+  position: absolute;
+  right: 10px;
+  top: -4px;
+}
+
+.modal-containerButton h2{
+  text-align: center;
+  color: var(--darkBlue);
+}
+
+.modal-containerButton .modal-calendario{
+  text-align: center;
+}
+
+.modal-containerButton .date-picker-container2{
+  padding-top: 10px;
+}
+
+.react-datepicker__input-container input {
+  background-color: var(--orange);
+  color: #fff;
+  cursor: pointer;
+}
+
+.date-picker-container2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date-picker-container2 label {
+  color: var(--black2);
+}
+
+.date-picker-wrapper {
+  width: auto;
+}
+
+.button-wrapper {
+  width: auto;
+}
+
 @media only screen and (min-width: 868px) {
   .content-details{
     grid-template-columns: 40% 60%;

@@ -1,3 +1,5 @@
+// Detail.jsx
+
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -50,7 +52,7 @@ const Detail = () => {
             <div className="text-container">
               <h4>{product.tipoSala.nombre}</h4>
               <p>{product.descripcion}</p>
-              <ButtonReservar />
+              <ButtonReservar salaId={product && product.id} /> {/* Pasar el ID de la sala como prop */}
             </div>
             <div>
               <ImageGallery
