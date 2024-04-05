@@ -63,18 +63,6 @@ const Salas = () => {
         });
 
         if (result.isConfirmed) {
-          // Eliminar imágenes asociadas
-          for (const imagen of sala.imagenes) {
-            const imagenId = Object.keys(imagen)[0];
-            await sendRequest("DELETE", `http://localhost:8081/imagen/eliminar/${imagenId}`);
-          }
-
-          // Eliminar servicios asociados
-          for (const servicio of sala.servicios) {
-            const servicioId = Object.keys(servicio)[0];
-            await sendRequest("DELETE", `http://localhost:8081/serviciosala/eliminar/${servicioId}`);
-          }
-
           await sendRequest("DELETE", `http://localhost:8081/sala/eliminar/${sala.id}`);
           listarSalas();
           closeModal();

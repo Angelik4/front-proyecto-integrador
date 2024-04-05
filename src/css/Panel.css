@@ -15,6 +15,7 @@
     border-radius: 5px;
     background-color: #F2F2F2;
     padding: 10px 20px;
+    position: relative;
 }
 
 .Ct-Tabla th {
@@ -59,6 +60,7 @@
     height: auto;
     /* Esto mantiene la proporción de la imagen */
 }
+
 
 .buscador-container {
     display: flex;
@@ -152,6 +154,10 @@ select {
     list-style: none;
     justify-content: center;
     margin-top: 20px;
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    right: 0;
 }
 
 .pagination li {
