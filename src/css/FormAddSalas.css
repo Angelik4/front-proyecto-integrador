@@ -4,26 +4,29 @@
   }
   .ReactModal__Content{
     width: 94%;
-    max-width: 500px;
     max-height: 610px;
     z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 2%;
+  }
+  .ReactModal__Content .btn-cerrar,
+  .modal-container .btn-cerrar{
+    position: absolute;
+    right: 4px;
+    top: 24px;
+    border: 0;
+    background: var(--white);
+    font-size: 24px;
   }
   .modal-container{
     position: relative;
-  }
-  .modal-container .btn-cerrar{
-    background: transparent;
-    border: 0;
-    font-size: 24px;
-    position: absolute;
-    right: 10px;
-    top: -4px;
+    width: 100%;
   }
   .modal-container h2{
     text-align: center;
+    margin-top: 30px;
   }
   .modal-form label {
     display: block;

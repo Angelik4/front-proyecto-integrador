@@ -10,7 +10,7 @@ const Home = () => {
         <div className='ct_banner-content'>
           <div className='ct_banner-title'>
             <h1>Conoce una manera de <br/> trabajar diferente</h1>
-            <p>Lorem ipsum dolor sit amet consectetur</p>
+            <p>Haz que cada día cuente en tu espacio de trabajo.</p>
           </div>
         </div>
       </div>

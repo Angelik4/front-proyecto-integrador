@@ -122,6 +122,7 @@ const FormAddSalas = ({ isOpen, onRequestClose, onSubmitSuccess }) => {
       left: "50%",
       right: "auto",
       bottom: "auto",
+      width: "max-content",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
     },

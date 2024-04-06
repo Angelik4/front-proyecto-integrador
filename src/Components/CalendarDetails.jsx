@@ -58,7 +58,7 @@ const CalendarDetails = ({ salaId, setSelectedDates }) => {
 
   return (
     <div className="date-picker-container2">
-      <div style={{ marginBottom: "10px" }}>
+      <div className='content_picker' style={{ marginBottom: "10px" }}>
         <label htmlFor="start-date">Fecha de Inicio:</label>
         <DatePicker
           id="start-date"
@@ -76,7 +76,7 @@ const CalendarDetails = ({ salaId, setSelectedDates }) => {
           filterTime={includeAvailableTimes}
         />
       </div>
-      <div>
+      <div className='content_picker'>
         <label htmlFor="end-date">Fecha de Fin:</label>
         <DatePicker
           id="end-date"

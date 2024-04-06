@@ -116,7 +116,7 @@ const ButtonReservar = ({ salaId, occupiedTimes }) => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      width: "60%", // Ancho del modal, puedes ajustar el valor según tus necesidades
+      width: "44%",
       height: "70%", // Alto del modal, puedes ajustar el valor según tus necesidades
       overflow: "auto" // Añadir scroll si el contenido es demasiado grande para el modal
     },
@@ -133,10 +133,10 @@ const ButtonReservar = ({ salaId, occupiedTimes }) => {
         onRequestClose={onRequestClose}
         style={customStyles}
       >
-        <div className="modal-containerButton">
-          <button onClick={onRequestClose} className="btn-cerrar">
+         <button onClick={onRequestClose} className="btn-cerrar">
             <FontAwesomeIcon icon={faXmark} />
           </button>
+        <div className="modal-containerButton">
           <h2>Reservar Sala Coworking</h2>
           <div className='modal-calendario'>
             <CalendarDetails salaId={salaId} occupiedTimes={occupiedTimes} setSelectedDates={setSelectedDates} />

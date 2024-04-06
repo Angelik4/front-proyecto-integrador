@@ -112,7 +112,8 @@
     font-size: 20px;
     border-radius: 4px;
 }
-.image-gallery-bullets{
+.image-gallery-bullets, 
+.image-gallery-icon{
   z-index: 0 !important;
 }
 
@@ -124,7 +125,7 @@
 .date-picker-container2 label {
   color: var(--black2);
 }
-.date-picker-container2 div {
+.date-picker-container2 .content_picker {
   display: flex;
   flex-direction: column;
   gap: 8px;

@@ -77,6 +77,7 @@ const FormAddCategoria = ({ isOpen, onRequestClose, actionType, categoriaToEdit,
       right: "auto",
       bottom: "auto",
       marginRight: "-50%",
+      width: "500px",
       transform: "translate(-50%, -50%)",
     },
   };
