@@ -116,7 +116,7 @@ const ButtonReservar = ({ salaId, occupiedTimes }) => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      width: "44%",
+      width: "46%",
       height: "70%", // Alto del modal, puedes ajustar el valor según tus necesidades
       overflow: "auto" // Añadir scroll si el contenido es demasiado grande para el modal
     },
