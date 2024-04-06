@@ -57,7 +57,7 @@ const CalendarDetails = ({ salaId, setSelectedDates }) => {
   };
 
   return (
-    <div className="date-picker-container2">
+    <div className="date-picker-container">
       <div style={{ marginBottom: "10px" }}>
         <label htmlFor="start-date">Fecha de Inicio:</label>
         <DatePicker

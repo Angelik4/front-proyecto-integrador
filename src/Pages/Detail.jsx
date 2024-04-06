@@ -82,7 +82,7 @@ const Detail = () => {
                   </li>
                 ))}
               </ul>
-              <ButtonReservar />
+              <ButtonReservar salaId={product && product.id}/>
             </div>
             <div>
               <ImageGallery
